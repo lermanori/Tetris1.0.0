@@ -1,7 +1,7 @@
 /******************************************************************************
 14/12/17 - 1st Session
 GOAL: making the framework, movint shapes on the screen .
-15/12/17
+15/12/17 - ori: making the shape factory class work. 
 ********************************************************************************/
 
 
@@ -31,7 +31,7 @@ int main()
 	{
 		while (keyPressed != ESC)
 		{
-			if (existingShape == false)///generating parts
+			if (existingShape == false)//generating parts
 			{ 
          		shape = new ShapeFactory;
 				existingShape = true;
