@@ -16,6 +16,7 @@ ShapeFactory::ShapeFactory()
 
 bool ShapeFactory::move(Direction dir)
 {
+	
 	Square* ptrSq= nullptr;
 	Square* ptrSq2 = nullptr;
 
