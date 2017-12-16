@@ -1,6 +1,0 @@
-﻿  main.cpp
-  ShapesFactory.cpp
-  Generating Code...
-c:\users\lerman\desktop\c++\tetris-14.12\tetris1.0.0\shapesfactory.cpp(37): warning C4715: 'ShapeFactory::move': not all control paths return a value
-  Tetris1.0.0.vcxproj -> C:\Users\lerman\Desktop\c++\tetris-14.12\Tetris1.0.0\Debug\Tetris1.0.0.exe
-  Tetris1.0.0.vcxproj -> C:\Users\lerman\Desktop\c++\tetris-14.12\Tetris1.0.0\Debug\Tetris1.0.0.pdb (Partial PDB)
