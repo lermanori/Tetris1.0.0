@@ -5,11 +5,11 @@ ShapeFactory::ShapeFactory()
 	switch (x)
 	{
 		case 0:
-			sqrPtr = (Square*)new Square;
+			shapePtr = (Square*)new Square;
 		//	this->shapePtr = (Square*)new Square;
 			break;
 		case 1:
-			sqrPtr = (Square*)new Square(MIN_X, MIN_Y, 'P');
+			shapePtr = (Line*)new Line;
 			break;
 	}
 }
@@ -17,42 +17,42 @@ ShapeFactory::ShapeFactory()
 bool ShapeFactory::move(Direction dir)
 {
 	
-	Square* ptrSq= nullptr;
-	Square* ptrSq2 = nullptr;
+	Square* sqrPtr= nullptr;
+	Line* linePtr = nullptr;
 
 
 
 	switch (x)
 	{
 	case 0:
-		ptrSq = (Square*)sqrPtr;
-		return( ptrSq->move(dir) );
+		sqrPtr = (Square*)shapePtr;
+		return( sqrPtr->move(dir) );
 		break;
 
 	case 1:
-		ptrSq2 = (Square*)sqrPtr;
-		return(ptrSq2->move(dir));
+		linePtr = (Line*)shapePtr;
+		return(linePtr->move(dir));
 		break;
 	}
 }
 
 void ShapeFactory::draw(char c)
 {
-	Square* ptrSq = nullptr;
-	Square* ptrSq2 = nullptr;
+	Square* sqrPtr = nullptr;
+	Line* linePtr = nullptr;
 
 
 
 	switch (x)
 	{
 	case 0:
-		ptrSq = (Square*)sqrPtr;
-		ptrSq->draw(c);
+		sqrPtr = (Square*)shapePtr;
+		sqrPtr->draw(c);
 		break;
 
 	case 1:
-		ptrSq2 = (Square*)sqrPtr;
-		ptrSq2->draw(c);
+		linePtr = (Line*)shapePtr;
+		linePtr->draw(c);
 		break;
 	}
 }
