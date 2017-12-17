@@ -3,7 +3,7 @@
 Line::Line()
 {
 	int x = MIN_X + 5, y = MIN_Y;
-	char c = '*';
+	char c = '#';
 
 	line[LL].set(x, y, c);
 	line[LR].set(x+1, y, c);
