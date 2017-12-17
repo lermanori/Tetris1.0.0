@@ -13,10 +13,10 @@ Line::Line()
 
 Line::Line(int x, int y, char c)
 {
-	line[LL].set(x - 2, y, c);
-	line[LR].set(x - 1, y, c);
-	line[RL].set(x , y, c);
-	line[RR].set(x + 1, y, c);
+	line[LL].set(x, y, c);
+	line[LR].set(x+1, y, c);
+	line[RL].set(x+2 , y, c);
+	line[RR].set(x+3, y, c);
 }
 
 bool Line::move(Direction dir)

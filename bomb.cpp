@@ -3,7 +3,7 @@
 Bomb::Bomb()
 {
 	int x = MIN_X + 5, y = MIN_Y;
-	char c = '*';
+	char c = '@';
 	p.set(x, y, c);
 }
 

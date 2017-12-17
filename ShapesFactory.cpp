@@ -11,6 +11,9 @@ ShapeFactory::ShapeFactory()
 		case 1:
 			shapePtr = (Line*)new Line;
 			break;
+		case 2:
+			shapePtr = (Bomb*)new Bomb;
+			break;
 	}
 }
 
@@ -19,7 +22,7 @@ bool ShapeFactory::move(Direction dir)
 	
 	Square* sqrPtr= nullptr;
 	Line* linePtr = nullptr;
-
+	Bomb* bombPtr = nullptr;
 
 
 	switch (x)
@@ -33,6 +36,11 @@ bool ShapeFactory::move(Direction dir)
 		linePtr = (Line*)shapePtr;
 		return(linePtr->move(dir));
 		break;
+
+	case 2:
+		bombPtr = (Bomb*)shapePtr;
+		return(bombPtr->move(dir));
+		break;
 	}
 }
 
@@ -40,8 +48,7 @@ void ShapeFactory::draw(char c)
 {
 	Square* sqrPtr = nullptr;
 	Line* linePtr = nullptr;
-
-
+	Bomb* bombPtr = nullptr;
 
 	switch (x)
 	{
@@ -53,6 +60,11 @@ void ShapeFactory::draw(char c)
 	case 1:
 		linePtr = (Line*)shapePtr;
 		linePtr->draw(c);
+		break;
+
+	case 2:
+		bombPtr = (Bomb*)shapePtr;
+		bombPtr->draw(c);
 		break;
 	}
 }
