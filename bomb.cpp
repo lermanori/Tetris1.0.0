@@ -1,5 +1,5 @@
 #include "bomb.h"
-#include "Board.h"
+
 Bomb::Bomb()
 {
 	int x = MIN_X + 5, y = MIN_Y;
@@ -22,5 +22,12 @@ void Bomb::move(Direction dir)
 void Bomb::draw(char c)
 {
 	p.draw(c);
+}
+
+bool Bomb::canMove(const Board & gameBoard, Direction dir)
+{
+	bool res;
+	res = p.canMove(gameBoard, dir);
+	return res;
 }
 

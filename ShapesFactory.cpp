@@ -1,5 +1,4 @@
 #include "ShapeFactory.h"
-#include "Board.h"
 
 ShapeFactory::ShapeFactory()
 {
@@ -90,18 +89,18 @@ int ShapeFactory::getShapeState()const
 
 }
 
-bool ShapeFactory::canMove(const Board& gameBoard, Direction dir)
+bool ShapeFactory::canMove(Board& gameBoard, Direction dir)
 {
 	switch (shapeType)
 	{
 	case SQUARE:
-		sqrPtr->canMove(gameBoard, dir);
+		return(sqrPtr->canMove(gameBoard, dir));
 		break;
 	case LINE:
-		linePtr->canMove(gameBoard, dir);
+		return(linePtr->canMove(gameBoard, dir));
 		break;
 	case BOMB:
-		bombPtr->canMove(gameBoard, dir);
+		return(bombPtr->canMove(gameBoard, dir));
 		break;
 	}
 }

@@ -38,7 +38,7 @@ void Matrix::markShape(const ShapeFactory& shape)
 			break;
 
 		case VERTICAL:
-			gameBoard[y][x]= LN;
+			gameBoard[y][x] = LN;
 			gameBoard[y + 1][x] = LN;
 			gameBoard[y + 2][x] = LN;
 			gameBoard[y + 3][x] = LN;
@@ -48,7 +48,7 @@ void Matrix::markShape(const ShapeFactory& shape)
 		shape.draw(LN);
 		break;
 
-		case BOMB:
+	case BOMB:
 		getPosInMatrix(shape.getPoint(), x, y);
 		gameBoard[y][x] = BMB;
 		shape.draw(BMB);

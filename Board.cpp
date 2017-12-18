@@ -5,6 +5,11 @@ Board::Board()
 	drawBoard();
 }
 
+void Board::markShape(const ShapeFactory & shape)
+{
+	gameBoard.markShape(shape);
+}
+
 bool Board::haveSpace(int x, int y)const
 {
 	return gameBoard.haveSpace(x, y);

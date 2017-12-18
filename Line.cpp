@@ -1,5 +1,6 @@
 #include "Line.h"
-#include "Board.h"
+
+
 Line::Line()
 {
 	int x = MIN_X + 5, y = MIN_Y;

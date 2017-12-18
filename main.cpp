@@ -28,7 +28,7 @@ int main()
 	bool gameOn = true;
 	bool existingShape = false;
 	bool cantMove = false;
-	bool canMove = true;
+	bool canMove1 = true;
 	char keyPressed = 0;
 	Direction dir;
 	ShapeFactory* shape = nullptr;
@@ -48,14 +48,14 @@ int main()
 
 			Sleep(400);
 			dir = keyPressedToDirection(keyPressed);
-			canMove = shape->canMove(board, dir)
-			if (canMove)
+			canMove1 = shape->canMove(board, dir);
+			if (canMove1)
 			{
 				shape->move(dir);
 			}
 		//	cantMove = shape->move(dir);
 
-			if (!canMove)//end life of moving shape
+			if (!canMove1)//end life of moving shape
 			{
 				shape->draw(' ');
 				board.markShape(*shape);

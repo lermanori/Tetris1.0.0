@@ -24,7 +24,7 @@ public:
 	void setFallenItems(int numItems) { fallenItems = numItems; gotoxy(FALLEN_ITEMS_X, FALLEN_ITEMS_Y); std::cout << fallenItems; };
 	int getScore() { return score; };
 	int getFallenItems() { return fallenItems; };
-	void markShape(const ShapeFactory &shape) { return gameBoard.markShape(shape); };
+	void markShape(const ShapeFactory &shape);
 	bool haveSpace(int x, int y)const;
 
 };

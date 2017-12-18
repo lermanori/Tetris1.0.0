@@ -1,5 +1,4 @@
 #include "Point.h"
-#include "Board.h"
 
 void Point::move(Direction dir)
 {
@@ -77,6 +76,7 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 		else
 			return false;
 		break;
+
 	default:
 		if (gameBoard.haveSpace(this->x, this->y + 1))
 			return true;

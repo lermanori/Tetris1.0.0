@@ -1,6 +1,7 @@
 #pragma once
 #include "square.h"
 #include "Line.h"
+#include "Board.h"
 #include "bomb.h"
 
 //shape factory creates a random tetris object that is refred threw the shape itself.
@@ -11,17 +12,14 @@ class ShapeFactory
 	Line* linePtr = nullptr;
 	Bomb* bombPtr = nullptr;
 	const int shapeType = rand() % 3;
-
+	
 public:
 	ShapeFactory();
 	void move(Direction dir);
 	void draw(char c)const;
 	const int getShapeType()const { return shapeType; };
 	const Point& getPoint()const ;
-	int getShapeState()const;
-	bool canMove(const Board& gameBoard, Direction dir);
-
-
-
+	int getShapeState() const;
+	bool canMove(Board& gameBoard, Direction dir);
 		
 };
