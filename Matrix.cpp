@@ -61,19 +61,19 @@ void Matrix::markShape(const ShapeFactory& shape)
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
-	x = pt.getX() - MIN_X;
-	y = pt.getY() - MIN_Y;
+	x = pt.getX() - LEFTBORDER;
+	y = pt.getY() - TOPBORDER;
 }
 
 void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 {
-	xNewPos = x - MIN_X;
-	yNewPos = y - MIN_Y;
+	xNewPos = x - LEFTBORDER;
+	yNewPos = y - TOPBORDER;
 }
 
 bool Matrix::haveSpace(int x, int y) const
 {
-	if ((gameBoard[y][x] == SPACE) && y <= 14 && x <= 9 && y >= 0 && x >= 0)
+	if ((gameBoard[y][x] == SPACE)&&x<10&&x>=-1&&y>=0&&y<15)
 		return true;
 	else
 		return false;

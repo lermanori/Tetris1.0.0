@@ -43,7 +43,7 @@ int main()
 				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(400);
+			Sleep(100);
 			dir = keyPressedToDirection(keyPressed);
 			canMove1 = shape->canMove(board, dir);
 			if (canMove1)

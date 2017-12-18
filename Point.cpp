@@ -31,29 +31,30 @@ void Point::move(Direction dir)
 		break;
 	}
 
-	if (x >= MAX_X-1)
+	x += direction_x;
+	y = (direction_y + y + 1);
+
+	if (x >= MAX_X)
 	{
 
-		x = MAX_X-1;
+		x = MAX_X;
 	
 	}
-	else if (x <= MIN_X+1)
+	else if (x <= MIN_X)
 	{
-		x = MIN_X+1;
+		x = MIN_X;
 		
 	}
-	else if (y >= MAX_Y-1)
+	else if (y >= MAX_Y)
 	{
 		y = MAX_Y;
 
 	}
-	else if (y < MIN_Y+1)
-	{
-		y = MIN_Y+1;
-	}
+	//else if (y < MIN_Y)
+	//{
+	//	y = MIN_Y;
+	//}
 
-	x += direction_x;
-	y = (direction_y + y + 1);
 
 }
 
@@ -92,12 +93,12 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 }
 void Point::getPosInMatrix(const Point& pt, int &x, int &y)
 {
-	x = pt.getX() - MIN_X;
-	y = pt.getY() - MIN_Y;
+	x = pt.getX() - LEFTBORDER;
+	y = pt.getY() - TOPBORDER;
 }
 
 void Point::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 {
-	xNewPos = x - MIN_X;
-	yNewPos = y - MIN_Y;
+	xNewPos = x - LEFTBORDER;
+	yNewPos = y - TOPBORDER;
 }
