@@ -7,11 +7,16 @@
 //its using the void pointer to hold the adress to the part and used each time by casting to the desired object and activating the objects methods.  
 class ShapeFactory
 {
-	void* shapePtr = nullptr;
-	const int x = rand() % 3;
+	Square* sqrPtr = nullptr;
+	Line* linePtr = nullptr;
+	Bomb* bombPtr = nullptr;
+//	void* shapePtr = nullptr;
+	
+	const int shapeType = rand() % 3;
 public:
 	ShapeFactory();
 	bool move(Direction dir);
 	void draw(char c);
+	
 		
 };

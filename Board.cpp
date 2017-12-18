@@ -57,6 +57,6 @@ void Board::drawScoreBoard()
 	gotoxy(scorePosX-14, scorePosY);
 	std::cout << "Score: " << score;
 	gotoxy(itemsPosX-14,itemsPosY);
-	std::cout << "Fallen Items:" << fallenItems;
+	std::cout << "Fallen Items: " << fallenItems;
 
 }

@@ -19,4 +19,8 @@ class Board
 
 public:
 	Board();
+	void setScore(int newScore) { score = newScore; gotoxy(SCORE_X, SCORE_Y); std::cout << score; };
+	void setFallenItems(int numItems) { fallenItems = numItems; gotoxy(FALLEN_ITEMS_X, FALLEN_ITEMS_Y); std::cout << fallenItems; };
+	int getScore() { return score; };
+	int getFallenItems() { return fallenItems; };
 };

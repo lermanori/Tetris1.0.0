@@ -7,6 +7,7 @@ class methods will be ctor- creating boards game and initaializing the vars, met
 also should be a method to check if a block exists in a certion range of points(dynamic borders)
 17/12/17 - TEAM: added board class. Need to write set functions to score/fallenItems. Need to find a way to update the static matrix according to the shape.
 also should draw the matrix including the ongoing updates.
+
 ********************************************************************************/
 
 
@@ -40,6 +41,7 @@ int main()
 			{ 
          		shape = new ShapeFactory;
 				existingShape = true;
+				board.setFallenItems(board.getFallenItems()+1);
 			}
 
 			Sleep(400);

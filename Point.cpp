@@ -27,23 +27,23 @@ bool Point::move(Direction dir)
 		break;
 	}
 
-	if (x > MAX_X)
+	if (x > MAX_X-1)
 	{
 
-		x = MAX_X-1;
+		x = MAX_X - 1;
 	
 	}
-	else if (x < MIN_X)
+	else if (x < MIN_X+1)
 	{
 		x = MIN_X+1;
 		
 	}
-	else if (y > MAX_Y)
+	else if (y > MAX_Y-1)
 	{
-		y = MAX_Y-1;
+		y = MAX_Y-2;
 		return true;
 	}
-	else if (y < MIN_Y)
+	else if (y < MIN_Y+1)
 	{
 		y = MIN_Y+1;
 	}
