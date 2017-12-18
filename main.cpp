@@ -5,7 +5,8 @@ GOAL: making the framework, movint shapes on the screen .
 16/12/17 - ori: thinkng about a class named board who will include the static matrix(the type of the matrix is important exemple: a char matrix for the signs) of the board and the vars for the game like score and fallen items
 class methods will be ctor- creating boards game and initaializing the vars, method: when a block cant move(end lif of block) its point will be send to the matrix and drawed over there.
 also should be a method to check if a block exists in a certion range of points(dynamic borders)
-
+17/12/17 - TEAM: added board class. Need to write set functions to score/fallenItems. Need to find a way to update the static matrix according to the shape.
+also should draw the matrix including the ongoing updates.
 ********************************************************************************/
 
 
@@ -16,21 +17,21 @@ also should be a method to check if a block exists in a certion range of points(
 #include "constants.h"
 #include "square.h"	
 #include "ShapeFactory.h"
+#include "Board.h"
 
 Direction keyPressedToDirection(char keyPressed);
 enum { ESC = 27 };
 
 int main()
 {
-
-	
 	bool gameOn = true;
 	bool existingShape = false;
 	bool cantMove = false;
 	char keyPressed = 0;
 	Direction dir;
 	ShapeFactory* shape = nullptr;
-	
+	Board board;
+
 	while (gameOn)
 	{
 		while (keyPressed != ESC)
@@ -41,7 +42,7 @@ int main()
 				existingShape = true;
 			}
 
-			Sleep(100);
+			Sleep(400);
 			dir = keyPressedToDirection(keyPressed);
 			cantMove = shape->move(dir);
 

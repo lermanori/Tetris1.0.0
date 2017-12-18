@@ -97,6 +97,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="bomb.cpp" />
+    <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="ShapesFactory.cpp" />
@@ -104,7 +107,10 @@
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="bomb.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="Line.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="ShapeFactory.h" />
     <ClInclude Include="square.h" />
