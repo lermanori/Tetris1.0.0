@@ -1,3 +1,4 @@
+#pragma once
 #include "ShapeFactory.h"
 
 ShapeFactory::ShapeFactory()

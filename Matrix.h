@@ -2,6 +2,8 @@
 #include "constants.h"
 #include "ShapeFactory.h"
 
+class Point;
+
 class Matrix 
 {
 	char gameBoard[15][10];

@@ -1,3 +1,4 @@
+#pragma once
 #include "bomb.h"
 
 Bomb::Bomb()
@@ -30,4 +31,6 @@ bool Bomb::canMove(const Board & gameBoard, Direction dir)
 	res = p.canMove(gameBoard, dir);
 	return res;
 }
+
+
 

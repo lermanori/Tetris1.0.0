@@ -1,7 +1,6 @@
 #pragma once
 #include "square.h"
 #include "Line.h"
-#include "Board.h"
 #include "bomb.h"
 
 //shape factory creates a random tetris object that is refred threw the shape itself.

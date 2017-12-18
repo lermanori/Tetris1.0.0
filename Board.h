@@ -4,6 +4,8 @@
 #include "Matrix.h"
 #include <iostream>
 
+class ShapeFactory;
+
 class Board
 {
 	Matrix gameBoard;

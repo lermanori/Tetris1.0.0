@@ -1,4 +1,7 @@
+#pragma once
 #include "Matrix.h"
+
+
 
 Matrix::Matrix()
 {

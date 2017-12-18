@@ -1,7 +1,8 @@
 #pragma once
 
 #include "Point.h"
-#include "Board.h"
+
+
 
 class Bomb
 {
@@ -15,4 +16,6 @@ public:
 	void draw(char c);
 	const Point& getPoint() { return p; };
 	bool canMove(const Board &gameBoard, Direction dir);
+
+
 };

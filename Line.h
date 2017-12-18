@@ -1,6 +1,7 @@
 #pragma once
 #include "Point.h"
-#include "Board.h"
+
+class Board;
 
 enum { lineSize = 4 };
 

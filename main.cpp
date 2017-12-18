@@ -16,10 +16,7 @@ also should draw the matrix including the ongoing updates.
 #include <iostream>
 #include <Windows.h>
 #include "constants.h"
-#include "square.h"	
-#include "ShapeFactory.h"
 #include "Board.h"
-
 Direction keyPressedToDirection(char keyPressed);
 enum { ESC = 27 };
 
