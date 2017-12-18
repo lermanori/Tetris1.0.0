@@ -11,6 +11,12 @@ Matrix::Matrix()
 
 void Matrix::markShape(ShapeFactory shape)
 {
-	
+	int shapeType = shape.getShapeType();
+
+	switch (shapeType)
+	{
+	case SQUARE:
+		
+	}
 
 }

@@ -4,14 +4,14 @@ ShapeFactory::ShapeFactory()
 {
 	switch (shapeType)
 	{
-		case 0:
+		case SQUARE:
 			sqrPtr = (Square*)new Square;
 		//	this->shapePtr = (Square*)new Square;
 			break;
-		case 1:
+		case LINE:
 			linePtr = (Line*)new Line;
 			break;
-		case 2:
+		case BOMB:
 			bombPtr = (Bomb*)new Bomb;
 			break;
 	}
@@ -21,15 +21,15 @@ bool ShapeFactory::move(Direction dir)
 {
 	switch (shapeType)
 	{
-	case 0:
+	case SQUARE:
 		return(sqrPtr->move(dir) );
 		break;
 
-	case 1:
+	case LINE:
 		return(linePtr->move(dir));
 		break;
 
-	case 2:
+	case BOMB:
 		return(bombPtr->move(dir));
 		break;
 	}
@@ -40,16 +40,35 @@ void ShapeFactory::draw(char c)
 
 	switch (shapeType)
 	{
-	case 0:
+	case SQUARE:
 		sqrPtr->draw(c);
 		break;
 
-	case 1:
+	case LINE:
 		linePtr->draw(c);
 		break;
 
-	case 2:
+	case BOMB:
 		bombPtr->draw(c);
 		break;
 	}
+}
+
+const Point& ShapeFactory::getPoint()
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		return(sqrPtr->getPoint);
+		break;
+
+	case LINE:
+		linePtr->draw(c);
+		break;
+
+	case BOMB:
+		bombPtr->draw(c);
+		break;
+	}
+	return Point();
 }

@@ -10,13 +10,14 @@ class ShapeFactory
 	Square* sqrPtr = nullptr;
 	Line* linePtr = nullptr;
 	Bomb* bombPtr = nullptr;
-//	void* shapePtr = nullptr;
-	
 	const int shapeType = rand() % 3;
+
 public:
 	ShapeFactory();
 	bool move(Direction dir);
 	void draw(char c);
+	const int getShapeType() { return shapeType; }
+	const Point& getPoint();
 	
 		
 };
