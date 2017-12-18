@@ -12,8 +12,9 @@ class Square
 public:
 	Square();
 	Square(int x, int y, char c);
-	bool move(Direction dir);
+	void move(Direction dir);
 	void draw(char c);
-	const Point& getPoint() { return s1[BL]; };
+	const Point& getPoint() { return s1[BL]; }
+	bool canMove(const Board& gameBoard, Direction dir);
 		
 };

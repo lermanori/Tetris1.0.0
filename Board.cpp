@@ -5,6 +5,13 @@ Board::Board()
 	drawBoard();
 }
 
+bool Board::haveSpace(int x, int y)const
+{
+	return gameBoard.haveSpace(x, y);
+}
+
+
+
 void Board::drawBoard()
 {
 	drawMenu();

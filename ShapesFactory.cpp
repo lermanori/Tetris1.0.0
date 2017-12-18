@@ -1,41 +1,42 @@
 #include "ShapeFactory.h"
+#include "Board.h"
 
 ShapeFactory::ShapeFactory()
 {
 	switch (shapeType)
 	{
-		case SQUARE:
-			sqrPtr = (Square*)new Square;
+	case SQUARE:
+		sqrPtr = (Square*)new Square;
 		//	this->shapePtr = (Square*)new Square;
-			break;
-		case LINE:
-			linePtr = (Line*)new Line;
-			break;
-		case BOMB:
-			bombPtr = (Bomb*)new Bomb;
-			break;
+		break;
+	case LINE:
+		linePtr = (Line*)new Line;
+		break;
+	case BOMB:
+		bombPtr = (Bomb*)new Bomb;
+		break;
 	}
 }
 
-bool ShapeFactory::move(Direction dir)
+void ShapeFactory::move(Direction dir)
 {
 	switch (shapeType)
 	{
 	case SQUARE:
-		return(sqrPtr->move(dir) );
+		sqrPtr->move(dir);
 		break;
 
 	case LINE:
-		return(linePtr->move(dir));
+		linePtr->move(dir);
 		break;
 
 	case BOMB:
-		return(bombPtr->move(dir));
+		bombPtr->move(dir);
 		break;
 	}
 }
 
-void ShapeFactory::draw(char c)
+void ShapeFactory::draw(char c)const
 {
 
 	switch (shapeType)
@@ -54,21 +55,53 @@ void ShapeFactory::draw(char c)
 	}
 }
 
-const Point& ShapeFactory::getPoint()
+const Point& ShapeFactory::getPoint()const
 {
 	switch (shapeType)
 	{
 	case SQUARE:
-		return(sqrPtr->getPoint);
+		return(sqrPtr->getPoint());
 		break;
 
 	case LINE:
-		linePtr->draw(c);
+		return(linePtr->getPoint());
 		break;
 
 	case BOMB:
-		bombPtr->draw(c);
+		return(bombPtr->getPoint());
 		break;
 	}
-	return Point();
+}
+
+int ShapeFactory::getShapeState()const
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		return 0;
+		break;
+	case LINE:
+		return(linePtr->getState());
+		break;
+	case BOMB:
+		return 0;
+		break;
+	}
+
+}
+
+bool ShapeFactory::canMove(const Board& gameBoard, Direction dir)
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		sqrPtr->canMove(gameBoard, dir);
+		break;
+	case LINE:
+		linePtr->canMove(gameBoard, dir);
+		break;
+	case BOMB:
+		bombPtr->canMove(gameBoard, dir);
+		break;
+	}
 }

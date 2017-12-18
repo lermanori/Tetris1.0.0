@@ -14,10 +14,14 @@ class ShapeFactory
 
 public:
 	ShapeFactory();
-	bool move(Direction dir);
-	void draw(char c);
-	const int getShapeType() { return shapeType; }
-	const Point& getPoint();
-	
+	void move(Direction dir);
+	void draw(char c)const;
+	const int getShapeType()const { return shapeType; };
+	const Point& getPoint()const ;
+	int getShapeState()const;
+	bool canMove(const Board& gameBoard, Direction dir);
+
+
+
 		
 };
