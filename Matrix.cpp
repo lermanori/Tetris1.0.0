@@ -7,9 +7,11 @@ Matrix::Matrix()
 {
 	for (int i = 0; i < 15; i++)
 	{
+		indicators[i] = EMPTY;
 		for (int j = 0; j < 10; j++)
 			gameBoard[i][j] = SPACE;
 	}
+
 }
 
 void Matrix::markShape(const ShapeFactory& shape)
@@ -30,7 +32,6 @@ void Matrix::markShape(const ShapeFactory& shape)
 		shape.draw(SQR);
 		break;
 	case LINE:
-
 		getPosInMatrix(shape.getPoint(), x, y);
 		switch (state)
 		{
@@ -59,6 +60,8 @@ void Matrix::markShape(const ShapeFactory& shape)
 
 	}
 
+	updateIndicators(shape);
+
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
@@ -78,4 +81,40 @@ bool Matrix::haveSpace(int x, int y) const
 		return true;
 	else
 		return false;
+}
+
+void Matrix::updateIndicators(const ShapeFactory &shape)
+{
+	const int shapeType = shape.getShapeType();
+	int x = 0, y = 0;
+	LineState state = (LineState)shape.getShapeState();
+
+	getPosInMatrix(shape.getPoint(), x, y);
+
+	switch (shapeType)
+	{
+	case SQUARE:
+		indicators[y]++;
+		indicators[y - 1]++;
+		indicators[y]++;
+		indicators[y - 1]++;
+		break;
+	case LINE:
+		switch (state)
+		{
+		case HORIZONTAL:
+			indicators[y] += 4;
+			break;
+		case VERTICAL:
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 2]++;
+			indicators[y + 3]++;
+			break;
+		}
+		break;
+	case BOMB:
+		indicators[y]++;
+		break;
+	}
 }

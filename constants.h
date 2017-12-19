@@ -13,6 +13,7 @@ enum Borders {
 	FALLEN_ITEMS_X = SCORE_X, FALLEN_ITEMS_Y = SCORE_Y + 3};
 
 const char SPACE = ' ';
+const int EMPTY = 0;
 const char SQR = '*';
 const char BMB = '@';
 const char LN = '#';
