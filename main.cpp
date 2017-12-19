@@ -45,10 +45,10 @@ int main()
 
 			Sleep(250);
 			dir = keyPressedToDirection(keyPressed);
-
+			
 			if (shape->canMove(board, dir))
 			{	
-				shape->move(dir);
+					shape->move(dir);
 			}
 			if (shape->canMove(board, DOWN))
 			{
@@ -59,7 +59,7 @@ int main()
 			//if (!canMove1)//end life of moving shape
 			if(!shape->canMove(board, DOWN))
 			{
-				shape->draw(' ');
+					shape->draw(' ');
 				board.markShape(*shape);
 				delete shape;
 				existingShape = false;

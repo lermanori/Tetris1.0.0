@@ -34,7 +34,7 @@ void Point::move(Direction dir)
 	x += direction_x;
 	y += direction_y;
 
-
+	/*
 	if (x >= MAX_X)
 	{
 
@@ -55,7 +55,7 @@ void Point::move(Direction dir)
 	//{
 	//	y = MIN_Y;
 	//}
-
+	*/
 
 }
 
@@ -94,12 +94,12 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 }
 void Point::getPosInMatrix(const Point& pt, int &x, int &y)
 {
-	x = pt.getX() - LEFTBORDER;
-	y = pt.getY() - TOPBORDER;
+	x = pt.getX() - MIN_X;
+	y = pt.getY() - MIN_Y;
 }
 
 void Point::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 {
-	xNewPos = x - LEFTBORDER;
-	yNewPos = y - TOPBORDER;
+	xNewPos = x - MIN_X;
+	yNewPos = y - MIN_Y;
 }

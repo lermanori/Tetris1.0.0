@@ -28,6 +28,7 @@ void Matrix::markShape(const ShapeFactory& shape)
 		gameBoard[y - 1][x] = SQR;
 
 		shape.draw(SQR);
+		break;
 	case LINE:
 
 		getPosInMatrix(shape.getPoint(), x, y);
@@ -61,19 +62,19 @@ void Matrix::markShape(const ShapeFactory& shape)
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
-	x = pt.getX() - LEFTBORDER;
-	y = pt.getY() - TOPBORDER;
+	x = pt.getX() - MIN_X;
+	y = pt.getY() - MIN_Y;
 }
 
 void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 {
-	xNewPos = x - LEFTBORDER;
-	yNewPos = y - TOPBORDER;
+	xNewPos = x - MIN_X;
+	yNewPos = y - MIN_Y;
 }
 
 bool Matrix::haveSpace(int x, int y) const
 {
-	if ((gameBoard[y][x] == SPACE) && x < 10 && x >= -1 && y >= 0 && y < 15)
+	if ((gameBoard[y][x] == SPACE) && x < 10 && x > -1 && y >= 0 && y < 15)
 		return true;
 	else
 		return false;
