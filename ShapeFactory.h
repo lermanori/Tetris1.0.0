@@ -12,7 +12,7 @@ class ShapeFactory
 	Bomb* bombPtr = nullptr;
 //	const int shapeType = rand() %3;
 	const int shapeType = LINE;
-
+	//fuck u compiler we won!
 public:
 	ShapeFactory();
 	void move(Direction dir);
