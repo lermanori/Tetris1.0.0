@@ -10,7 +10,8 @@ class ShapeFactory
 	Square* sqrPtr = nullptr;
 	Line* linePtr = nullptr;
 	Bomb* bombPtr = nullptr;
-	const int shapeType = rand() %3;
+//	const int shapeType = rand() %3;
+	const int shapeType = 1;
 
 public:
 	ShapeFactory();
