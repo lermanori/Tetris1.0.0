@@ -8,12 +8,14 @@ enum ShapeTypes{SQUARE = 0, LINE , BOMB};
 enum LineState { HORIZONTAL = 0, VERTICAL };
 
 enum Borders {
-	MIN_X = 32, MIN_Y = 4, MAX_X = MIN_X+9, MAX_Y = MIN_Y+14, LEFTBORDER = MIN_X-1, TOPBORDER = MIN_Y-1,
+	MIN_X = 32, MIN_Y =4, MAX_X = MIN_X+9, MAX_Y = MIN_Y+14, LEFTBORDER = MIN_X-1, TOPBORDER = MIN_Y-1,
 	RIGHTBORDER = MAX_X+1, BOTTOMBORDER = MAX_Y+1, SCORE_X = RIGHTBORDER + 25, SCORE_Y = MIN_Y + 3,
 	FALLEN_ITEMS_X = SCORE_X, FALLEN_ITEMS_Y = SCORE_Y + 3};
+enum MatrixDetails { HEIGHT = 15, WIDTH = 10 };
 
 const char SPACE = ' ';
 const int EMPTY = 0;
+const int FULL = 10;
 const char SQR = '*';
 const char BMB = '@';
 const char LN = '#';

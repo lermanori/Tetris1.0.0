@@ -23,14 +23,14 @@ void Board::drawBoard()
 	drawMenu();
 	drawScoreBoard();
 	//drawing top border
-	gotoxy(LEFTBORDER, TOPBORDER-1);
+	gotoxy(LEFTBORDER, TOPBORDER);
 	for (int i = LEFTBORDER; i < RIGHTBORDER+1; i++)
 	{
 		std::cout << "$";
 	}
 
 	//drawing right border
-	for (int i =TOPBORDER; i < BOTTOMBORDER; i++)
+	for (int i =MIN_Y; i < BOTTOMBORDER; i++)
 	{
 		gotoxy(RIGHTBORDER, i);
 		std::cout << "$";
@@ -44,7 +44,7 @@ void Board::drawBoard()
 	}
 
 	//drawing left border
-	for (int i = TOPBORDER; i < BOTTOMBORDER; i++)
+	for (int i = MIN_Y; i < BOTTOMBORDER; i++)
 	{
 		gotoxy(LEFTBORDER, i);
 		std::cout << "$";

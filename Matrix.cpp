@@ -5,10 +5,16 @@
 
 Matrix::Matrix()
 {
-	for (int i = 0; i < 15; i++)
+	gameBoard = new char*[HEIGHT];
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		gameBoard[i] = new char[WIDTH];
+	}
+
+	for (int i = 0; i < HEIGHT; i++)
 	{
 		indicators[i] = EMPTY;
-		for (int j = 0; j < 10; j++)
+		for (int j = 0; j < WIDTH; j++)
 			gameBoard[i][j] = SPACE;
 	}
 
@@ -77,7 +83,7 @@ void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 
 bool Matrix::haveSpace(int x, int y) const
 {
-	if ((gameBoard[y][x] == SPACE) && x < 10 && x > -1 && y >= 0 && y < 15)
+	if (x < 10 && x > -1 && y >= 0 && y < 15 && (gameBoard[y][x] == SPACE))
 		return true;
 	else
 		return false;
@@ -116,5 +122,50 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 	case BOMB:
 		indicators[y]++;
 		break;
+	}
+	checkIfFullLine();
+}
+
+void Matrix::checkIfFullLine()
+{
+	bool fullLine = false;
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		if (indicators[i] == FULL)
+		{
+			eraseLine(i);
+			fullLine = true;
+		}
+	}
+		if (fullLine)
+			printMatrix();
+}
+
+void Matrix::eraseLine(int i)
+{
+
+	for (int line = i; line > 0; line--)
+	{
+		gameBoard[line] = gameBoard[line-1];
+		indicators[line] = indicators[line-1];
+	}
+	delete gameBoard[0];
+	gameBoard[0] = new char[WIDTH];
+	for (int j = 0; j < WIDTH; j++)
+		gameBoard[0][j] = SPACE;
+	indicators[0] = EMPTY;
+}
+
+void Matrix::printMatrix()
+{
+	gotoxy(MIN_X, MIN_Y);
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		gotoxy(MIN_X, MIN_Y + i);
+		
+		for (int j = 0; j < WIDTH; j++)
+		{
+			std::cout << gameBoard[i][j];
+		}
 	}
 }

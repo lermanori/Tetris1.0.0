@@ -4,7 +4,7 @@
 
 Square::Square()
 {
-	int x = MIN_X + 5, y = MIN_Y;
+	int x = MIN_X + 5, y = MIN_Y+1;
 	char c = '*';
 	s1[BL].set(x, y, c);
 	s1[BR].set(x + 1, y, c);

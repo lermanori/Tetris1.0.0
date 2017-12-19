@@ -6,7 +6,8 @@ class Point;
 
 class Matrix 
 {
-	char gameBoard[15][10];
+//	char gameBoard[15][10];
+	char** gameBoard;
 	int indicators[15];
 
 public:
@@ -16,6 +17,7 @@ public:
 	void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 	bool haveSpace(int x, int y)const;
 	void updateIndicators(const ShapeFactory& shape);
-
-
+	void checkIfFullLine();
+	void eraseLine(int i);
+	void printMatrix();
 };
