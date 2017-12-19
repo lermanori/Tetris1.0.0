@@ -73,7 +73,7 @@ void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 
 bool Matrix::haveSpace(int x, int y) const
 {
-	if ((gameBoard[y][x] == SPACE)&&x<10&&x>=-1&&y>=0&&y<15)
+	if ((gameBoard[y][x] == SPACE) && x < 10 && x >= -1 && y >= 0 && y < 15)
 		return true;
 	else
 		return false;

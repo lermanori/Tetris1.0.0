@@ -32,7 +32,8 @@ void Point::move(Direction dir)
 	}
 
 	x += direction_x;
-	y = (direction_y + y + 1);
+	y += direction_y;
+
 
 	if (x >= MAX_X)
 	{
@@ -71,7 +72,7 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 			return false;
 		break;
 	case DOWN:
-		if (gameBoard.haveSpace(x, y + 2) && (gameBoard.haveSpace(x, y + 2)))
+		if (gameBoard.haveSpace(x, y + 1))
 			return true;
 		else
 			return false;

@@ -24,8 +24,8 @@ int main()
 {
 	bool gameOn = true;
 	bool existingShape = false;
-	bool cantMove = false;
-	bool canMove1 = true;
+//	bool cantMove = false;
+//	bool canMove1 = true;
 	char keyPressed = 0;
 	Direction dir;
 	ShapeFactory* shape = nullptr;
@@ -43,16 +43,21 @@ int main()
 				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(100);
+			Sleep(250);
 			dir = keyPressedToDirection(keyPressed);
-			canMove1 = shape->canMove(board, dir);
-			if (canMove1)
-			{
+
+			if (shape->canMove(board, dir))
+			{	
 				shape->move(dir);
 			}
-		//	cantMove = shape->move(dir);
+			if (shape->canMove(board, DOWN))
+			{
 
-			if (!canMove1)//end life of moving shape
+				shape->move(DOWN);
+			}
+		//	cantMove = shape->move(dir);
+			//if (!canMove1)//end life of moving shape
+			if(!shape->canMove(board, DOWN))
 			{
 				shape->draw(' ');
 				board.markShape(*shape);
