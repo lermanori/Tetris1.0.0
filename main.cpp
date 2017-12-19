@@ -55,14 +55,12 @@ int main()
 
 				shape->move(DOWN);
 			}
-		//	cantMove = shape->move(dir);
-			//if (!canMove1)//end life of moving shape
+
 			if(!shape->canMove(board, DOWN))
 			{
 					shape->draw(' ');
 				board.markShape(*shape);
 				delete shape;
-				
 				existingShape = false;
 			}
 			keyPressed = 0;

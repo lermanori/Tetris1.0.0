@@ -20,6 +20,15 @@ Matrix::Matrix()
 
 }
 
+Matrix::~Matrix()
+{
+		for (int i = 0; i < HEIGHT; i++)
+		{
+			delete[] gameBoard[i];
+		}
+		delete[] gameBoard;
+}
+
 void Matrix::markShape(const ShapeFactory& shape)
 {
 	const int shapeType = shape.getShapeType();
