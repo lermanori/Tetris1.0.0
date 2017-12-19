@@ -1,70 +1,107 @@
+#pragma once
 #include "ShapeFactory.h"
 
 ShapeFactory::ShapeFactory()
 {
-	switch (x)
+	switch (shapeType)
 	{
-		case 0:
-			shapePtr = (Square*)new Square;
+	case SQUARE:
+		sqrPtr = (Square*)new Square;
 		//	this->shapePtr = (Square*)new Square;
-			break;
-		case 1:
-			shapePtr = (Line*)new Line;
-			break;
-		case 2:
-			shapePtr = (Bomb*)new Bomb;
-			break;
-	}
-}
-
-bool ShapeFactory::move(Direction dir)
-{
-	
-	Square* sqrPtr= nullptr;
-	Line* linePtr = nullptr;
-	Bomb* bombPtr = nullptr;
-
-
-	switch (x)
-	{
-	case 0:
-		sqrPtr = (Square*)shapePtr;
-		return( sqrPtr->move(dir) );
 		break;
-
-	case 1:
-		linePtr = (Line*)shapePtr;
-		return(linePtr->move(dir));
+	case LINE:
+		linePtr = (Line*)new Line;
 		break;
-
-	case 2:
-		bombPtr = (Bomb*)shapePtr;
-		return(bombPtr->move(dir));
+	case BOMB:
+		bombPtr = (Bomb*)new Bomb;
 		break;
 	}
 }
 
-void ShapeFactory::draw(char c)
+void ShapeFactory::move(Direction dir)
 {
-	Square* sqrPtr = nullptr;
-	Line* linePtr = nullptr;
-	Bomb* bombPtr = nullptr;
-
-	switch (x)
+	switch (shapeType)
 	{
-	case 0:
-		sqrPtr = (Square*)shapePtr;
+	case SQUARE:
+		sqrPtr->move(dir);
+		break;
+
+	case LINE:
+		linePtr->move(dir);
+		break;
+
+	case BOMB:
+		bombPtr->move(dir);
+		break;
+	}
+}
+
+void ShapeFactory::draw(char c)const
+{
+
+	switch (shapeType)
+	{
+	case SQUARE:
 		sqrPtr->draw(c);
 		break;
 
-	case 1:
-		linePtr = (Line*)shapePtr;
+	case LINE:
 		linePtr->draw(c);
 		break;
 
-	case 2:
-		bombPtr = (Bomb*)shapePtr;
+	case BOMB:
 		bombPtr->draw(c);
+		break;
+	}
+}
+
+const Point& ShapeFactory::getPoint()const
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		return(sqrPtr->getPoint());
+		break;
+
+	case LINE:
+		return(linePtr->getPoint());
+		break;
+
+	case BOMB:
+		return(bombPtr->getPoint());
+		break;
+	}
+}
+
+int ShapeFactory::getShapeState()const
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		return 0;
+		break;
+	case LINE:
+		return(linePtr->getState());
+		break;
+	case BOMB:
+		return 0;
+		break;
+	}
+
+}
+
+bool ShapeFactory::canMove(Board& gameBoard, Direction dir)
+{
+	switch (shapeType)
+	{
+	case SQUARE:
+		return(sqrPtr->canMove(gameBoard, dir));
+		break;
+	case LINE:
+		return(linePtr->canMove(gameBoard, dir));
+		break;
+	case BOMB:
+		return(bombPtr->canMove(gameBoard, dir));
 		break;
 	}
 }

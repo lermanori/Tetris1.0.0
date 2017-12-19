@@ -4,6 +4,9 @@
 #include "utils.h"
 #include "constants.h"
 
+
+class Board;
+
 class Point
 {
 	int x, y;
@@ -24,8 +27,8 @@ public:
 		this->y = y;
 		this->c = c;
 	}
-	int getX() { return x; }
-	int getY() { return y; }
+	int getX()const { return x; }
+	int getY()const { return y; }
 	void draw(char c)
 	{
 		gotoxy(x, y);
@@ -36,5 +39,8 @@ public:
 	{
 		draw(c);
 	}
-	bool move(Direction dir);
+	void move(Direction dir);
+	bool canMove(const Board& gameBoard, Direction dir);
+	void getPosInMatrix(const Point& pt, int &x, int &y);
+	void getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos);
 };

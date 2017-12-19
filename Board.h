@@ -1,11 +1,14 @@
 #pragma once
 #include "utils.h"
 #include "constants.h"
+#include "Matrix.h"
 #include <iostream>
+
+class ShapeFactory;
 
 class Board
 {
-	char board[15][10];
+	Matrix gameBoard;
 	int fallenItems = 0;
 	int score = 0;
 	const int scorePosX = SCORE_X;
@@ -19,4 +22,11 @@ class Board
 
 public:
 	Board();
+	void setScore(int newScore) { score = newScore; gotoxy(SCORE_X, SCORE_Y); std::cout << score; };
+	void setFallenItems(int numItems) { fallenItems = numItems; gotoxy(FALLEN_ITEMS_X, FALLEN_ITEMS_Y); std::cout << fallenItems; };
+	int getScore() { return score; };
+	int getFallenItems() { return fallenItems; };
+	void markShape(const ShapeFactory &shape);
+	bool haveSpace(int x, int y)const;
+
 };

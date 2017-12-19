@@ -1,3 +1,4 @@
+#pragma once
 #include "bomb.h"
 
 Bomb::Bomb()
@@ -12,21 +13,24 @@ Bomb::Bomb(int x, int y, char c)
 	p.set(x, y, c);
 }
 
-bool Bomb::move(Direction dir)
+void Bomb::move(Direction dir)
 {
-	bool checkMove = false;
-
 	p.draw(' ');
-
-	checkMove = p.move(dir);
-	
+	p.move(dir);
 	p.draw();
-
-	
-	return checkMove;
 }
 
 void Bomb::draw(char c)
 {
 	p.draw(c);
 }
+
+bool Bomb::canMove(const Board & gameBoard, Direction dir)
+{
+	bool res;
+	res = p.canMove(gameBoard, dir);
+	return res;
+}
+
+
+

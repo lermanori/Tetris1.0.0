@@ -7,6 +7,7 @@ class methods will be ctor- creating boards game and initaializing the vars, met
 also should be a method to check if a block exists in a certion range of points(dynamic borders)
 17/12/17 - TEAM: added board class. Need to write set functions to score/fallenItems. Need to find a way to update the static matrix according to the shape.
 also should draw the matrix including the ongoing updates.
+
 ********************************************************************************/
 
 
@@ -15,10 +16,7 @@ also should draw the matrix including the ongoing updates.
 #include <iostream>
 #include <Windows.h>
 #include "constants.h"
-#include "square.h"	
-#include "ShapeFactory.h"
 #include "Board.h"
-
 Direction keyPressedToDirection(char keyPressed);
 enum { ESC = 27 };
 
@@ -26,7 +24,8 @@ int main()
 {
 	bool gameOn = true;
 	bool existingShape = false;
-	bool cantMove = false;
+//	bool cantMove = false;
+//	bool canMove1 = true;
 	char keyPressed = 0;
 	Direction dir;
 	ShapeFactory* shape = nullptr;
@@ -34,21 +33,34 @@ int main()
 
 	while (gameOn)
 	{
+
 		while (keyPressed != ESC)
 		{
 			if (existingShape == false)//generating parts
 			{ 
          		shape = new ShapeFactory;
 				existingShape = true;
+				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(400);
+			Sleep(250);
 			dir = keyPressedToDirection(keyPressed);
-			cantMove = shape->move(dir);
-
-			if (cantMove == true)//end life of moving shape
+			
+			if (shape->canMove(board, dir))
+			{	
+					shape->move(dir);
+			}
+			if (shape->canMove(board, DOWN))
 			{
-				shape->draw(' ');
+
+				shape->move(DOWN);
+			}
+		//	cantMove = shape->move(dir);
+			//if (!canMove1)//end life of moving shape
+			if(!shape->canMove(board, DOWN))
+			{
+					shape->draw(' ');
+				board.markShape(*shape);
 				delete shape;
 				existingShape = false;
 			}

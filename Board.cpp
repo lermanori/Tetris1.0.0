@@ -1,9 +1,22 @@
+#pragma once
 #include "Board.h"
 
 Board::Board()
 {
 	drawBoard();
 }
+
+void Board::markShape(const ShapeFactory & shape)
+{
+	gameBoard.markShape(shape);
+}
+
+bool Board::haveSpace(int x, int y)const
+{
+	return gameBoard.haveSpace(x, y);
+}
+
+
 
 void Board::drawBoard()
 {
@@ -57,6 +70,6 @@ void Board::drawScoreBoard()
 	gotoxy(scorePosX-14, scorePosY);
 	std::cout << "Score: " << score;
 	gotoxy(itemsPosX-14,itemsPosY);
-	std::cout << "Fallen Items:" << fallenItems;
+	std::cout << "Fallen Items: " << fallenItems;
 
 }
