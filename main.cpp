@@ -43,7 +43,7 @@ int main()
 				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(250);
+			Sleep(220);
 			dir = keyPressedToDirection(keyPressed);
 			
 			if (shape->canMove(board, dir))
@@ -62,6 +62,7 @@ int main()
 					shape->draw(' ');
 				board.markShape(*shape);
 				delete shape;
+				
 				existingShape = false;
 			}
 			keyPressed = 0;
