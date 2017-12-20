@@ -17,11 +17,16 @@ also should draw the matrix including the ongoing updates.
 #include <Windows.h>
 #include "constants.h"
 #include "Board.h"
+#include <time.h>
+#include <stdlib.h>
+
 Direction keyPressedToDirection(char keyPressed);
 enum { ESC = 27 };
 
 int main()
 {
+	std::srand(time(NULL));
+
 	bool gameOn = true;
 	bool existingShape = false;
 //	bool cantMove = false;
@@ -43,7 +48,7 @@ int main()
 				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(220);
+			Sleep(250);
 			dir = keyPressedToDirection(keyPressed);
 			
 			if (shape->canMove(board, dir))
