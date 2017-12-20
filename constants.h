@@ -16,6 +16,6 @@ enum MatrixDetails { HEIGHT = 15, WIDTH = 10 };
 const char SPACE = ' ';
 const int EMPTY = 0;
 const int FULL = 10;
-const char SQR = '*';
+const char SQR = '#';
 const char BMB = '@';
 const char LN = '#';

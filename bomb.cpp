@@ -30,8 +30,8 @@ bool Bomb::canMove(const Board & gameBoard, Direction dir)
 	bool res;
 	res = p.canMove(gameBoard, dir);
 
-	if (res == false)
-		this->explode();
+//	if (res == false)
+		//this->explode();
 	return res;
 }
 
