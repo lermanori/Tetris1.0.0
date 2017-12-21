@@ -38,7 +38,7 @@ int main()
 
 
 	while (gameOn)
-	{
+		{
 		if (existingShape == false)//generating parts
 		{
 			shape = new ShapeFactory;
@@ -84,7 +84,7 @@ Direction keyPressedToDirection(char keyPressed)
 	switch (keyPressed)
 	{
 	case 'w':
-		return UP;
+		return ROTATE;
 		break;
 	case 'd':
 		return RIGHT;
