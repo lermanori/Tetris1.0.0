@@ -46,7 +46,10 @@ int main()
 			board.setFallenItems(board.getFallenItems() + 1);
 		}
 
+
+
 		Sleep(180);
+
 		dir = keyPressedToDirection(keyPressed);
 
 		if (shape->canMove(board, dir))
@@ -73,6 +76,8 @@ int main()
 			keyPressed = _getch();
 		}
 		gameOn = board.checkGameFailure();
+		//if(!gameOn)
+		//	board.gameOver();
 	}
 	system("pause");
 }
