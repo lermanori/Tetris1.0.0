@@ -19,6 +19,8 @@ public:
 	bool haveSpace(int x, int y)const;
 	void updateIndicators(const ShapeFactory& shape);
 	void checkIfFullLine();
+	bool checkGameFailure();
 	void eraseLine(int i);
 	void printMatrix();
+
 };
