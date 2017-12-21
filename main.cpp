@@ -46,7 +46,7 @@ int main()
 			board.setFallenItems(board.getFallenItems() + 1);
 		}
 
-		Sleep(100);
+		Sleep(150);
 		dir = keyPressedToDirection(keyPressed);
 
 		if (shape->canMove(board, dir))
@@ -73,8 +73,10 @@ int main()
 			keyPressed = _getch();
 		}
 		gameOn = board.checkGameFailure();
+		//if(!gameOn)
+		//	board.gameOver();
 	}
-	//system("pause");
+	system("pause");
 }
 
 //gets an input from keyboard and returns the relevant direction accordingly. Default returnd value
