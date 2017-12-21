@@ -2,8 +2,6 @@
 
 #include "Point.h"
 
-
-
 class Bomb
 {
 	Point p;
