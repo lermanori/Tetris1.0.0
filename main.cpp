@@ -48,7 +48,7 @@ int main()
 				board.setFallenItems(board.getFallenItems()+1);
 			}
 
-			Sleep(250);
+			Sleep(190);
 			dir = keyPressedToDirection(keyPressed);
 			
 			if (shape->canMove(board, dir))
@@ -86,7 +86,7 @@ Direction keyPressedToDirection(char keyPressed)
 	switch (keyPressed)
 	{
 	case 'w':
-		return UP;
+		return ROTATE;
 		break;
 	case 'd':
 		return RIGHT;
