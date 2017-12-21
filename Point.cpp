@@ -65,6 +65,12 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 	this->getPosInMatrix(this->getX(), this->getY(), x, y);
 	switch (dir)
 	{
+	case ROTATE:
+		if (gameBoard.haveSpace(x, y))
+			return true;
+		else
+			return false;
+		break;
 	case RIGHT:
 		if (gameBoard.haveSpace(x + 1, y))
 			return true;

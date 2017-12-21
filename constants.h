@@ -1,6 +1,6 @@
 #pragma once
 
-enum Direction { UP, RIGHT, DOWN, LEFT, STAY };
+enum Direction { ROTATE, RIGHT, DOWN, LEFT, STAY };
 enum SquareParts { BL = 0, BR, TR, TL }; //Bottom Left etc.. anti-clockwise
 enum LineParts { LL = 0, LR, RL, RR }; //left to right
 enum BoardPos { };
