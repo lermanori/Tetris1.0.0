@@ -12,7 +12,7 @@ enum Borders {
 	RIGHTBORDER = MAX_X+1, BOTTOMBORDER = MAX_Y+1, SCORE_X = RIGHTBORDER + 25, SCORE_Y = MIN_Y + 3,
 	FALLEN_ITEMS_X = SCORE_X, FALLEN_ITEMS_Y = SCORE_Y + 3};
 enum MatrixDetails { HEIGHT = 15, WIDTH = 10 };
-
+enum indicatorDetails { START = 0,END = 15 };
 const char SPACE = ' ';
 const int EMPTY = 0;
 const int FULL = 10;

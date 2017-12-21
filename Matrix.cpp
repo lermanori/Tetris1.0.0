@@ -150,6 +150,14 @@ void Matrix::checkIfFullLine()
 			printMatrix();
 }
 
+bool Matrix::checkGameFailure()
+{
+	if (indicators[START] != EMPTY)
+		return false;
+	else
+		return true;
+}
+
 void Matrix::eraseLine(int i)
 {
 

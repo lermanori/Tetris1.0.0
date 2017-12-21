@@ -28,5 +28,5 @@ public:
 	int getFallenItems() { return fallenItems; };
 	void markShape(const ShapeFactory &shape);
 	bool haveSpace(int x, int y)const;
-
+	bool checkGameFailure() { return gameBoard.checkGameFailure(); }
 };
