@@ -5,6 +5,7 @@
 
 Matrix::Matrix()
 {
+	//NO NEED FOR DYNAMIC ALLOCATION - CONSIDER DELETION
 	//gameBoard = new char*[HEIGHT];
 	//for (int i = 0; i < HEIGHT; i++)
 	//{
@@ -19,7 +20,7 @@ Matrix::Matrix()
 	}
 
 }
-
+//NO NEED FOR DESTRUCTOR
 //Matrix::~Matrix()
 //{
 //		for (int i = 0; i < HEIGHT; i++)
@@ -131,7 +132,7 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 	case BOMB:
 		indicators[y]++;
 		break;
-	}
+	}	
 	checkIfFullLine();
 }
 
@@ -158,6 +159,8 @@ bool Matrix::checkGameFailure()
 		return true;
 }
 
+//the matrix is now static and no dynamically allocated. 
+//if this is okay we have to delete irrelevant notes.
 void Matrix::eraseLine(int i)
 {
 
@@ -168,8 +171,8 @@ void Matrix::eraseLine(int i)
 
 	for (int line = i; line > 0; line--)
 	{
-		for (int k = 0; k < WIDTH; k++)
-		{
+		for (int k = 0; k < WIDTH; k++) //constant number of actions therefore it's okay to have for inside for loop
+		{	
 			gameBoard[line][k] = gameBoard[line - 1][k];
 		}
 		indicators[0] = EMPTY;

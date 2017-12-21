@@ -25,7 +25,7 @@ enum { ESC = 27 };
 
 int main()
 {
-	std::srand((unsigned int)time(NULL));
+	std::srand((unsigned int)time(NULL)); //casting to unsigned int because we had warning: possible loss of data
 
 	bool gameOn = true;
 	bool existingShape = false;

@@ -57,6 +57,7 @@ void ShapeFactory::draw(char c)const
 
 const Point& ShapeFactory::getPoint()const
 {
+
 	switch (shapeType)
 	{
 	case SQUARE:
@@ -70,9 +71,7 @@ const Point& ShapeFactory::getPoint()const
 	case BOMB:
 		return(bombPtr->getPoint());
 		break;
-	default://just to return somethin
-		return(bombPtr->getPoint());
-		break;
+
 	}
 }
 
@@ -89,7 +88,7 @@ int ShapeFactory::getShapeState()const
 	case BOMB:
 		return 0;
 		break;
-	default:
+	default: //will never enter default
 		return 0;
 		break;
 	}
@@ -109,7 +108,7 @@ bool ShapeFactory::canMove(Board& gameBoard, Direction dir)
 	case BOMB:
 		return(bombPtr->canMove(gameBoard, dir));
 		break;
-	default:
+	default://will never enter default
 		return false;
 		break;
 	}
