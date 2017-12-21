@@ -5,11 +5,11 @@
 
 Matrix::Matrix()
 {
-	gameBoard = new char*[HEIGHT];
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		gameBoard[i] = new char[WIDTH];
-	}
+	//gameBoard = new char*[HEIGHT];
+	//for (int i = 0; i < HEIGHT; i++)
+	//{
+	//	gameBoard[i] = new char[WIDTH];
+	//}
 
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -20,14 +20,14 @@ Matrix::Matrix()
 
 }
 
-Matrix::~Matrix()
-{
-		for (int i = 0; i < HEIGHT; i++)
-		{
-			delete[] gameBoard[i];
-		}
-		delete[] gameBoard;
-}
+//Matrix::~Matrix()
+//{
+//		for (int i = 0; i < HEIGHT; i++)
+//		{
+//			delete[] gameBoard[i];
+//		}
+//		delete[] gameBoard;
+//}
 
 void Matrix::markShape(const ShapeFactory& shape)
 {
@@ -146,8 +146,8 @@ void Matrix::checkIfFullLine()
 			fullLine = true;
 		}
 	}
-		if (fullLine)
-			printMatrix();
+	if (fullLine)
+		printMatrix();
 }
 
 bool Matrix::checkGameFailure()
@@ -161,16 +161,24 @@ bool Matrix::checkGameFailure()
 void Matrix::eraseLine(int i)
 {
 
-	for (int line = i; line > 0; line--)
-	{
-		gameBoard[line] = gameBoard[line-1];
-		indicators[line] = indicators[line-1];
-	}
-	delete gameBoard[0];
-	gameBoard[0] = new char[WIDTH];
+	//	delete gameBoard[0];
+	//	gameBoard[0] = new char[WIDTH];
 	for (int j = 0; j < WIDTH; j++)
 		gameBoard[0][j] = SPACE;
-	indicators[0] = EMPTY;
+
+	for (int line = i; line > 0; line--)
+	{
+		for (int k = 0; k < WIDTH; k++)
+		{
+			gameBoard[line][k] = gameBoard[line - 1][k];
+		}
+		indicators[0] = EMPTY;
+		indicators[line] = indicators[line - 1];
+
+		//		gameBoard[line] = gameBoard[line-1];
+		//		indicators[line] = indicators[line-1];
+	}
+
 }
 
 void Matrix::printMatrix()
@@ -179,7 +187,7 @@ void Matrix::printMatrix()
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		gotoxy(MIN_X, MIN_Y + i);
-		
+
 		for (int j = 0; j < WIDTH; j++)
 		{
 			std::cout << gameBoard[i][j];

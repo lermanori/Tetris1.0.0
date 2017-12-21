@@ -14,7 +14,7 @@ class ShapeFactory
 
 
 	const int shapeType = rand() %3;
-//	const int shapeType = LINE;
+//	const int shapeType = SQUARE;
 	
 
 public:

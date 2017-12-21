@@ -25,7 +25,7 @@ enum { ESC = 27 };
 
 int main()
 {
-	std::srand(time(NULL));
+	std::srand((unsigned int)time(NULL));
 
 	bool gameOn = true;
 	bool existingShape = false;
@@ -46,7 +46,10 @@ int main()
 			board.setFallenItems(board.getFallenItems() + 1);
 		}
 
-		Sleep(150);
+
+
+		Sleep(180);
+
 		dir = keyPressedToDirection(keyPressed);
 
 		if (shape->canMove(board, dir))
