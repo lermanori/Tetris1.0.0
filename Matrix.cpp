@@ -30,6 +30,17 @@ Matrix::Matrix()
 //		delete[] gameBoard;
 //}
 
+void Matrix::setMatrix(char ch)
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		indicators[i] = EMPTY;
+		for (int j = 0; j < WIDTH; j++)
+			gameBoard[i][j] = ch;
+	}
+}
+
+
 void Matrix::markShape(const ShapeFactory& shape)
 {
 	const int shapeType = shape.getShapeType();
