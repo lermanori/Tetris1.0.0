@@ -195,11 +195,11 @@ void Matrix::eraseLine(int i)
 
 }
 
-void Matrix::eraseCell(int x, int y)
+void Matrix::eraseCell(int j ,int i) //gets an index in the matrix and puts space in the i,j element in the matrix.
 {
-	 if (gameBoard[y][x] != SPACE)
-		 indicators[y]--;
-	 this->gameBoard[y][x] = SPACE;
+	 if (gameBoard[i][j] != SPACE)
+		 indicators[i]--;
+	 this->gameBoard[i][j] = SPACE;
 
 }
 
