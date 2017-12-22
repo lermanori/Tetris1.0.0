@@ -30,7 +30,7 @@ class GameManager
 	bool existingShape = false;
 
 	char keyPressed = 0;
-	unsigned int gameSpeed = 200;
+	unsigned int gameSpeed = 150;
 	Direction dir;
 	Direction dummy;
 	ShapeFactory* shape = nullptr;

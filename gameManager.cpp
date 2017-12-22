@@ -32,7 +32,6 @@ void GameManager::runGame()
 			
 			dir = menu(keyPressed);
 
-			Sleep(gameSpeed);
 
 			if (shape->canMove(board, dir))
 				shape->move(dir);
@@ -56,11 +55,13 @@ void GameManager::runGame()
 				gameOn = false;
 				resetGame();
 			}
+			Sleep(gameSpeed);
 
 			keyPressed = 0;
 
 			if (_kbhit())
 				keyPressed = _getch();
+		
 		}
 
 		else
@@ -71,9 +72,11 @@ void GameManager::runGame()
 			if (_kbhit())
 				keyPressed = _getch();
 			dummy = menu(keyPressed);
+			
+
 		}
 	}
-	system("pause");
+
 }
 
 

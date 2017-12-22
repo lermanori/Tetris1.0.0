@@ -11,7 +11,7 @@ class Board
 	Matrix gameBoard;
 	int fallenItems = 0;
 	int score = 0;
-	int gameSpeed = 200;
+	int gameSpeed = 150;
 	const int scorePosX = SCORE_X;
 	const int scorePosY = SCORE_Y;
 	const int itemsPosX = FALLEN_ITEMS_X;

@@ -13,9 +13,9 @@ Line::Line()
 	line[HORIZONTAL][RR].set(x + 3, y, c);
 
 	line[VERTICAL][LL].set(x, y, c);
-	line[VERTICAL][LR].set(x, y + 1, c);
-	line[VERTICAL][RL].set(x, y + 2, c);
-	line[VERTICAL][RR].set(x, y + 3, c);
+	line[VERTICAL][LR].set(x, y -1, c);
+	line[VERTICAL][RL].set(x, y - 2, c);
+	line[VERTICAL][RR].set(x, y - 3, c);
 }
 
 Line::Line(int x, int y, char c)
@@ -26,9 +26,9 @@ Line::Line(int x, int y, char c)
 	line[HORIZONTAL][RR].set(x + 3, y, c);
 
 	line[VERTICAL][LL].set(x, y, c);
-	line[VERTICAL][LR].set(x, y + 1, c);
-	line[VERTICAL][RL].set(x, y + 2, c);
-	line[VERTICAL][RR].set(x, y + 3, c);
+	line[VERTICAL][LR].set(x, y - 1, c);
+	line[VERTICAL][RL].set(x, y - 2, c);
+	line[VERTICAL][RR].set(x, y - 3, c);
 }
 
 void Line::move(Direction dir)

@@ -71,9 +71,9 @@ void Matrix::markShape(const ShapeFactory& shape)
 
 		case VERTICAL:
 			gameBoard[y][x] = LN;
-			gameBoard[y + 1][x] = LN;
-			gameBoard[y + 2][x] = LN;
-			gameBoard[y + 3][x] = LN;
+			gameBoard[y - 1][x] = LN;
+			gameBoard[y - 2][x] = LN;
+			gameBoard[y - 3][x] = LN;
 			break;
 
 		}
@@ -134,9 +134,9 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 			break;
 		case VERTICAL:
 			indicators[y]++;
-			indicators[y + 1]++;
-			indicators[y + 2]++;
-			indicators[y + 3]++;
+			indicators[y - 1]++;
+			indicators[y - 2]++;
+			indicators[y - 3]++;
 			break;
 		}
 		break;
