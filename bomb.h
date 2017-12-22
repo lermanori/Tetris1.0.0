@@ -13,7 +13,7 @@ public:
 	void move(Direction dir);
 	void draw(char c);
 	const Point& getPoint() { return p; };
-	bool canMove(Board& gameBoard, Direction dir);
+	bool canMove(const Board& gameBoard, Direction dir);
 //	void explode(Board &gameBoard);
 
 

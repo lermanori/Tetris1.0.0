@@ -25,7 +25,7 @@ void Bomb::draw(char c)
 	p.draw(c);
 }
 
-bool Bomb::canMove(Board& gameBoard, Direction dir)
+bool Bomb::canMove(const Board& gameBoard, Direction dir)
 {
 	bool res;
 	res = p.canMove(gameBoard, dir);
