@@ -20,7 +20,7 @@ void GameManager::runGame()
 	{
 		if (gameOn)
 		{
-			if (existingShape == false)//generating parts
+				if (existingShape == false)//generating parts
 			{
 				shape = new ShapeFactory;
 				existingShape = true;
@@ -42,14 +42,17 @@ void GameManager::runGame()
 					shape->move(DOWN);
 				else
 				{
+					if (shape->getShapeType() == BOMB)
+						board.explodeBomb(shape->getPoint());
 					shape->draw(' ');
-					board.markShape(*shape);
+					if (shape->getShapeType() != BOMB)
+						board.markShape(*shape);
 					delete shape;
 					existingShape = false;
 				}
 			}
 
-			gameFailure = board.checkGameFailure();
+				gameFailure = board.checkGameFailure();
 			if (!gameFailure)
 			{
 				gameOn = false;

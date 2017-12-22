@@ -25,15 +25,23 @@ void Bomb::draw(char c)
 	p.draw(c);
 }
 
-bool Bomb::canMove(const Board & gameBoard, Direction dir)
+bool Bomb::canMove(Board& gameBoard, Direction dir)
 {
 	bool res;
 	res = p.canMove(gameBoard, dir);
 
-//	if (res == false)
-		//this->explode();
+
+	//if (res == false)
+	//	this->explode(gameBoard);
 	return res;
 }
+
+//void Bomb::explode(Board & gameBoard)
+//{
+//	int x = 0, y = 0;
+//	p.getPosInMatrix(p, x, y);
+//	
+//}
 
 
 

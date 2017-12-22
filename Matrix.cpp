@@ -195,6 +195,14 @@ void Matrix::eraseLine(int i)
 
 }
 
+void Matrix::eraseCell(int x, int y)
+{
+	 if (gameBoard[y][x] != SPACE)
+		 indicators[y]--;
+	 this->gameBoard[y][x] = SPACE;
+
+}
+
 void Matrix::printMatrix()
 {
 	gotoxy(MIN_X, MIN_Y);
