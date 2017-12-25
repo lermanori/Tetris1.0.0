@@ -27,20 +27,21 @@ void GameManager::runGame()
 				board.setFallenItems(board.getFallenItems() + 1);
 			}
 
-			if (shape->canMove(board, DOWN))
+			if (shape->canMove(board, DOWN))//i want to change the killing switch into cant move down and that the direction that is getted from the user is stay ("nothing") in order to prolong the delay before killing the shape 
+											//new defintion: "the shape cant move down and the user stopped controling it"
 				shape->move(DOWN);
 			
 			dir = menu(keyPressed);
 
 
-			if (shape->canMove(board, dir))
+			if (shape->canMove(board, dir))//killing switch
 				shape->move(dir);
 
 			else
 			{
 				if (shape->canMove(board, DOWN))
 					shape->move(DOWN);
-				else
+				else //if(dir==STAY||dir==DOWN) //changed from else to else if
 				{
 					if (shape->getShapeType() == BOMB)
 						board.explodeBomb(shape->getPoint());
@@ -51,13 +52,14 @@ void GameManager::runGame()
 					existingShape = false;
 				}
 			}
-
+			//check game status 
 				gameFailure = board.checkGameFailure();
 			if (!gameFailure)
 			{
 				gameOn = false;
 				resetGame();
 			}
+
 			Sleep(gameSpeed);
 
 			keyPressed = 0;
@@ -67,7 +69,7 @@ void GameManager::runGame()
 		
 		}
 
-		else
+		else//menu mode
 		{
 
 			keyPressed = 0;
