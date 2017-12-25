@@ -4,10 +4,10 @@
 
 class Point;
 
-class Matrix 
+class Matrix
 {
 	char gameBoard[15][10];
-//	char** gameBoard;
+	//	char** gameBoard;
 	int indicators[15];
 
 public:
@@ -22,6 +22,7 @@ public:
 	void checkIfFullLine();
 	bool checkGameFailure();
 	void eraseLine(int i);
+	void eraseCell(int x, int y);
 	void printMatrix();
 
 };

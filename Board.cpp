@@ -11,6 +11,79 @@ void Board::markShape(const ShapeFactory & shape)
 	gameBoard.markShape(shape);
 }
 
+void Board::explodeBomb(const Point & pt)
+{
+	int x = 0, y = 0;
+	gameBoard.getPosInMatrix(pt, x, y);
+
+	if (x == START && y == START) //TOP LEFT
+	{
+		gameBoard.eraseCell(x + 1, y);
+		gameBoard.eraseCell(x + 1, y + 1);
+	}
+	else if (x < WIDTH && y == START)//TOP CENTRAL
+	{
+		gameBoard.eraseCell(x + 1, y);
+		gameBoard.eraseCell(x, y + 1);
+		gameBoard.eraseCell(x - 1, y);
+	}
+	else if (x == WIDTH-1 && y == START)//TOP RIGHT
+	{
+		gameBoard.eraseCell(x, y + 1);
+		gameBoard.eraseCell(x - 1, y + 1);
+		gameBoard.eraseCell(x - 1, y);
+	}
+	else if (x == WIDTH-1 && y < END)//RIGHT SIDE
+	{
+		gameBoard.eraseCell(x, y + 1);
+		gameBoard.eraseCell(x - 1, y + 1);
+		gameBoard.eraseCell(x - 1, y);
+		gameBoard.eraseCell(x - 1, y - 1);
+		gameBoard.eraseCell(x, y - 1);
+	}
+	else if (x == WIDTH - 1 && y == END-1)//BOTTOM RIGHT
+	{
+		gameBoard.eraseCell(x - 1, y);
+		gameBoard.eraseCell(x - 1, y - 1);
+		gameBoard.eraseCell(x, y - 1);
+	}
+	else if (x < WIDTH && y == END - 1)//BOTTOM CENTRAL
+	{
+		gameBoard.eraseCell(x - 1, y);
+		gameBoard.eraseCell(x - 1, y - 1);
+		gameBoard.eraseCell(x, y - 1);
+		gameBoard.eraseCell(x + 1, y - 1);
+		gameBoard.eraseCell(x + 1, y);
+	}
+	else if (x == START && y == END - 1)//BOTTOM LEFT
+	{
+		gameBoard.eraseCell(x, y - 1);
+		gameBoard.eraseCell(x + 1, y - 1);
+		gameBoard.eraseCell(x + 1, y);
+	}
+	else if (x == START && y < END)//LEFT
+	{
+		gameBoard.eraseCell(x + 1, y);
+		gameBoard.eraseCell(x + 1, y + 1);
+		gameBoard.eraseCell(x, y + 1);
+		gameBoard.eraseCell(x, y - 1);
+		gameBoard.eraseCell(x + 1, y -1);
+	}
+	else //ANY OTHER PLACE IN BOARD
+	{
+		gameBoard.eraseCell(x, y - 1);
+		gameBoard.eraseCell(x + 1, y - 1);
+		gameBoard.eraseCell(x + 1, y);
+		gameBoard.eraseCell(x + 1, y + 1);
+		gameBoard.eraseCell(x, y + 1);
+		gameBoard.eraseCell(x - 1, y + 1);
+		gameBoard.eraseCell(x - 1, y);
+		gameBoard.eraseCell(x - 1, y - 1);
+
+	}
+
+	gameBoard.printMatrix();
+}
 bool Board::haveSpace(int x, int y)const
 {
 	return gameBoard.haveSpace(x, y);
@@ -20,9 +93,9 @@ void Board::showFailureMessage()
 {
 	gameBoard.setMatrix();
 	gameBoard.printMatrix();
-	gotoxy(((LEFTBORDER + RIGHTBORDER) / 2)-2, ((TOPBORDER + BOTTOMBORDER) / 2)-2);
+	gotoxy(((LEFTBORDER + RIGHTBORDER) / 2) - 2, ((TOPBORDER + BOTTOMBORDER) / 2) - 2);
 	std::cout << "GAME";
-	gotoxy(((LEFTBORDER + RIGHTBORDER) / 2) -1, ((TOPBORDER + BOTTOMBORDER) / 2) -1);
+	gotoxy(((LEFTBORDER + RIGHTBORDER) / 2) - 1, ((TOPBORDER + BOTTOMBORDER) / 2) - 1);
 	std::cout << "OVER!";
 
 }

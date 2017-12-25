@@ -31,6 +31,7 @@ public:
 	int getScore() { return score; };
 	int getFallenItems() { return fallenItems; };
 	void markShape(const ShapeFactory &shape);
+	void explodeBomb(const Point &pt);
 	bool haveSpace(int x, int y)const;
 	bool checkGameFailure() { return gameBoard.checkGameFailure(); }
 	void showFailureMessage();
