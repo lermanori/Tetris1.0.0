@@ -1,6 +1,7 @@
 #pragma once
 #include "Board.h"
 
+
 Board::Board()
 {
 	drawBoard();
@@ -15,11 +16,11 @@ void Board::setScore(int newScore)
 	std::cout << std::setfill('0') << std::setw(6) << score;
 }
 
-void Board::markShape(const ShapeFactory & shape)
+
+void Board::markShapeAndUpdateScore(const ShapeFactory & shape)
 {
 	int numLinesErased;
 	numLinesErased = gameBoard.markShape(shape);
-
 
 	switch (numLinesErased)
 	{
@@ -54,14 +55,12 @@ void Board::explodeBomb(const Point & pt)
 	{
 		erasedCells += gameBoard.eraseCell(x + 1, y);
 		erasedCells += gameBoard.eraseCell(x + 1, y + 1);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x < WIDTH && y == START)//TOP CENTRAL
 	{
 		erasedCells += gameBoard.eraseCell(x + 1, y);
 		erasedCells += gameBoard.eraseCell(x, y + 1);
 		erasedCells += gameBoard.eraseCell(x - 1, y);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 
 	}
 	else if (x == WIDTH - 1 && y == START)//TOP RIGHT
@@ -69,7 +68,6 @@ void Board::explodeBomb(const Point & pt)
 		erasedCells += gameBoard.eraseCell(x, y + 1);
 		erasedCells += gameBoard.eraseCell(x - 1, y + 1);
 		erasedCells += gameBoard.eraseCell(x - 1, y);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == WIDTH - 1 && y < END)//RIGHT SIDE
 	{
@@ -78,14 +76,12 @@ void Board::explodeBomb(const Point & pt)
 		erasedCells += gameBoard.eraseCell(x - 1, y);
 		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
 		erasedCells += gameBoard.eraseCell(x, y - 1);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == WIDTH - 1 && y == END - 1)//BOTTOM RIGHT
 	{
 		erasedCells += gameBoard.eraseCell(x - 1, y);
 		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
 		erasedCells += gameBoard.eraseCell(x, y - 1);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x < WIDTH && y == END - 1)//BOTTOM CENTRAL
 	{
@@ -94,14 +90,12 @@ void Board::explodeBomb(const Point & pt)
 		erasedCells += gameBoard.eraseCell(x, y - 1);
 		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
 		erasedCells += gameBoard.eraseCell(x + 1, y);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == START && y == END - 1)//BOTTOM LEFT
 	{
 		erasedCells += gameBoard.eraseCell(x, y - 1);
 		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
 		erasedCells += gameBoard.eraseCell(x + 1, y);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == START && y < END)//LEFT
 	{
@@ -110,7 +104,6 @@ void Board::explodeBomb(const Point & pt)
 		erasedCells += gameBoard.eraseCell(x, y + 1);
 		erasedCells += gameBoard.eraseCell(x, y - 1);
 		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else //ANY OTHER PLACE IN BOARD
 	{
@@ -122,10 +115,9 @@ void Board::explodeBomb(const Point & pt)
 		erasedCells += gameBoard.eraseCell(x - 1, y + 1);
 		erasedCells += gameBoard.eraseCell(x - 1, y);
 		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
-		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
-
 	}
 
+	this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	gameBoard.printMatrix();
 }
 bool Board::haveSpace(int x, int y)const
@@ -202,7 +194,7 @@ void Board::drawMenu()
 void Board::drawScoreBoard()
 {
 	gotoxy(scorePosX - 14, scorePosY - 3);
-	std::cout << "Speed: " << gameSpeed << " m/s";
+	std::cout << "Speed: 150 m/s";
 	gotoxy(scorePosX - 14, scorePosY);
 	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);

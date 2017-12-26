@@ -1,15 +1,16 @@
 #include "gameManager.h"
 
+
+GameManager::GameManager()
+{
+	std::srand((unsigned int)time(NULL)); //casting to unsigned int because we had warning: possible loss of data
+}
+
 void GameManager::resetGame()
 {
 	board.cleanFallenItems();
 	board.cleanScore();
 	board.showFailureMessage();
-}
-
-GameManager::GameManager()
-{
-	std::srand((unsigned int)time(NULL)); //casting to unsigned int because we had warning: possible loss of data
 }
 
 void GameManager::runGame()
@@ -18,19 +19,18 @@ void GameManager::runGame()
 	{
 		if (gameOn)
 		{
-				if (existingShape == false)//generating parts
+			if (existingShape == false)//Generating Parts
 			{
 				shape = new ShapeFactory;
 				existingShape = true;
 				board.setFallenItems(board.getFallenItems() + 1);
 			}
 
-			if (shape->canMove(board, DOWN))//i want to change the killing switch into cant move down and that the direction that is getted from the user is stay ("nothing") in order to prolong the delay before killing the shape 
-											//new defintion: "the shape cant move down and the user stopped controling it"
+			if (shape->canMove(board, DOWN))
 				shape->move(DOWN);
-			
+
 			dir = menu(keyPressed);
-			
+
 			if (dir == HARDDROP)
 			{
 				while (shape->canMove(board, DOWN))
@@ -39,7 +39,7 @@ void GameManager::runGame()
 					board.setScore(board.getScore() + 2);
 				}
 				if (shape->getShapeType() != BOMB)
-					board.markShape(*shape);
+					board.markShapeAndUpdateScore(*shape);
 				else
 					board.explodeBomb(shape->getPoint());
 				delete shape;
@@ -48,14 +48,14 @@ void GameManager::runGame()
 
 			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
 			{
-				board.markShape(*shape);
+				board.markShapeAndUpdateScore(*shape);
 				delete shape;
 				existingShape = false;
 			}
 			else if (shape->canMove(board, dir))
 			{
 				shape->move(dir);
-				if (dir == DOWN)// update score for soft-Drop
+				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
 			}
 
@@ -65,21 +65,20 @@ void GameManager::runGame()
 				if (shape->canMove(board, DOWN))
 					shape->move(DOWN);
 				//killing switch
-				
-				else //if(dir==STAY||dir==DOWN) //changed from else to else if
+				else
 				{
-
 					if (shape->getShapeType() == BOMB)
 						board.explodeBomb(shape->getPoint());
 					shape->draw(' ');
 					if (shape->getShapeType() != BOMB)
-						board.markShape(*shape);
- 					delete shape;
+						board.markShapeAndUpdateScore(*shape);
+					delete shape;
 					existingShape = false;
 				}
 			}
+
 			//check game status 
-				gameFailure = board.checkGameFailure();
+			gameFailure = board.checkGameFailure();
 			if (!gameFailure)
 			{
 				gameOn = false;
@@ -92,7 +91,7 @@ void GameManager::runGame()
 
 			if (_kbhit())
 				keyPressed = _getch();
-		
+
 		}
 
 		else//menu mode
@@ -103,7 +102,7 @@ void GameManager::runGame()
 			if (_kbhit())
 				keyPressed = _getch();
 			dummy = menu(keyPressed);
-			
+
 
 		}
 	}
@@ -112,8 +111,7 @@ void GameManager::runGame()
 
 
 
-//gets an input from keyboard and returns the relevant direction accordingly. Default returnd value
-//will be STAY.
+
 Direction GameManager::menu(char &keyPressed)
 {
 	switch (keyPressed)
@@ -130,12 +128,13 @@ Direction GameManager::menu(char &keyPressed)
 	case 'a':
 		return LEFT;
 		break;
+
 	case HARD_DROP:
 		return HARDDROP;
+	
 	case START_GAME:
 		board.printMatrix();
 		setGameOn();
-		
 		return STAY;
 		break;
 

@@ -30,18 +30,9 @@ bool Bomb::canMove(const Board& gameBoard, Direction dir)
 	bool res;
 	res = p.canMove(gameBoard, dir);
 
-
-	//if (res == false)
-	//	this->explode(gameBoard);
 	return res;
 }
 
-//void Bomb::explode(Board & gameBoard)
-//{
-//	int x = 0, y = 0;
-//	p.getPosInMatrix(p, x, y);
-//	
-//}
 
 
 
