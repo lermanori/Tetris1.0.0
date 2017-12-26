@@ -15,9 +15,10 @@ class ShapeFactory
 	Joker* jokerPtr = nullptr;
 
 
-	const int shapeType = rand() %4;
+	const int shapeType = shapeProbabilities();
 //	const int shapeType = JOKER;
 	
+	const int shapeProbabilities();
 
 public:
 	ShapeFactory();

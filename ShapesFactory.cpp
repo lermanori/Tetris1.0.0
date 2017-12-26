@@ -1,6 +1,26 @@
 #pragma once
 #include "ShapeFactory.h"
 
+//Shape Probabilities Guide:
+// 40% Squares
+// 40% Lines
+// 10% Bombs
+// 10% Jokers
+const int ShapeFactory::shapeProbabilities()
+{
+	const int x = rand() % 10;
+
+	if (x <= 3)
+		return SQUARE;
+	else if (x > 3 && x <= 7)
+		return LINE;
+	else if (x == 8)
+		return BOMB;
+	else
+		return JOKER;
+
+}
+
 ShapeFactory::ShapeFactory()
 {
 	switch (shapeType)
