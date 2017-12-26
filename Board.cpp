@@ -90,6 +90,11 @@ bool Board::haveSpace(int x, int y)const
 	return gameBoard.haveSpace(x, y);
 }
 
+bool Board::haveSpaceJoker(int x, int y) const
+{
+	return gameBoard.haveSpaceJoker(x, y);
+}
+
 void Board::showFailureMessage()
 {
 	gameBoard.setMatrix();

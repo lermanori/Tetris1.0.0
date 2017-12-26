@@ -98,6 +98,40 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 		break;
 	}
 }
+bool Point::canMoveJoker(const Board & gameBoard, Direction dir)
+{
+	int x, y;
+	this->getPosInMatrix(this->getX(), this->getY(), x, y);
+	switch (dir)
+	{
+
+	case RIGHT:
+		if (gameBoard.haveSpaceJoker(x + 1, y))
+			return true;
+		else
+			return false;
+		break;
+	case DOWN:
+		if (gameBoard.haveSpaceJoker(x, y + 1))
+			return true;
+		else
+			return false;
+		break;
+	case LEFT:
+		if (gameBoard.haveSpaceJoker(x - 1, y))
+			return true;
+		else
+			return false;
+		break;
+
+	default:
+		if (gameBoard.haveSpaceJoker(x, y + 1))
+			return true;
+		else
+			return false;
+		break;
+	}
+}
 void Point::getPosInMatrix(const Point& pt, int &x, int &y)
 {
 	x = pt.getX() - MIN_X;

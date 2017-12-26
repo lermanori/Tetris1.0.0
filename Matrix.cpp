@@ -47,6 +47,8 @@ void Matrix::markShape(const ShapeFactory& shape)
 	int x = 0, y = 0;
 	LineState state = (LineState)shape.getShapeState();
 
+	updateIndicators(shape);
+
 	switch (shapeType)
 	{
 	case SQUARE:
@@ -84,11 +86,19 @@ void Matrix::markShape(const ShapeFactory& shape)
 		getPosInMatrix(shape.getPoint(), x, y);
 		gameBoard[y][x] = BMB;
 		shape.draw(BMB);
+		break;
+	case JOKER:
+		getPosInMatrix(shape.getPoint(), x, y);
+		if (gameBoard[y][x] == SPACE)
+			indicators[y]++;
+		gameBoard[y][x] = JKR;
+		shape.draw(JKR);
+		this->printMatrix();
+		break;
 
 	}
 
-	updateIndicators(shape);
-
+	checkIfFullLine();
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
@@ -105,6 +115,14 @@ void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 bool Matrix::haveSpace(int x, int y) const
 {
 	if (x < 10 && x > -1 && y >= 0 && y < 15 && (gameBoard[y][x] == SPACE))
+		return true;
+	else
+		return false;
+}
+
+bool Matrix::haveSpaceJoker(int x, int y) const
+{
+	if (x < 10 && x > -1 && y >= 0 && y < 15)
 		return true;
 	else
 		return false;
@@ -143,8 +161,11 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 	case BOMB:
 		indicators[y]++;
 		break;
+	case JOKER:
+		//handling this case manually in markShape function - joker case
+		break;
 	}	
-	checkIfFullLine();
+//	checkIfFullLine();
 }
 
 void Matrix::checkIfFullLine()
