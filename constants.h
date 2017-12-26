@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum Direction { ROTATE, RIGHT, DOWN, LEFT, STAY };
+enum Direction { ROTATE, RIGHT, DOWN, LEFT, STAY, HARDDROP };
 enum SquareParts { BL = 0, BR, TR, TL }; //Bottom Left etc.. anti-clockwise
 enum LineParts { LL = 0, LR, RL, RR }; //left to right
 enum BoardPos { };
@@ -20,6 +20,7 @@ const char START_GAME = '1';
 const char PLAY_PAUSE = '2';
 const char SPEED_UP = '3';
 const char SPEED_DOWN = '4';
+const char HARD_DROP = 32;
 const char EXIT = '9';
 const char SPACE = ' ';
 const int EMPTY = 0;

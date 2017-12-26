@@ -31,8 +31,22 @@ void GameManager::runGame()
 			
 			dir = menu(keyPressed);
 			
-		
-			if ((dir == DOWN) && (shape->getShapeType() == JOKER))
+			if (dir == HARDDROP)
+			{
+				while (shape->canMove(board, DOWN))
+				{
+					shape->move(DOWN);
+					board.setScore(board.getScore() + 2);
+				}
+				if (shape->getShapeType() != BOMB)
+					board.markShape(*shape);
+				else
+					board.explodeBomb(shape->getPoint());
+				delete shape;
+				existingShape = false;
+			}
+
+			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
 			{
 				board.markShape(*shape);
 				delete shape;
@@ -44,6 +58,8 @@ void GameManager::runGame()
 				if (dir == DOWN)// update score for soft-Drop
 					board.setScore(board.getScore() + 1);
 			}
+
+
 			else
 			{
 				if (shape->canMove(board, DOWN))
@@ -114,7 +130,8 @@ Direction GameManager::menu(char &keyPressed)
 	case 'a':
 		return LEFT;
 		break;
-
+	case HARD_DROP:
+		return HARDDROP;
 	case START_GAME:
 		board.printMatrix();
 		setGameOn();
