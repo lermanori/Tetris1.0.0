@@ -41,7 +41,7 @@ void Matrix::setMatrix(char ch)
 }
 
 
-void Matrix::markShape(const ShapeFactory& shape)
+int Matrix::markShape(const ShapeFactory& shape)
 {
 	const int shapeType = shape.getShapeType();
 	int x = 0, y = 0;
@@ -98,7 +98,8 @@ void Matrix::markShape(const ShapeFactory& shape)
 
 	}
 
-	checkIfFullLine();
+	return checkIfFullLine();
+
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
@@ -164,12 +165,13 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 	case JOKER:
 		//handling this case manually in markShape function - joker case
 		break;
-	}	
-//	checkIfFullLine();
+	}
+	//	checkIfFullLine();
 }
 
-void Matrix::checkIfFullLine()
+int Matrix::checkIfFullLine()
 {
+	int counter = 0;
 	bool fullLine = false;
 	for (int i = 0; i < HEIGHT; i++)
 	{
@@ -177,10 +179,12 @@ void Matrix::checkIfFullLine()
 		{
 			eraseLine(i);
 			fullLine = true;
+			counter++;
 		}
 	}
 	if (fullLine)
 		printMatrix();
+	return counter;
 }
 
 bool Matrix::checkGameFailure()
@@ -204,7 +208,7 @@ void Matrix::eraseLine(int i)
 	for (int line = i; line > 0; line--)
 	{
 		for (int k = 0; k < WIDTH; k++) //constant number of actions therefore it's okay to have for inside for loop
-		{	
+		{
 			gameBoard[line][k] = gameBoard[line - 1][k];
 		}
 		indicators[0] = EMPTY;
@@ -216,12 +220,16 @@ void Matrix::eraseLine(int i)
 
 }
 
-void Matrix::eraseCell(int j ,int i) //gets an index in the matrix and puts space in the i,j element in the matrix.
+int Matrix::eraseCell(int j, int i) //gets an index in the matrix and puts space in the i,j element in the matrix.
 {
-	 if (gameBoard[i][j] != SPACE)
-		 indicators[i]--;
-	 this->gameBoard[i][j] = SPACE;
-
+	if (gameBoard[i][j] != SPACE)
+	{
+		indicators[i]--;
+		this->gameBoard[i][j] = SPACE;
+		return 1;
+	}
+	else
+		return 0;
 }
 
 void Matrix::printMatrix()

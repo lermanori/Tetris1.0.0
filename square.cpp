@@ -12,7 +12,7 @@ Square::Square()
 	s1[TL].set(x, y - 1, c);
 }
 
-Square::Square(int x, int y, char c = '*')
+Square::Square(int x, int y, char c = SQR)
 {
 	s1[BL].set(x, y, c);
 	s1[BR].set(x + 1, y, c);

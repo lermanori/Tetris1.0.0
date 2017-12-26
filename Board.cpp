@@ -6,80 +6,123 @@ Board::Board()
 	drawBoard();
 }
 
+void Board::setScore(int newScore)
+{
+	score = newScore;
+	if (score <= 0)
+		score = 0;
+	gotoxy(SCORE_X - 7, SCORE_Y);
+	std::cout << std::setfill('0') << std::setw(6) << score;
+}
+
 void Board::markShape(const ShapeFactory & shape)
 {
-	gameBoard.markShape(shape);
+	int numLinesErased;
+	numLinesErased = gameBoard.markShape(shape);
+
+
+	switch (numLinesErased)
+	{
+
+	case ONE:
+		if (shape.getShapeType() == JOKER)
+			this->setScore(this->getScore() + 50);
+		else
+
+			this->setScore(this->getScore() + 100);
+		break;
+	case TWO:
+		this->setScore(this->getScore() + 300);
+		break;
+	case THREE:
+		this->setScore(this->getScore() + 500);
+		break;
+	case FOUR:
+		this->setScore(this->getScore() + 800);
+		break;
+	}
 }
 
 
 void Board::explodeBomb(const Point & pt)
 {
 	int x = 0, y = 0;
+	int erasedCells = 0;
 	gameBoard.getPosInMatrix(pt, x, y);
 
 	if (x == START && y == START) //TOP LEFT
 	{
-		gameBoard.eraseCell(x + 1, y);
-		gameBoard.eraseCell(x + 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x + 1, y + 1);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x < WIDTH && y == START)//TOP CENTRAL
 	{
-		gameBoard.eraseCell(x + 1, y);
-		gameBoard.eraseCell(x, y + 1);
-		gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
+
 	}
-	else if (x == WIDTH-1 && y == START)//TOP RIGHT
+	else if (x == WIDTH - 1 && y == START)//TOP RIGHT
 	{
-		gameBoard.eraseCell(x, y + 1);
-		gameBoard.eraseCell(x - 1, y + 1);
-		gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
-	else if (x == WIDTH-1 && y < END)//RIGHT SIDE
+	else if (x == WIDTH - 1 && y < END)//RIGHT SIDE
 	{
-		gameBoard.eraseCell(x, y + 1);
-		gameBoard.eraseCell(x - 1, y + 1);
-		gameBoard.eraseCell(x - 1, y);
-		gameBoard.eraseCell(x - 1, y - 1);
-		gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
-	else if (x == WIDTH - 1 && y == END-1)//BOTTOM RIGHT
+	else if (x == WIDTH - 1 && y == END - 1)//BOTTOM RIGHT
 	{
-		gameBoard.eraseCell(x - 1, y);
-		gameBoard.eraseCell(x - 1, y - 1);
-		gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x < WIDTH && y == END - 1)//BOTTOM CENTRAL
 	{
-		gameBoard.eraseCell(x - 1, y);
-		gameBoard.eraseCell(x - 1, y - 1);
-		gameBoard.eraseCell(x, y - 1);
-		gameBoard.eraseCell(x + 1, y - 1);
-		gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == START && y == END - 1)//BOTTOM LEFT
 	{
-		gameBoard.eraseCell(x, y - 1);
-		gameBoard.eraseCell(x + 1, y - 1);
-		gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else if (x == START && y < END)//LEFT
 	{
-		gameBoard.eraseCell(x + 1, y);
-		gameBoard.eraseCell(x + 1, y + 1);
-		gameBoard.eraseCell(x, y + 1);
-		gameBoard.eraseCell(x, y - 1);
-		gameBoard.eraseCell(x + 1, y -1);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x + 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x, y + 1);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	}
 	else //ANY OTHER PLACE IN BOARD
 	{
-		gameBoard.eraseCell(x, y - 1);
-		gameBoard.eraseCell(x + 1, y - 1);
-		gameBoard.eraseCell(x + 1, y);
-		gameBoard.eraseCell(x + 1, y + 1);
-		gameBoard.eraseCell(x, y + 1);
-		gameBoard.eraseCell(x - 1, y + 1);
-		gameBoard.eraseCell(x - 1, y);
-		gameBoard.eraseCell(x - 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y - 1);
+		erasedCells += gameBoard.eraseCell(x + 1, y);
+		erasedCells += gameBoard.eraseCell(x + 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y + 1);
+		erasedCells += gameBoard.eraseCell(x - 1, y);
+		erasedCells += gameBoard.eraseCell(x - 1, y - 1);
+		this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 
 	}
 
@@ -161,10 +204,9 @@ void Board::drawScoreBoard()
 	gotoxy(scorePosX - 14, scorePosY - 3);
 	std::cout << "Speed: " << gameSpeed << " m/s";
 	gotoxy(scorePosX - 14, scorePosY);
-	std::cout << "Score: ";
+	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);
-	std::cout << score;
 	gotoxy(itemsPosX - 14, itemsPosY);
-	std::cout << "Fallen Items: " << fallenItems;
+	std::cout << "Fallen Items: " << std::setfill('0') << std::setw(4) << fallenItems;
 
 }

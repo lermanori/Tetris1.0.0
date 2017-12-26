@@ -7,7 +7,7 @@ enum LineParts { LL = 0, LR, RL, RR }; //left to right
 enum BoardPos { };
 enum ShapeTypes{SQUARE = 0, LINE , BOMB, JOKER};
 enum LineState { HORIZONTAL = 0, VERTICAL };
-
+enum { ONE=1, TWO, THREE, FOUR};
 enum Borders {
 	MIN_X = 32, MIN_Y =4, MAX_X = MIN_X+9, MAX_Y = MIN_Y+14, LEFTBORDER = MIN_X-1, TOPBORDER = MIN_Y-1,
 	RIGHTBORDER = MAX_X+1, BOTTOMBORDER = MAX_Y+1, SCORE_X = RIGHTBORDER + 25, SCORE_Y = MIN_Y + 3,
@@ -27,6 +27,7 @@ const int FULL = 10;
 const int MAX_SPEED = 100;
 const int MIN_SPEED = 200;
 const int SPEED_CHANGE = 25;
+const int BOMB_SCORE_REDUCTION = 50;
 const char SQR = '#';
 const char BMB = '@';
 const char LN = '#';
