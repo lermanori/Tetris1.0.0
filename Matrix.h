@@ -14,17 +14,17 @@ public:
 	Matrix(); // matrix of spaces
 //	~Matrix();
 	void setMatrix(char ch = SPACE);
-	void markShape(const ShapeFactory& shape);
+	int markShape(const ShapeFactory& shape);
 	void getPosInMatrix(const Point& pt, int &x, int &y);
 	void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 	bool haveSpace(int x, int y)const;
 	bool haveSpaceJoker(int x, int y)const;
 
 	void updateIndicators(const ShapeFactory& shape);
-	void checkIfFullLine();
+	int checkIfFullLine();
 	bool checkGameFailure();
 	void eraseLine(int i);
-	void eraseCell(int i, int j);
+	int eraseCell(int i, int j);
 	void printMatrix();
 
 };

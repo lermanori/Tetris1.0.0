@@ -16,7 +16,7 @@ class ShapeFactory
 
 
 	const int shapeType = rand() %4;
-//	const int shapeType = BOMB;
+//	const int shapeType = JOKER;
 	
 
 public:

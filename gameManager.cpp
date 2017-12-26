@@ -2,10 +2,8 @@
 
 void GameManager::resetGame()
 {
-	board.cleanFallenItems(SPACE);
-	board.setFallenItems(0);
-	board.cleanScore(SPACE);
-	board.setScore(0);
+	board.cleanFallenItems();
+	board.cleanScore();
 	board.showFailureMessage();
 }
 
@@ -41,7 +39,11 @@ void GameManager::runGame()
 				existingShape = false;
 			}
 			else if (shape->canMove(board, dir))
+			{
 				shape->move(dir);
+				if (dir == DOWN)// update score for soft-Drop
+					board.setScore(board.getScore() + 1);
+			}
 			else
 			{
 				if (shape->canMove(board, DOWN))
