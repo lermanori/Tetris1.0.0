@@ -100,6 +100,7 @@
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="bomb.cpp" />
     <ClCompile Include="gameManager.cpp" />
+    <ClCompile Include="Joker.cpp" />
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
@@ -113,6 +114,7 @@
     <ClInclude Include="bomb.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="gameManager.h" />
+    <ClInclude Include="Joker.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="Point.h" />

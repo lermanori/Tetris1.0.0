@@ -32,23 +32,31 @@ void GameManager::runGame()
 				shape->move(DOWN);
 			
 			dir = menu(keyPressed);
-
-
-			if (shape->canMove(board, dir))//killing switch
+			
+		
+			if ((dir == DOWN) && (shape->getShapeType() == JOKER))
+			{
+				board.markShape(*shape);
+				delete shape;
+				existingShape = false;
+			}
+			else if (shape->canMove(board, dir))
 				shape->move(dir);
-
 			else
 			{
 				if (shape->canMove(board, DOWN))
 					shape->move(DOWN);
+				//killing switch
+				
 				else //if(dir==STAY||dir==DOWN) //changed from else to else if
 				{
+
 					if (shape->getShapeType() == BOMB)
 						board.explodeBomb(shape->getPoint());
 					shape->draw(' ');
 					if (shape->getShapeType() != BOMB)
 						board.markShape(*shape);
-					delete shape;
+ 					delete shape;
 					existingShape = false;
 				}
 			}

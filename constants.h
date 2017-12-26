@@ -5,7 +5,7 @@ enum Direction { ROTATE, RIGHT, DOWN, LEFT, STAY };
 enum SquareParts { BL = 0, BR, TR, TL }; //Bottom Left etc.. anti-clockwise
 enum LineParts { LL = 0, LR, RL, RR }; //left to right
 enum BoardPos { };
-enum ShapeTypes{SQUARE = 0, LINE , BOMB};
+enum ShapeTypes{SQUARE = 0, LINE , BOMB, JOKER};
 enum LineState { HORIZONTAL = 0, VERTICAL };
 
 enum Borders {
@@ -30,3 +30,4 @@ const int SPEED_CHANGE = 25;
 const char SQR = '#';
 const char BMB = '@';
 const char LN = '#';
+const char JKR = 'J';

@@ -1,6 +1,6 @@
 #pragma once
 #include "square.h"
-#include "Board.h"
+
 
 Square::Square()
 {

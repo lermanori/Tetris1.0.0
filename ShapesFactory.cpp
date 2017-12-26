@@ -15,6 +15,9 @@ ShapeFactory::ShapeFactory()
 	case BOMB:
 		bombPtr = (Bomb*)new Bomb;
 		break;
+	case JOKER:
+		jokerPtr = (Joker*)new Joker;
+		break;
 	}
 }
 
@@ -32,6 +35,9 @@ void ShapeFactory::move(Direction dir)
 
 	case BOMB:
 		bombPtr->move(dir);
+		break;
+	case JOKER:
+		jokerPtr->move(dir);
 		break;
 	}
 }
@@ -52,6 +58,9 @@ void ShapeFactory::draw(char c)const
 	case BOMB:
 		bombPtr->draw(c);
 		break;
+	case JOKER:
+		jokerPtr->draw(c);
+		break;
 	}
 }
 
@@ -71,6 +80,9 @@ const Point& ShapeFactory::getPoint()const
 	case BOMB:
 		return(bombPtr->getPoint());
 		break;
+	case JOKER:
+		return(jokerPtr->getPoint());
+		break;
 
 	}
 }
@@ -86,6 +98,9 @@ int ShapeFactory::getShapeState()const
 		return(linePtr->getState());
 		break;
 	case BOMB:
+		return 0;
+		break;
+	case JOKER:
 		return 0;
 		break;
 	default: //will never enter default
@@ -107,6 +122,9 @@ bool ShapeFactory::canMove(Board& gameBoard, Direction dir)
 		break;
 	case BOMB:
 		return(bombPtr->canMove(gameBoard, dir));
+		break;
+	case JOKER:
+		return(jokerPtr->canMove(gameBoard, dir));
 		break;
 	default://will never enter default
 		return false;

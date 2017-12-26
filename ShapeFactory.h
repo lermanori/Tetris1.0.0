@@ -2,6 +2,7 @@
 #include "square.h"
 #include "Line.h"
 #include "bomb.h"
+#include "Joker.h"
 
 
 //shape factory creates a random tetris object that is refred threw the shape itself.
@@ -11,9 +12,10 @@ class ShapeFactory
 	Square* sqrPtr = nullptr;
 	Line* linePtr = nullptr;
 	Bomb* bombPtr = nullptr;
+	Joker* jokerPtr = nullptr;
 
 
-	const int shapeType = rand() %3;
+	const int shapeType = rand() %4;
 //	const int shapeType = BOMB;
 	
 

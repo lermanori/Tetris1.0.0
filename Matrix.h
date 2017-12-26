@@ -18,6 +18,8 @@ public:
 	void getPosInMatrix(const Point& pt, int &x, int &y);
 	void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 	bool haveSpace(int x, int y)const;
+	bool haveSpaceJoker(int x, int y)const;
+
 	void updateIndicators(const ShapeFactory& shape);
 	void checkIfFullLine();
 	bool checkGameFailure();

@@ -41,6 +41,7 @@ public:
 	}
 	void move(Direction dir);
 	bool canMove(const Board& gameBoard, Direction dir);
+	bool canMoveJoker(const Board& gameBoard, Direction dir);
 	void getPosInMatrix(const Point& pt, int &x, int &y);
 	void getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos);
 };
