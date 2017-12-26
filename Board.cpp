@@ -204,10 +204,9 @@ void Board::drawScoreBoard()
 	gotoxy(scorePosX - 14, scorePosY - 3);
 	std::cout << "Speed: " << gameSpeed << " m/s";
 	gotoxy(scorePosX - 14, scorePosY);
-	std::cout << "Score: ";
+	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);
-	std::cout << score;
 	gotoxy(itemsPosX - 14, itemsPosY);
-	std::cout << "Fallen Items: ";
+	std::cout << "Fallen Items: " << std::setfill('0') << std::setw(4) << fallenItems;
 
 }
