@@ -11,6 +11,7 @@ void Board::markShape(const ShapeFactory & shape)
 	gameBoard.markShape(shape);
 }
 
+
 void Board::explodeBomb(const Point & pt)
 {
 	int x = 0, y = 0;

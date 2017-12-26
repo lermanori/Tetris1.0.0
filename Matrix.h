@@ -22,7 +22,7 @@ public:
 	void checkIfFullLine();
 	bool checkGameFailure();
 	void eraseLine(int i);
-	void eraseCell(int x, int y);
+	void eraseCell(int i, int j);
 	void printMatrix();
 
 };
