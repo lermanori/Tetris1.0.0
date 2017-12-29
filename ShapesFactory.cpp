@@ -27,7 +27,6 @@ ShapeFactory::ShapeFactory()
 	{
 	case SQUARE:
 		sqrPtr = (Square*)new Square;
-		//	this->shapePtr = (Square*)new Square;
 		break;
 	case LINE:
 		linePtr = (Line*)new Line;

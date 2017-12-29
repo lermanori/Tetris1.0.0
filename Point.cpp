@@ -8,11 +8,7 @@ void Point::move(Direction dir)
 {
 	switch (dir)
 	{
-/*	case UP:
-		direction_x = 0;
-		direction_y = -1;
-		break;
-*/
+
 	case RIGHT:
 		direction_x = 1;
 		direction_y = 0;
@@ -34,28 +30,7 @@ void Point::move(Direction dir)
 	x += direction_x;
 	y += direction_y;
 
-	/*
-	if (x >= MAX_X)
-	{
 
-		x = MAX_X;
-	
-	}
-	else if (x <= MIN_X)
-	{
-		x = MIN_X;
-		
-	}
-	else if (y >= MAX_Y)
-	{
-		y = MAX_Y;
-
-	}
-	//else if (y < MIN_Y)
-	//{
-	//	y = MIN_Y;
-	//}
-	*/
 
 }
 
