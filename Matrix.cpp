@@ -5,13 +5,6 @@
 
 Matrix::Matrix()
 {
-	//NO NEED FOR DYNAMIC ALLOCATION - CONSIDER DELETION
-	//gameBoard = new char*[HEIGHT];
-	//for (int i = 0; i < HEIGHT; i++)
-	//{
-	//	gameBoard[i] = new char[WIDTH];
-	//}
-
 	for (int i = 0; i < HEIGHT; i++)
 	{
 		indicators[i] = EMPTY;
@@ -20,15 +13,7 @@ Matrix::Matrix()
 	}
 
 }
-//NO NEED FOR DESTRUCTOR
-//Matrix::~Matrix()
-//{
-//		for (int i = 0; i < HEIGHT; i++)
-//		{
-//			delete[] gameBoard[i];
-//		}
-//		delete[] gameBoard;
-//}
+
 
 void Matrix::setMatrix(char ch)
 {
@@ -51,7 +36,7 @@ int Matrix::markShape(const ShapeFactory& shape)
 
 	switch (shapeType)
 	{
-	case SQUARE:
+	case SQUARE: //ORDER: BL BR TR TL
 		getPosInMatrix(shape.getPoint(), x, y);
 		gameBoard[y][x] = SQR;
 		gameBoard[y][x + 1] = SQR;
@@ -64,14 +49,14 @@ int Matrix::markShape(const ShapeFactory& shape)
 		getPosInMatrix(shape.getPoint(), x, y);
 		switch (state)
 		{
-		case HORIZONTAL:
+		case HORIZONTAL: // ORDER LL LR RL RR
 			gameBoard[y][x] = LN;
 			gameBoard[y][x + 1] = LN;
 			gameBoard[y][x + 2] = LN;
 			gameBoard[y][x + 3] = LN;
 			break;
 
-		case VERTICAL:
+		case VERTICAL:// ORDER BOTTOM UPWARDS
 			gameBoard[y][x] = LN;
 			gameBoard[y - 1][x] = LN;
 			gameBoard[y - 2][x] = LN;
@@ -82,12 +67,12 @@ int Matrix::markShape(const ShapeFactory& shape)
 		shape.draw(LN);
 		break;
 
-	case BOMB:
+	case BOMB://isnt actually being marks - it explodes
 		getPosInMatrix(shape.getPoint(), x, y);
 		gameBoard[y][x] = BMB;
 		shape.draw(BMB);
 		break;
-	case JOKER:
+	case JOKER://marks the joker in the relevant place and it only updates the indicators array if the joker didnt override an existing point.
 		getPosInMatrix(shape.getPoint(), x, y);
 		if (gameBoard[y][x] == SPACE)
 			indicators[y]++;
@@ -166,7 +151,7 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 		//handling this case manually in markShape function - joker case
 		break;
 	}
-	//	checkIfFullLine();
+
 }
 
 int Matrix::checkIfFullLine()
@@ -195,13 +180,8 @@ bool Matrix::checkGameFailure()
 		return true;
 }
 
-//the matrix is now static and no dynamically allocated. 
-//if this is okay we have to delete irrelevant notes.
 void Matrix::eraseLine(int i)
 {
-
-	//	delete gameBoard[0];
-	//	gameBoard[0] = new char[WIDTH];
 	for (int j = 0; j < WIDTH; j++)
 		gameBoard[0][j] = SPACE;
 
@@ -213,9 +193,6 @@ void Matrix::eraseLine(int i)
 		}
 		indicators[0] = EMPTY;
 		indicators[line] = indicators[line - 1];
-
-		//		gameBoard[line] = gameBoard[line-1];
-		//		indicators[line] = indicators[line-1];
 	}
 
 }
