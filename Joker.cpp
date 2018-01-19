@@ -20,7 +20,7 @@ void Joker::move(Direction dir)
 	p.draw();
 }
 
-void Joker::draw(char c)
+void Joker::draw(char c) const
 {
 	p.draw(c);
 }

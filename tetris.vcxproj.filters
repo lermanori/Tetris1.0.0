@@ -48,6 +48,9 @@
     <ClCompile Include="Joker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -81,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Joker.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

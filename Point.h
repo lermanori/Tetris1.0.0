@@ -50,13 +50,13 @@ public:
 	}
 	int getX()const { return x; }
 	int getY()const { return y; }
-	void draw(char c)
+	void draw(char c)const
 	{
 		gotoxy(x, y);
 		std::cout << c;
 		std::cout.flush();
 	}
-	void draw()
+	void draw()const
 	{
 		draw(c);
 	}

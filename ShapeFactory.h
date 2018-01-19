@@ -25,33 +25,24 @@ shapeProbabilities- explaind at 2. of class members
 ************************************************************************************************************************************************/
 
 #pragma once
+
 #include "square.h"
 #include "Line.h"
 #include "bomb.h"
 #include "Joker.h"
+#include "LShape.h"
+#include "constants.h"
 
-
-
-class ShapeFactory
+class ShapeFactory: public Shape
 {
-	Square* sqrPtr = nullptr;
-	Line* linePtr = nullptr;
-	Bomb* bombPtr = nullptr;
-	Joker* jokerPtr = nullptr;
 
-
-	const int shapeType = shapeProbabilities();
+//	const int shapeType = shapeProbabilities();
 //	const int shapeType = JOKER;
 	
-	const int shapeProbabilities();
 
 public:
-	ShapeFactory();
-	void move(Direction dir);
-	void draw(char c)const;
-	const int getShapeType()const { return shapeType; };
-	const Point& getPoint()const ;
-	int getShapeState() const;
-	bool canMove(Board& gameBoard, Direction dir);
+	static int shapeProbabilities();
+	static Shape* createShape(const int shapeType);
+
 		
 };

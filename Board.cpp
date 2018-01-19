@@ -17,7 +17,7 @@ void Board::setScore(int newScore)
 }
 
 
-void Board::markShapeAndUpdateScore(const ShapeFactory & shape)
+void Board::markShapeAndUpdateScore(const Shape& shape)
 {
 	int numLinesErased;
 	numLinesErased = gameBoard.markShape(shape);

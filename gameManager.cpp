@@ -21,7 +21,7 @@ void GameManager::runGame()
 		{
 			if (existingShape == false)//Generating Parts
 			{
-				shape = new ShapeFactory;
+				shape = ShapeFactory::createShape(ShapeFactory::shapeProbabilities());
 				existingShape = true;
 				board.setFallenItems(board.getFallenItems() + 1);
 			}

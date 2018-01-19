@@ -26,11 +26,11 @@ void Matrix::setMatrix(char ch)
 }
 
 
-int Matrix::markShape(const ShapeFactory& shape)
+int Matrix::markShape(const Shape& shape)
 {
 	const int shapeType = shape.getShapeType();
 	int x = 0, y = 0;
-	LineState state = (LineState)shape.getShapeState();
+	shapeState state = shape.getState();
 
 	updateIndicators(shape);
 
@@ -81,13 +81,47 @@ int Matrix::markShape(const ShapeFactory& shape)
 		this->printMatrix();
 		break;
 
-	}
+	case LSHAPE:
+		getPosInMatrix(shape.getPoint(), x, y);
+		switch (state)
+		{
+		case HORIZONTAL: // ORDER LL LR RL RR
+			gameBoard[y][x] = LSHP;
+			gameBoard[y + 1][x] = LSHP;
+			gameBoard[y + 1][x + 1] = LSHP;
+			gameBoard[y + 1 ][x + 2] = LSHP;
+			break;
 
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			gameBoard[y][x] = LSHP;
+			gameBoard[y][x-1] = LSHP;
+			gameBoard[y +1][x-1] = LSHP;
+			gameBoard[y +2][x-1] = LSHP;
+			break;
+			
+		case INV_HORIZONTAL:
+			gameBoard[y][x] = LSHP;
+			gameBoard[y +1 ][x] = LSHP;
+			gameBoard[y + 1][x - 1] = LSHP;
+			gameBoard[y + 1][x - 2] = LSHP;
+			break;
+		case INV_VERTICAL:
+			gameBoard[y][x] = LSHP;
+			gameBoard[y ][x-1] = LSHP;
+			gameBoard[y - 1][x - 1] = LSHP;
+			gameBoard[y - 2][x - 1] = LSHP;
+			break;
+		}
+		shape.draw(LSHP);
+		break;
+
+	}
 	return checkIfFullLine();
 
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
+	
 	x = pt.getX() - MIN_X;
 	y = pt.getY() - MIN_Y;
 }
@@ -114,11 +148,11 @@ bool Matrix::haveSpaceJoker(int x, int y) const
 		return false;
 }
 
-void Matrix::updateIndicators(const ShapeFactory &shape)
+void Matrix::updateIndicators(const Shape &shape)
 {
 	const int shapeType = shape.getShapeType();
 	int x = 0, y = 0;
-	LineState state = (LineState)shape.getShapeState();
+	shapeState state = shape.getState();
 
 	getPosInMatrix(shape.getPoint(), x, y);
 
@@ -149,6 +183,40 @@ void Matrix::updateIndicators(const ShapeFactory &shape)
 		break;
 	case JOKER:
 		//handling this case manually in markShape function - joker case
+		break;
+
+	case LSHAPE:
+
+		switch (state)
+		{
+		case HORIZONTAL: // ORDER LL LR RL RR
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			break;
+
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 2]++;
+			break;
+
+		case INV_HORIZONTAL:
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			break;
+		case INV_VERTICAL:
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y - 2]++;
+			indicators[y - 1]++;
+			break;
+		}
+
 		break;
 	}
 

@@ -38,7 +38,7 @@ void Square::move(Direction dir)
 
 }
 
-void Square::draw(char c)
+void Square::draw(char c)const
 {
 	s1[BR].draw(c);
 	s1[TR].draw(c);
