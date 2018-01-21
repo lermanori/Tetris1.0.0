@@ -106,7 +106,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Point.cpp" />
-    <ClCompile Include="ShapesFactory.cpp" />
+    <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="square.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
