@@ -112,12 +112,10 @@ void LShape::move(shapeState state, Direction dir)
 
 void LShape::draw(shapeState state, char c) const
 {
-
 	LTetrisShape[state][LT].draw(c);
 	LTetrisShape[state][LeftSide].draw(c);
 	LTetrisShape[state][Mid].draw(c);
 	LTetrisShape[state][RightSide].draw(c);
-
 }
 
 bool LShape::canMove(const Board & gameBoard, Direction dir)

@@ -20,30 +20,43 @@ Shape* ShapeFactory::createShape(const int shapeType)
 	case LSHAPE:
 		return new LShape;
 		break;
-
+	case ZSHAPE:
+		return new ZShape;
+		break;
+	case TSHAPE:
+		return new TShape;
+		break;
+	default:
+		return nullptr;
 	}
 }
 
 //Shape Probabilities Guide:
-// 40% Squares
-// 40% Lines
-// 10% Bombs
-// 10% Jokers
+// 0.16 % SQUARES
+// 0.16 % LINES
+// 0.16 % LSHAPES
+// 0.16 % ZSHAPES
+// 0.16 % TSHAPES
+// 0.0333 % BOMBS
+// 0.1 % JOKERS
 int ShapeFactory::shapeProbabilities()
 {
+	const int x = rand() % 30;
 
-	const int x = rand() % 13;
-	
-	if (x <= 3)
+	if (x <= 5)
 		return SQUARE;
-	else if (x > 3 && x <= 7)
+	else if (x > 5 && x <= 10)
 		return LINE;
-	else if (x == 8)
-		return BOMB;
-	else if (x == 9)
-		return JOKER;
-	else
+	else if (x > 10 && x <= 15)
 		return LSHAPE;
+	else if (x > 15 && x <= 20)
+		return ZSHAPE;
+	else if (x > 20 && x <= 25)
+		return TSHAPE;
+	else if (x == 26)
+		return BOMB;
+	else if (x == 27 || x == 28 || x == 29)
+		return JOKER;
 
 }
 

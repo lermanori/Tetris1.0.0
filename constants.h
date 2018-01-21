@@ -11,8 +11,10 @@ enum Direction { ROTATE, RIGHT, DOWN, LEFT, STAY, HARDDROP };
 enum SquareParts { BL = 0, BR, TR, TL }; //Bottom Left, Bottom Right, Top Right, Top Left ( anti-clockwise)
 enum LineParts { LL = 0, LR, RL, RR }; //Left-Left, Left-Right,Right-Left, Right-Right
 enum LParts { LT = 0, LeftSide, Mid, RightSide }; //LT = where the chupchik at
+enum ZParts { LTop =0, RTop, LBottom, RBottom};
+enum TParts { MidBottom=0, RightBottom, LeftBottom, Chupchik};
 enum BoardPos { };
-enum ShapeTypes{SQUARE = 0, LINE , BOMB, JOKER, LSHAPE};
+enum ShapeTypes{SQUARE = 0, LINE , BOMB, JOKER, LSHAPE, ZSHAPE, TSHAPE};
 enum shapeState { HORIZONTAL = 0, VERTICAL , INV_HORIZONTAL, INV_VERTICAL, DUMMYSTATE  }; //each sshape can ave a maximum of 4 different states . Example: line has only the first two states, square has only one state.
 enum Numbers{ ONE=1, TWO, THREE, FOUR};
 //Borders - Defined for the x,y positions of the user interface
@@ -46,3 +48,5 @@ const char BMB = '@';
 const char LN = '#';
 const char JKR = 'J';
 const char LSHP = '#';
+const char ZSHP = '#';
+const char TSHP = '#';

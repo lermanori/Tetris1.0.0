@@ -47,16 +47,6 @@ void Line::move(Direction dir)
 			line[HORIZONTAL][RL].draw(' ');
 			line[HORIZONTAL][RR].draw(' ');
 
-			//line[HORIZONTAL][LL].move(dir);
-			//line[HORIZONTAL][LR].move(dir);
-			//line[HORIZONTAL][RL].move(dir);
-			//line[HORIZONTAL][RR].move(dir);
-
-			//line[VERTICAL][LL].move(dir);
-			//line[VERTICAL][LR].move(dir);
-			//line[VERTICAL][RL].move(dir);
-			//line[VERTICAL][RR].move(dir);
-
 			line[VERTICAL][LL].draw();
 			line[VERTICAL][LR].draw();
 			line[VERTICAL][RL].draw();
@@ -69,16 +59,6 @@ void Line::move(Direction dir)
 			line[VERTICAL][LR].draw(' ');
 			line[VERTICAL][RL].draw(' ');
 			line[VERTICAL][RR].draw(' ');
-
-			//line[HORIZONTAL][LL].move(dir);
-			//line[HORIZONTAL][LR].move(dir);
-			//line[HORIZONTAL][RL].move(dir);
-			//line[HORIZONTAL][RR].move(dir);
-
-			//line[VERTICAL][LL].move(dir);
-			//line[VERTICAL][LR].move(dir);
-			//line[VERTICAL][RL].move(dir);
-			//line[VERTICAL][RR].move(dir);
 
 			line[HORIZONTAL][LL].draw();
 			line[HORIZONTAL][LR].draw();

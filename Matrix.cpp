@@ -85,34 +85,105 @@ int Matrix::markShape(const Shape& shape)
 		getPosInMatrix(shape.getPoint(), x, y);
 		switch (state)
 		{
-		case HORIZONTAL: // ORDER LL LR RL RR
+		case HORIZONTAL: // 
 			gameBoard[y][x] = LSHP;
 			gameBoard[y + 1][x] = LSHP;
 			gameBoard[y + 1][x + 1] = LSHP;
-			gameBoard[y + 1 ][x + 2] = LSHP;
+			gameBoard[y + 1][x + 2] = LSHP;
 			break;
 
 		case VERTICAL:// ORDER BOTTOM UPWARDS
 			gameBoard[y][x] = LSHP;
-			gameBoard[y][x-1] = LSHP;
-			gameBoard[y +1][x-1] = LSHP;
-			gameBoard[y +2][x-1] = LSHP;
+			gameBoard[y][x - 1] = LSHP;
+			gameBoard[y + 1][x - 1] = LSHP;
+			gameBoard[y + 2][x - 1] = LSHP;
 			break;
-			
+
 		case INV_HORIZONTAL:
 			gameBoard[y][x] = LSHP;
-			gameBoard[y +1 ][x] = LSHP;
+			gameBoard[y + 1][x] = LSHP;
 			gameBoard[y + 1][x - 1] = LSHP;
 			gameBoard[y + 1][x - 2] = LSHP;
 			break;
 		case INV_VERTICAL:
 			gameBoard[y][x] = LSHP;
-			gameBoard[y ][x-1] = LSHP;
+			gameBoard[y][x - 1] = LSHP;
 			gameBoard[y - 1][x - 1] = LSHP;
 			gameBoard[y - 2][x - 1] = LSHP;
 			break;
 		}
 		shape.draw(LSHP);
+		break;
+	case ZSHAPE:
+		getPosInMatrix(shape.getPoint(), x, y);
+		switch (state)
+		{
+		case HORIZONTAL: // 
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y][x + 1] = ZSHP;
+			gameBoard[y + 1][x + 1] = ZSHP;
+			gameBoard[y + 1][x + 2] = ZSHP;
+			break;
+
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y + 1][x] = ZSHP;
+			gameBoard[y + 1][x - 1] = ZSHP;
+			gameBoard[y + 2][x - 1] = ZSHP;
+			break;
+
+		case INV_HORIZONTAL: // 
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y][x - 1] = ZSHP;
+			gameBoard[y - 1][x - 1] = ZSHP;
+			gameBoard[y - 1][x - 2] = ZSHP;
+			break;
+
+		case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y - 1][x] = ZSHP;
+			gameBoard[y - 1][x + 1] = ZSHP;
+			gameBoard[y - 2][x + 1] = ZSHP;
+			break;
+
+		}
+		shape.draw(ZSHP);
+		break;
+
+	case TSHAPE:
+		getPosInMatrix(shape.getPoint(), x, y);
+		switch (state)
+		{
+		case HORIZONTAL: // 
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y][x + 1] = ZSHP;
+			gameBoard[y][x - 1] = ZSHP;
+			gameBoard[y - 1][x] = ZSHP;
+			break;
+
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y + 1][x] = ZSHP;
+			gameBoard[y - 1][x] = ZSHP;
+			gameBoard[y][x + 1] = ZSHP;
+			break;
+
+		case INV_HORIZONTAL: // 
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y][x - 1] = ZSHP;
+			gameBoard[y][x + 1] = ZSHP;
+			gameBoard[y + 1][x] = ZSHP;
+			break;
+
+		case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+			gameBoard[y][x] = ZSHP;
+			gameBoard[y - 1][x] = ZSHP;
+			gameBoard[y + 1][x] = ZSHP;
+			gameBoard[y][x - 1] = ZSHP;
+			break;
+
+		}
+		shape.draw(TSHP);
 		break;
 
 	}
@@ -121,7 +192,7 @@ int Matrix::markShape(const Shape& shape)
 }
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
-	
+
 	x = pt.getX() - MIN_X;
 	y = pt.getY() - MIN_Y;
 }
@@ -218,9 +289,79 @@ void Matrix::updateIndicators(const Shape &shape)
 		}
 
 		break;
+	case ZSHAPE:
+
+		switch (state)
+		{
+		case HORIZONTAL: // ORDER 
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			break;
+
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			indicators[y]++;
+			indicators[y + 1]++;
+			indicators[y + 1]++;
+			indicators[y + 2]++;
+			break;
+
+		case INV_HORIZONTAL: // ORDER 
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y - 1]++;
+			indicators[y - 1]++;
+			break;
+
+		case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+			indicators[y]++;
+			indicators[y - 1]++;
+			indicators[y - 1]++;
+			indicators[y - 2]++;
+			break;
+		}
+		break;
+	case TSHAPE:
+
+		switch (state)
+		{
+		case HORIZONTAL: // ORDER 
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y - 1]++;
+			break;
+
+		case VERTICAL:// ORDER BOTTOM UPWARDS
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y - 1]++;
+			indicators[y + 1]++;
+			break;
+
+		case INV_HORIZONTAL: // ORDER 
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y + 1]++;
+			break;
+
+		case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+			indicators[y]++;
+			indicators[y]++;
+			indicators[y - 1]++;
+			indicators[y + 1]++;
+			break;
+		}
+
+
+
+		break;
 	}
 
 }
+
 
 int Matrix::checkIfFullLine()
 {
@@ -228,7 +369,7 @@ int Matrix::checkIfFullLine()
 	bool fullLine = false;
 	for (int i = 0; i < HEIGHT; i++)
 	{
-		if (indicators[i] == FULL)
+			if (indicators[i] >= FULL)
 		{
 			eraseLine(i);
 			fullLine = true;

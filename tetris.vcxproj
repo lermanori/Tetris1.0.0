@@ -108,13 +108,17 @@
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="ShapeFactory.cpp" />
     <ClCompile Include="square.cpp" />
+    <ClCompile Include="TShape.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="ZShape.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />
     <ClInclude Include="bomb.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="gameManager.h" />
+    <ClInclude Include="TShape.h" />
+    <ClInclude Include="ZShape.h" />
     <ClInclude Include="Joker.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="LShape.h" />

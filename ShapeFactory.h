@@ -31,6 +31,8 @@ shapeProbabilities- explaind at 2. of class members
 #include "bomb.h"
 #include "Joker.h"
 #include "LShape.h"
+#include "ZShape.h"
+#include "TShape.h"
 #include "constants.h"
 
 class ShapeFactory: public Shape
