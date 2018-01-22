@@ -52,7 +52,7 @@ class Board
 	//Private functions that are responsible for printing the game interface
 	void drawBoard();
 	void drawMenu();
-	void drawScoreBoard();
+	void drawScoreBoard(); 
 
 public:
 	Board();
