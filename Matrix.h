@@ -53,6 +53,8 @@ printMatrix() - prints the matrix.
 #pragma once
 #include "constants.h"
 #include "ShapeFactory.h"
+#include "utils.h"
+#include <iostream>
 
 class Point;
 
@@ -66,13 +68,13 @@ public:
 	Matrix(); // matrix of spaces
 //	~Matrix();
 	void setMatrix(char ch = SPACE);
-	int markShape(const ShapeFactory& shape);
+	int markShape(const Shape& shape);
 	void getPosInMatrix(const Point& pt, int &x, int &y);
 	void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 	bool haveSpace(int x, int y)const;
 	bool haveSpaceJoker(int x, int y)const;
 
-	void updateIndicators(const ShapeFactory& shape);
+	void updateIndicators(const Shape& shape);
 	int checkIfFullLine();
 	bool checkGameFailure();
 	void eraseLine(int i);

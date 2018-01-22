@@ -64,7 +64,7 @@ public:
 	int getScore() { return score; };
 	int getFallenItems() { return fallenItems; };
 	
-	void markShapeAndUpdateScore(const ShapeFactory &shape);
+	void markShapeAndUpdateScore(const Shape& shape);
 	void explodeBomb(const Point &pt);
 
 	/*

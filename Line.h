@@ -31,23 +31,27 @@ the purpose is to make a definition "the line can move if all is 4 point can mov
 ************************************************************************************************************************************************/
 #pragma once
 #include "Point.h"
+#include "Shape.h"
+
+
 
 class Board;
 
-enum { lineSize = 4 };
+enum { lineSize = 4, numLines = 2 };
 
-class Line
+class Line : public Shape
 {
-	Point line[2][lineSize]; //2 arrays for line. 1 horizontal and 1 vertical
-	LineState state = HORIZONTAL;
+	Point line[numLines][lineSize]; //2 arrays for line. 1 horizontal and 1 vertical
+	shapeState state = HORIZONTAL;
 	char c;
 
 public:
 	Line();
 	Line(int x, int y, char c);
-	void move(Direction dir);
-	void draw(char c);
-	const Point& getPoint() { return line[state][LL]; }
-	LineState getState() { return state; }
-	bool canMove(const Board& gameBoard, Direction dir);
+	void move(Direction dir) ;
+	void draw(char c)const ;
+	const Point& getPoint()const  { return line[state][LL]; }
+	shapeState getState()const  { return state; }
+	bool canMove(const Board& gameBoard, Direction dir) ;
+	ShapeTypes getShapeType()const  { return LINE; }
 };

@@ -20,7 +20,7 @@ void Bomb::move(Direction dir)
 	p.draw();
 }
 
-void Bomb::draw(char c)
+void Bomb::draw(char c)const
 {
 	p.draw(c);
 }

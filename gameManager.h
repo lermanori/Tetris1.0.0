@@ -54,7 +54,9 @@ Menu - Gets an input from keyboard and returns the relevant direction accordingl
 #include "Board.h"
 #include <time.h>
 #include <stdlib.h>
-	enum { ESC = 27 };
+#include "ShapeFactory.h"
+
+enum { ESC = 27 };
 
 
 class GameManager
@@ -69,7 +71,8 @@ class GameManager
 
 	Direction dir; //direction of movement
 	Direction dummy;
-	ShapeFactory* shape = nullptr; //Every time when a shape gets generated, we allocate memory for it. Before we kill it we release the allocation and allocate again.
+
+	Shape* shape = nullptr; //Every time when a shape gets generated, we allocate memory for it. Before we kill it we release the allocation and allocate again.
 	Board board; //game board - explained in board.h
 
 public:
