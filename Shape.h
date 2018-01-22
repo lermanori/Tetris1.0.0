@@ -1,8 +1,8 @@
 #pragma once
 class Point;
-class Board;
+//class Board;
 
-class Shape
+class Shape : public Board
 {
 public:
 	virtual void move(Direction) = 0;
@@ -11,5 +11,5 @@ public:
 	virtual shapeState getState()const = 0;
 	virtual ShapeTypes getShapeType()const = 0;
 	virtual bool canMove(const Board& gameBoard, Direction dir) = 0;
-
+	virtual int markShape(Board& gameBoard) = 0;
 };

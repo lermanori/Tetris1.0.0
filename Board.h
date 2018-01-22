@@ -49,8 +49,8 @@ class Board
 		Matrix() { setMatrix(); }// matrix of spaces
 		void setMatrix(char ch = SPACE);
 		int markShape(const Shape& shape);
-		void getPosInMatrix(const Point& pt, int &x, int &y);
-		void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
+		//static void getPosInMatrix(const Point& pt, int &x, int &y);
+		//static void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 		bool haveSpace(int x, int y)const;
 		bool haveSpaceJoker(int x, int y)const;
 		void updateIndicators(const Shape& shape);
@@ -89,6 +89,7 @@ public:
 	void markShapeAndUpdateScore(const Shape& shape);
 	void explodeBomb(const Point &pt);
 
+	
 	/*
 	The next functions are memumashot in matrix.h. They are being defined here in order to use as a bridge between objects.
 	*/
