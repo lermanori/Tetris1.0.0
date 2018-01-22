@@ -31,14 +31,36 @@ explodeBomb - Responsible of erasing cells when the bomb explodes.
 #pragma once
 #include "utils.h"
 #include "constants.h"
-#include "Matrix.h"
+#include "ShapeFactory.h"
 #include <iostream> 
 #include <iomanip>		// for setw and setfill functions used in setScore/setFallenItems/drawScoreBoard
 
 class ShapeFactory;
+class Point;
 
 class Board
 {
+	class Matrix
+	{
+		char gameBoard[HEIGHT][WIDTH];
+		//	char** gameBoard;
+		int indicators[HEIGHT];
+	public:
+		Matrix() { setMatrix(); }// matrix of spaces
+		void setMatrix(char ch = SPACE);
+		int markShape(const Shape& shape);
+		void getPosInMatrix(const Point& pt, int &x, int &y);
+		void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
+		bool haveSpace(int x, int y)const;
+		bool haveSpaceJoker(int x, int y)const;
+		void updateIndicators(const Shape& shape);
+		int checkIfFullLine();
+		bool checkGameFailure();
+		void eraseLine(int i);
+		int eraseCell(int i, int j);
+		void printMatrix();
+
+	};
 	Matrix gameBoard;
 	int fallenItems = 0;
 	int score = 0;
@@ -52,7 +74,7 @@ class Board
 	//Private functions that are responsible for printing the game interface
 	void drawBoard();
 	void drawMenu();
-	void drawScoreBoard(); 
+	void drawScoreBoard();	
 
 public:
 	Board();
