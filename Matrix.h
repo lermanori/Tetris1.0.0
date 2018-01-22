@@ -59,13 +59,13 @@ printMatrix() - prints the matrix.
 class Point;
 
 class Matrix
-{
+{//can b replaced to vector std libary.
 	char gameBoard[15][10];
 	//	char** gameBoard;
 	int indicators[15];
 
 public:
-	Matrix(); // matrix of spaces
+	Matrix() { setMatrix(); } // matrix of spaces
 //	~Matrix();
 	void setMatrix(char ch = SPACE);
 	int markShape(const Shape& shape);

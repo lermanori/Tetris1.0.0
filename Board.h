@@ -56,7 +56,7 @@ class Board
 
 public:
 	Board();
-	void printMatrix() { gameBoard.printMatrix(); }
+	void printMatrix() { gameBoard.printMatrix(); }//should be matriix func
 	void cleanScore() { setScore(EMPTY); }; 
 	void setScore(int newScore);
 	void setFallenItems(int numItems) { fallenItems = numItems; gotoxy(FALLEN_ITEMS_X, FALLEN_ITEMS_Y); std::cout << std::setfill('0') << std::setw(4) << fallenItems; };

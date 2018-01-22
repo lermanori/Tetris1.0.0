@@ -3,16 +3,6 @@
 
 
 
-Matrix::Matrix()
-{
-	for (int i = 0; i < HEIGHT; i++)
-	{
-		indicators[i] = EMPTY;
-		for (int j = 0; j < WIDTH; j++)
-			gameBoard[i][j] = SPACE;
-	}
-
-}
 
 
 void Matrix::setMatrix(char ch)
@@ -205,7 +195,7 @@ void Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
 
 bool Matrix::haveSpace(int x, int y) const
 {
-	if (x < 10 && x > -1 && y >= 0 && y < 15 && (gameBoard[y][x] == SPACE))
+	if (x < 10 && x > -1 && y >= 0 && y < 15 && (gameBoard[y][x] == SPACE))//enums!
 		return true;
 	else
 		return false;
