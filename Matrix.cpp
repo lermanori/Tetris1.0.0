@@ -1,8 +1,6 @@
 #pragma once
 #include "Matrix.h"
 
-
-
 Matrix::Matrix()
 {
 	for (int i = 0; i < HEIGHT; i++)
@@ -14,7 +12,6 @@ Matrix::Matrix()
 
 }
 
-
 void Matrix::setMatrix(char ch)
 {
 	for (int i = 0; i < HEIGHT; i++)
@@ -24,7 +21,6 @@ void Matrix::setMatrix(char ch)
 			gameBoard[i][j] = ch;
 	}
 }
-
 
 int Matrix::markShape(const Shape& shape)
 {
@@ -190,6 +186,7 @@ int Matrix::markShape(const Shape& shape)
 	return checkIfFullLine();
 
 }
+
 void Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 {
 
@@ -361,7 +358,6 @@ void Matrix::updateIndicators(const Shape &shape)
 	}
 
 }
-
 
 int Matrix::checkIfFullLine()
 {

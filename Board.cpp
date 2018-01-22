@@ -1,7 +1,5 @@
 #pragma once
 #include "Board.h"
-
-
 Board::Board()
 {
 	drawBoard();
@@ -15,7 +13,6 @@ void Board::setScore(int newScore)
 	gotoxy(SCORE_X - 7, SCORE_Y);
 	std::cout << std::setfill('0') << std::setw(6) << score;
 }
-
 
 void Board::markShapeAndUpdateScore(const Shape& shape)
 {
@@ -43,7 +40,6 @@ void Board::markShapeAndUpdateScore(const Shape& shape)
 		break;
 	}
 }
-
 
 void Board::explodeBomb(const Point & pt)
 {
@@ -120,6 +116,7 @@ void Board::explodeBomb(const Point & pt)
 	this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	gameBoard.printMatrix();
 }
+
 bool Board::haveSpace(int x, int y)const
 {
 	return gameBoard.haveSpace(x, y);
@@ -140,9 +137,6 @@ void Board::showFailureMessage()
 	std::cout << "OVER!";
 
 }
-
-
-
 
 void Board::drawBoard()
 {
