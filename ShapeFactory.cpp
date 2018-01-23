@@ -41,8 +41,9 @@ Shape* ShapeFactory::createShape(const int shapeType)
 // 0.1 % JOKERS
 int ShapeFactory::shapeProbabilities()
 {
-	const int x = rand() % 30;
 
+
+	const int x = rand() % 30;
 	if (x <= 5)
 		return SQUARE;
 	else if (x > 5 && x <= 10)
@@ -57,6 +58,6 @@ int ShapeFactory::shapeProbabilities()
 		return BOMB;
 	else if (x == 27 || x == 28 || x == 29)
 		return JOKER;
-
+		
 }
 

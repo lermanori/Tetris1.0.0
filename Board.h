@@ -31,7 +31,9 @@ explodeBomb - Responsible of erasing cells when the bomb explodes.
 #pragma once
 #include "utils.h"
 #include "constants.h"
-#include "ShapeFactory.h"
+#include "Point.h"
+#include "Shape.h"
+
 #include <iostream> 
 #include <iomanip>		// for setw and setfill functions used in setScore/setFallenItems/drawScoreBoard
 
@@ -42,23 +44,26 @@ class Board
 {
 	class Matrix
 	{
-		char gameBoard[HEIGHT][WIDTH];
 		//	char** gameBoard;
-		int indicators[HEIGHT];
 	public:
+		char gameBoard[HEIGHT][WIDTH];
+		int indicators[HEIGHT];
+		void printMatrix();
 		Matrix() { setMatrix(); }// matrix of spaces
 		void setMatrix(char ch = SPACE);
-		int markShape(const Shape& shape);
-		//static void getPosInMatrix(const Point& pt, int &x, int &y);
+	//	int markShape(const Shape& shape);
+		void getPosInMatrix(const Point& pt, int &x, int &y);
 		//static void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 		bool haveSpace(int x, int y)const;
 		bool haveSpaceJoker(int x, int y)const;
-		void updateIndicators(const Shape& shape);
+//		void updateIndicators(const Shape& shape);
 		int checkIfFullLine();
-		bool checkGameFailure();
+
 		void eraseLine(int i);
 		int eraseCell(int i, int j);
-		void printMatrix();
+	
+
+		char* operator[] (int row) { return gameBoard[row]; }
 
 	};
 	Matrix gameBoard;
@@ -76,6 +81,8 @@ class Board
 	void drawMenu();
 	void drawScoreBoard();	
 
+
+
 public:
 	Board();
 	void printMatrix() { gameBoard.printMatrix(); }
@@ -85,17 +92,21 @@ public:
 	void cleanFallenItems() { setFallenItems(0); };
 	int getScore() { return score; };
 	int getFallenItems() { return fallenItems; };
-	
-	void markShapeAndUpdateScore(const Shape& shape);
-	void explodeBomb(const Point &pt);
 
+	int checkLine() { return gameBoard.checkIfFullLine(); }
+	void updateScore(int erasedLines, const Shape& shape);
+
+	void explodeBomb(const Point &pt);
+	
+	char* operator() (int row) { gameBoard.indicators[row]++;  return gameBoard.gameBoard[row]; }
+	char* operator[] (int row) { return gameBoard.gameBoard[row]; }
 	
 	/*
 	The next functions are memumashot in matrix.h. They are being defined here in order to use as a bridge between objects.
 	*/
 	bool haveSpace(int x, int y)const;
 	bool haveSpaceJoker(int x, int y)const;
-	bool checkGameFailure() { return gameBoard.checkGameFailure(); }
+	bool checkGameFailure();
 
 	void showFailureMessage();
 

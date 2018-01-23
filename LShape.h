@@ -11,9 +11,7 @@ MEMBER FUNCTIONS:
 
 ************************************************************************************************************************************************/
 #pragma once
-#include "Point.h"
-#include "Shape.h"
-
+#include "Board.h"
 
 class Board;
 
@@ -37,4 +35,6 @@ public:
 	bool canMove(const Board& gameBoard, Direction dir);
 	bool checkIfCanMove(shapeState state, const Board& gameBoard, Direction dir);
 	ShapeTypes getShapeType()const { return LSHAPE; }
+	int markShape(Board& gameBoard);
+
 };

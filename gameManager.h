@@ -51,10 +51,9 @@ Menu - Gets an input from keyboard and returns the relevant direction accordingl
 #include <iostream>
 #include <Windows.h>
 #include "constants.h"
-#include "Board.h"
+#include "ShapeFactory.h"
 #include <time.h>
 #include <stdlib.h>
-#include "ShapeFactory.h"
 
 enum { ESC = 27 };
 
@@ -74,7 +73,7 @@ class GameManager
 
 	Shape* shape = nullptr; //Every time when a shape gets generated, we allocate memory for it. Before we kill it we release the allocation and allocate again.
 	Board board; //game board - explained in board.h
-
+	int erasedLines = 0;
 public:
 	GameManager();
 	void resetGame();

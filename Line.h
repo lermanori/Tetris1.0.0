@@ -30,8 +30,8 @@ the purpose is to make a definition "the line can move if all is 4 point can mov
 
 ************************************************************************************************************************************************/
 #pragma once
-#include "Point.h"
-#include "Shape.h"
+#include "Board.h"
+
 
 
 
@@ -54,4 +54,6 @@ public:
 	shapeState getState()const  { return state; }
 	bool canMove(const Board& gameBoard, Direction dir) ;
 	ShapeTypes getShapeType()const  { return LINE; }
+	int markShape(Board& gameBoard);
+
 };

@@ -11,11 +11,8 @@ MEMBER FUNCTIONS:
 
 ************************************************************************************************************************************************/
 #pragma once
-#include "Point.h"
-#include "Shape.h"
+#include "Board.h"
 
-
-class Board;
 
 enum { ZSize = 4, numRotations = 4 };
 
@@ -37,4 +34,6 @@ public:
 	bool canMove(const Board& gameBoard, Direction dir);
 	bool checkIfCanMove(shapeState state, const Board& gameBoard, Direction dir);
 	ShapeTypes getShapeType()const { return ZSHAPE; }
+	int markShape(Board& gameBoard);
+
 };

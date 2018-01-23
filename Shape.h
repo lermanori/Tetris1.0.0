@@ -1,8 +1,10 @@
 #pragma once
+
+
 class Point;
 //class Board;
 
-class Shape : public Board
+class Shape 
 {
 public:
 	virtual void move(Direction) = 0;
@@ -12,4 +14,5 @@ public:
 	virtual ShapeTypes getShapeType()const = 0;
 	virtual bool canMove(const Board& gameBoard, Direction dir) = 0;
 	virtual int markShape(Board& gameBoard) = 0;
+	void getPosInMatrix(const Point &pt, int &x, int &y) { x = pt.getX() - MIN_X;	y = pt.getY() - MIN_Y; }
 };

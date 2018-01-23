@@ -159,6 +159,44 @@ bool LShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	return res;
 }
 
+int LShape::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	switch (state)
+	{
+	case HORIZONTAL: // 
+		gameBoard(y)[x] = LSHP;
+		gameBoard(y + 1)[x] = LSHP;
+		gameBoard(y + 1)[x + 1] = LSHP;
+		gameBoard(y + 1)[x + 2] = LSHP;
+		break;
+
+	case VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = LSHP;
+		gameBoard(y)[x - 1] = LSHP;
+		gameBoard(y + 1)[x - 1] = LSHP;
+		gameBoard(y + 2)[x - 1] = LSHP;
+		break;
+
+	case INV_HORIZONTAL:
+		gameBoard(y)[x] = LSHP;
+		gameBoard(y + 1)[x] = LSHP;
+		gameBoard(y + 1)[x - 1] = LSHP;
+		gameBoard(y + 1)[x - 2] = LSHP;
+		break;
+	case INV_VERTICAL:
+		gameBoard(y)[x] = LSHP;
+		gameBoard(y)[x - 1] = LSHP;
+		gameBoard(y - 1)[x - 1] = LSHP;
+		gameBoard(y - 2)[x - 1] = LSHP;
+		break;
+	}
+	this->draw(LSHP);
+	return gameBoard.checkLine();
+}
+
 
 
 

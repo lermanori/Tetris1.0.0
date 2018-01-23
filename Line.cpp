@@ -13,7 +13,7 @@ Line::Line()
 	line[HORIZONTAL][RR].set(x + 3, y, c);
 
 	line[VERTICAL][LL].set(x, y, c);
-	line[VERTICAL][LR].set(x, y -1, c);
+	line[VERTICAL][LR].set(x, y - 1, c);
 	line[VERTICAL][RL].set(x, y - 2, c);
 	line[VERTICAL][RR].set(x, y - 3, c);
 }
@@ -192,5 +192,31 @@ bool Line::canMove(const Board& gameBoard, Direction dir)
 
 	res = check[LL] && check[LR] && check[RL] && check[RR];
 	return res;
+}
+
+int Line::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+	
+	switch (state)
+	{
+	case HORIZONTAL: // ORDER LL LR RL RR
+		gameBoard(y)[x] = LN;
+		gameBoard(y)[x + 1] = LN;
+		gameBoard(y)[x + 2] = LN;
+		gameBoard(y)[x + 3] = LN;
+		break;
+
+	case VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = LN;
+		gameBoard(y - 1)[x] = LN;
+		gameBoard(y - 2)[x] = LN;
+		gameBoard(y - 3)[x] = LN;
+		break;
+
+	}
+	this->draw(LN);
+	return gameBoard.checkLine();
 }
 

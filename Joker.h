@@ -21,8 +21,8 @@ canMove - being used as a bridge and calls Point::canMoveJoker function.
 ************************************************************************************************************************************************/
 #pragma once
 
-#include "Point.h"
-#include "Shape.h"
+#include "Board.h"
+
 
 class Joker: public Shape
 {
@@ -38,5 +38,6 @@ public:
 	bool canMove(const Board& gameBoard, Direction dir);
 	shapeState getState()const { return DUMMYSTATE; }
 	ShapeTypes getShapeType()const { return JOKER; }
+	int markShape(Board& gameBoard);
 
 };

@@ -161,3 +161,42 @@ bool ZShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	res = check[LTop] && check[RTop] && check[LBottom] && check[RBottom];
 	return res;
 }
+
+int ZShape::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	switch (state)
+	{
+	case HORIZONTAL: // 
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y)[x + 1] = ZSHP;
+		gameBoard(y + 1)[x + 1] = ZSHP;
+		gameBoard(y + 1)[x + 2] = ZSHP;
+		break;
+
+	case VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y + 1)[x] = ZSHP;
+		gameBoard(y + 1)[x - 1] = ZSHP;
+		gameBoard(y + 2)[x - 1] = ZSHP;
+		break;
+
+	case INV_HORIZONTAL: // 
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y)[x - 1] = ZSHP;
+		gameBoard(y - 1)[x - 1] = ZSHP;
+		gameBoard(y - 1)[x - 2] = ZSHP;
+		break;
+
+	case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y - 1)[x] = ZSHP;
+		gameBoard(y - 1)[x + 1] = ZSHP;
+		gameBoard(y - 2)[x + 1] = ZSHP;
+		break;
+	}
+	this->draw(ZSHP);
+	return gameBoard.checkLine();
+}

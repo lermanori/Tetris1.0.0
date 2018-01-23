@@ -34,5 +34,19 @@ bool Joker::canMove(const Board& gameBoard, Direction dir)
 	return res;
 }
 
+int Joker::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+	if (gameBoard[y][x] == SPACE)
+		gameBoard(y)[x] = JKR;
+	else
+		gameBoard[y][x] = JKR;
+	
+	this->draw(JKR);
+	gameBoard.printMatrix();
+	return gameBoard.checkLine();
+}
+
 
 

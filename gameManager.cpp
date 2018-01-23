@@ -39,7 +39,11 @@ void GameManager::runGame()
 					board.setScore(board.getScore() + 2);
 				}
 				if (shape->getShapeType() != BOMB)
-					board.markShapeAndUpdateScore(*shape);
+				{
+					erasedLines = shape->markShape(board);
+					board.updateScore(erasedLines, *shape);
+				}
+
 				else
 					board.explodeBomb(shape->getPoint());
 				delete shape;
@@ -48,7 +52,8 @@ void GameManager::runGame()
 
 			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
 			{
-				board.markShapeAndUpdateScore(*shape);
+				erasedLines = shape->markShape(board);
+				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
 			}
@@ -71,7 +76,10 @@ void GameManager::runGame()
 						board.explodeBomb(shape->getPoint());
 					shape->draw(' ');
 					if (shape->getShapeType() != BOMB)
-						board.markShapeAndUpdateScore(*shape);
+					{
+						erasedLines = shape->markShape(board);
+						board.updateScore(erasedLines, *shape);
+					}
 					delete shape;
 					existingShape = false;
 				}
@@ -131,7 +139,7 @@ Direction GameManager::menu(char &keyPressed)
 
 	case HARD_DROP:
 		return HARDDROP;
-	
+
 	case START_GAME:
 		board.printMatrix();
 		setGameOn();

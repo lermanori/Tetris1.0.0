@@ -20,8 +20,9 @@ Move/Draw/canMove - being used as a bridge and calls the Point::move / Point::dr
 ************************************************************************************************************************************************/
 #pragma once
 
-#include "Point.h"
-#include "Shape.h"
+#include "Board.h"
+
+
 
 class Bomb: public Shape
 {
@@ -37,5 +38,5 @@ public:
 	bool canMove(const Board& gameBoard, Direction dir);
 	shapeState getState()const { return DUMMYSTATE; }
 	ShapeTypes getShapeType()const { return BOMB; }
-
+	int markShape(Board& gameBoard);
 };

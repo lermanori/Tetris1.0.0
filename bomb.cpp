@@ -33,6 +33,16 @@ bool Bomb::canMove(const Board& gameBoard, Direction dir)
 	return res;
 }
 
+int Bomb::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	gameBoard(y)[x] = BMB;
+	this->draw(BMB);
+	return gameBoard.checkLine();
+}
+
 
 
 

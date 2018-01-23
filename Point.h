@@ -26,6 +26,7 @@ ther is overload for this function one with point and one with actual coordinate
 #include "constants.h"
 
 
+
 class Board;
 
 class Point

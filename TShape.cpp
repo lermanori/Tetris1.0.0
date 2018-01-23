@@ -158,3 +158,43 @@ bool TShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	return res;
 }
 
+int TShape::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	switch (state)
+	{
+	case HORIZONTAL: // 
+		gameBoard(y)[x] = TSHP;
+		gameBoard(y)[x + 1] = TSHP;
+		gameBoard(y)[x - 1] = TSHP;
+		gameBoard(y - 1)[x] = TSHP;
+		break;
+
+	case VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = TSHP;
+		gameBoard(y + 1)[x] = TSHP;
+		gameBoard(y - 1)[x] = TSHP;
+		gameBoard(y)[x + 1] = TSHP;
+		break;
+
+	case INV_HORIZONTAL: // 
+		gameBoard(y)[x] = TSHP;
+		gameBoard(y)[x - 1] = TSHP;
+		gameBoard(y)[x + 1] = TSHP;
+		gameBoard(y + 1)[x] = TSHP;
+		break;
+
+	case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = TSHP;
+		gameBoard(y - 1)[x] = TSHP;
+		gameBoard(y + 1)[x] = TSHP;
+		gameBoard(y)[x - 1] = TSHP;
+		break;
+
+	}
+	this->draw(TSHP);
+	return gameBoard.checkLine();
+}
+
