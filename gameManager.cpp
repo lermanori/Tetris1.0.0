@@ -21,7 +21,6 @@ void GameManager::runGame()
 	{
 		if (gameOn)
 		{
-			Sleep(100);
 
 			if (existingShape == false)//Generating Parts
 			{
@@ -31,7 +30,7 @@ void GameManager::runGame()
 			}
 
 			currTime = time(NULL);
-			if (std::difftime(currTime, saveTime) > 0.9)
+			if (std::difftime(currTime, saveTime) > gameSpeed)
 			{
 				if (shape->canMove(board, DOWN))
 					shape->move(DOWN);
@@ -39,6 +38,7 @@ void GameManager::runGame()
 			}
 
 			dir = menu(keyPressed);
+			Sleep(100);
 
 			if (dir == HARDDROP)
 			{
@@ -47,16 +47,11 @@ void GameManager::runGame()
 					shape->move(DOWN);
 					board.setScore(board.getScore() + 2);
 				}
-				if (shape->getShapeType() != BOMB)
-				{
-					erasedLines = shape->markShape(board);
-					board.updateScore(erasedLines, *shape);
-				}
-
-				else
-					board.explodeBomb(shape->getPoint());
+				erasedLines = shape->markShape(board);
+				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
+				
 			}
 
 			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
@@ -65,29 +60,28 @@ void GameManager::runGame()
 				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
+				
 			}
 			else if (shape->canMove(board, dir))
 			{
 				shape->move(dir);
 				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
+				
+			}
+			else if (dir != STAY && !shape->canMove(board, DOWN))
+			{
+				shape->move(dir);
 			}
 
-
 			else
-			{
+			{ //not hardDrop , not save joker, shape cant move anymore
 				//killing switch
-				if(!shape->canMove(board,DOWN))
+			
+				if (!shape->canMove(board, DOWN))
 				{
-
-					if (shape->getShapeType() == BOMB)
-						board.explodeBomb(shape->getPoint());
-					shape->draw(' ');
-					if (shape->getShapeType() != BOMB)
-					{
-						erasedLines = shape->markShape(board);
-						board.updateScore(erasedLines, *shape);
-					}
+					erasedLines = shape->markShape(board);
+					board.updateScore(erasedLines, *shape);
 					delete shape;
 					existingShape = false;
 				}
@@ -95,7 +89,7 @@ void GameManager::runGame()
 
 			//check game status 
 			gameFailure = board.checkGameFailure();
-			if (!gameFailure)
+			if (gameFailure)
 			{
 				gameOn = false;
 				resetGame();

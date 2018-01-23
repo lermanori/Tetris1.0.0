@@ -140,15 +140,14 @@ void Board::updateScore(int erasedLines, const Shape & shape)
 	case FOUR:
 		this->setScore(this->getScore() + 800);
 		break;
+	default:
+		break;
 	}
 }
 
-void Board::explodeBomb(const Point & pt)
+void Board::explodeBomb(const int x , const int y)
 {
-	int x = 0, y = 0;
 	int erasedCells = 0;
-
-	gameBoard.getPosInMatrix(pt, x, y);
 
 	if (x == START && y == START) //TOP LEFT
 	{
@@ -234,9 +233,9 @@ bool Board::haveSpaceJoker(int x, int y) const
 bool Board::checkGameFailure()
 {
 	if (gameBoard.indicators[START] != EMPTY)
-		return false;
-	else
 		return true;
+	else
+		return false;
 }
 
 void Board::showFailureMessage()
@@ -300,7 +299,7 @@ void Board::drawMenu()
 void Board::drawScoreBoard()
 {
 	gotoxy(scorePosX - 14, scorePosY - 3);
-	std::cout << "Speed: 150 m/s";
+	std::cout << "Speed: " << std::setw(4)<< "750 m / s";
 	gotoxy(scorePosX - 14, scorePosY);
 	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);

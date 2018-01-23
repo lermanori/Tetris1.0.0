@@ -15,9 +15,9 @@ Joker::Joker(int x, int y, char c)
 
 void Joker::move(Direction dir)
 {
-	p.draw(' ');
-	p.move(dir);
-	p.draw();
+		p.draw(' ');
+		p.move(dir);
+		p.draw();
 }
 
 void Joker::draw(char c) const
@@ -42,7 +42,7 @@ int Joker::markShape(Board & gameBoard)
 		gameBoard(y)[x] = JKR;
 	else
 		gameBoard[y][x] = JKR;
-	
+
 	this->draw(JKR);
 	gameBoard.printMatrix();
 	return gameBoard.checkLine();

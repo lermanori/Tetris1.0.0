@@ -38,8 +38,7 @@ int Bomb::markShape(Board & gameBoard)
 	int x = 0, y = 0;
 	this->getPosInMatrix(this->getPoint(), x, y);
 
-	gameBoard(y)[x] = BMB;
-	this->draw(BMB);
+	gameBoard.explodeBomb(x,y);
 	return gameBoard.checkLine();
 }
 

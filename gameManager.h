@@ -66,7 +66,7 @@ class GameManager
 	bool existingShape = false;//Indicates weather there's a shape alive or not.
 
 	char keyPressed = 0;
-	unsigned int gameSpeed = 150; //gameSpeed - Speed Range: 100-200, jumps of 25m/s per click
+	double gameSpeed = 0.75; //gameSpeed - Speed Range: 100-200, jumps of 25m/s per click
 
 	Direction dir; //direction of movement
 	Direction dummy;
@@ -76,14 +76,15 @@ class GameManager
 	int erasedLines = 0;
 	time_t saveTime, currTime;
 
+
 public:
 	GameManager();
 	void resetGame();
 	void setGameOn() { gameOn = true; }
 	void pauseGame() { gameOn = false; }
 	void leaveGame() { quitGame = true; }
-	void setSpeed(int newSpeed) {gameSpeed = newSpeed; gotoxy(SCORE_X - 7, SCORE_Y - 3); std::cout << gameSpeed; }
-	int getSpeed() { return gameSpeed; }
+	void setSpeed(double newSpeed) {gameSpeed = newSpeed; gotoxy(SCORE_X - 7, SCORE_Y - 3); std::cout << gameSpeed*100; }
+	double getSpeed() { return gameSpeed; }
 
 	void runGame();
 	Direction menu(char &keyPressed);

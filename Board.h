@@ -96,7 +96,7 @@ public:
 	int checkLine() { return gameBoard.checkIfFullLine(); }
 	void updateScore(int erasedLines, const Shape& shape);
 
-	void explodeBomb(const Point &pt);
+	void explodeBomb(const int x, const int y);
 	
 	char* operator() (int row) { gameBoard.indicators[row]++;  return gameBoard.gameBoard[row]; }
 	char* operator[] (int row) { return gameBoard.gameBoard[row]; }

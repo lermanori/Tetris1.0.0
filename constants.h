@@ -37,9 +37,9 @@ const char SPACE = ' ';
 //Default Numeric Values:
 const int EMPTY = 0;
 const int FULL = 10;
-const int MAX_SPEED = 100;
-const int MIN_SPEED = 200;
-const int SPEED_CHANGE = 25;
+const double MAX_SPEED = 0.25;
+const double MIN_SPEED = 1.5;
+const double SPEED_CHANGE = 0.25;
 const int BOMB_SCORE_REDUCTION = 50;
 
 //Shape Charachters
