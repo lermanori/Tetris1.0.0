@@ -19,6 +19,7 @@ void GameManager::runGame()
 	saveTime = time(NULL);
 	while (!quitGame)
 	{
+		Sleep(200);
 		if (gameOn)
 		{
 
@@ -33,12 +34,14 @@ void GameManager::runGame()
 			if (std::difftime(currTime, saveTime) > gameSpeed)
 			{
 				if (shape->canMove(board, DOWN))
+				{
 					shape->move(DOWN);
+					goBack = false;
+				}
 				saveTime = currTime;
 			}
 
 			dir = menu(keyPressed);
-			Sleep(100);
 
 			if (dir == HARDDROP)
 			{
@@ -51,7 +54,7 @@ void GameManager::runGame()
 				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
-				
+
 			}
 
 			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
@@ -60,30 +63,54 @@ void GameManager::runGame()
 				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
-				
+
 			}
 			else if (shape->canMove(board, dir))
 			{
 				shape->move(dir);
 				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
-				
-			}
-			else if (dir != STAY && !shape->canMove(board, DOWN))
-			{
-				shape->move(dir);
-			}
+				goBack = false;
 
+			}
 			else
 			{ //not hardDrop , not save joker, shape cant move anymore
 				//killing switch
-			
 				if (!shape->canMove(board, DOWN))
 				{
-					erasedLines = shape->markShape(board);
-					board.updateScore(erasedLines, *shape);
-					delete shape;
-					existingShape = false;
+					keyPressed = _getch();
+					dir = menu(keyPressed);
+
+
+					while (shape->canMove(board, dir) && dir != STAY)
+					{
+						Sleep(100);
+						shape->move(dir);
+						if (_kbhit())
+						{
+							keyPressed = _getch();
+							dir = menu(keyPressed);
+						}
+						else
+						{
+							dir = STAY;
+						}
+
+						if (shape->canMove(board, DOWN))
+						{
+							goBack = true;
+						}
+
+
+					}
+					if (!goBack)
+					{
+						erasedLines = shape->markShape(board);
+						board.updateScore(erasedLines, *shape);
+						delete shape;
+						existingShape = false;
+					}
+
 				}
 			}
 
@@ -101,10 +128,8 @@ void GameManager::runGame()
 				keyPressed = _getch();
 
 		}
-
 		else//menu mode
 		{
-
 			keyPressed = 0;
 
 			if (_kbhit())

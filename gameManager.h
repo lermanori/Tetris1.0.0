@@ -64,7 +64,7 @@ class GameManager
 	bool gameFailure = false;//Indicates that the player has failed.
 	bool quitGame = false;//Indicates that the player pressed 9 in order to close the game.
 	bool existingShape = false;//Indicates weather there's a shape alive or not.
-
+	bool goBack = false;
 	char keyPressed = 0;
 	double gameSpeed = 0.75; //gameSpeed - Speed Range: 100-200, jumps of 25m/s per click
 
