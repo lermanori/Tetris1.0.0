@@ -28,7 +28,7 @@ runGame - Responsible of the gameplay. In some places, the function updates the 
 					1.1.4.2 Kill the shape and set the flag
 				1.1.5 Else if the shape can move to the requested direction
 					1.1.5.1 Move to the requested direction
-				1.1.6 Else (shape is not joker and cant move to requested directory)
+				1.1.6 Else (shape is not joker and cant move to requested direction)
 					1.1.6.1 If the shape can move down
 						1.1.6.1.1 Move down
 					1.1.6.2 Else (the shape is about to die ^_^ )
@@ -74,6 +74,8 @@ class GameManager
 	Shape* shape = nullptr; //Every time when a shape gets generated, we allocate memory for it. Before we kill it we release the allocation and allocate again.
 	Board board; //game board - explained in board.h
 	int erasedLines = 0;
+	time_t saveTime, currTime;
+
 public:
 	GameManager();
 	void resetGame();

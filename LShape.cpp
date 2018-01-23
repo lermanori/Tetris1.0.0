@@ -15,14 +15,14 @@ LShape::LShape()
 	LTetrisShape[VERTICAL][RightSide].set(x - 1, y + 2, c);
 
 	LTetrisShape[INV_HORIZONTAL][LT].set(x, y, c);
-	LTetrisShape[INV_HORIZONTAL][LeftSide].set(x, y + 1, c);
-	LTetrisShape[INV_HORIZONTAL][Mid].set(x - 1, y + 1, c);
-	LTetrisShape[INV_HORIZONTAL][RightSide].set(x - 2, y + 1, c);
+	LTetrisShape[INV_HORIZONTAL][LeftSide].set(x, y - 1, c);
+	LTetrisShape[INV_HORIZONTAL][Mid].set(x - 1, y - 1, c);
+	LTetrisShape[INV_HORIZONTAL][RightSide].set(x - 2, y - 1, c);
 
 	LTetrisShape[INV_VERTICAL][LT].set(x, y, c);
-	LTetrisShape[INV_VERTICAL][LeftSide].set(x - 1, y, c);
-	LTetrisShape[INV_VERTICAL][Mid].set(x - 1, y - 1, c);
-	LTetrisShape[INV_VERTICAL][RightSide].set(x - 1, y - 2, c);
+	LTetrisShape[INV_VERTICAL][LeftSide].set(x + 1, y, c);
+	LTetrisShape[INV_VERTICAL][Mid].set(x + 1, y - 1, c);
+	LTetrisShape[INV_VERTICAL][RightSide].set(x + 1, y - 2, c);
 }
 LShape::LShape(int x, int y, char c)
 {
@@ -37,14 +37,14 @@ LShape::LShape(int x, int y, char c)
 	LTetrisShape[VERTICAL][RightSide].set(x - 1, y + 2, c);
 
 	LTetrisShape[INV_HORIZONTAL][LT].set(x, y, c);
-	LTetrisShape[INV_HORIZONTAL][LeftSide].set(x, y + 1, c);
-	LTetrisShape[INV_HORIZONTAL][Mid].set(x - 1, y + 1, c);
-	LTetrisShape[INV_HORIZONTAL][RightSide].set(x - 2, y + 1, c);
+	LTetrisShape[INV_HORIZONTAL][LeftSide].set(x, y - 1, c);
+	LTetrisShape[INV_HORIZONTAL][Mid].set(x - 1, y - 1, c);
+	LTetrisShape[INV_HORIZONTAL][RightSide].set(x - 2, y - 1, c);
 
 	LTetrisShape[INV_VERTICAL][LT].set(x, y, c);
-	LTetrisShape[INV_VERTICAL][LeftSide].set(x - 1, y, c);
-	LTetrisShape[INV_VERTICAL][Mid].set(x - 1, y - 1, c);
-	LTetrisShape[INV_VERTICAL][RightSide].set(x - 1, y - 2, c);
+	LTetrisShape[INV_VERTICAL][LeftSide].set(x + 1, y, c);
+	LTetrisShape[INV_VERTICAL][Mid].set(x + 1, y - 1, c);
+	LTetrisShape[INV_VERTICAL][RightSide].set(x + 1, y - 2, c);
 }
 
 void LShape::move(Direction dir)

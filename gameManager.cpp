@@ -4,6 +4,7 @@
 GameManager::GameManager()
 {
 	std::srand((unsigned int)time(NULL)); //casting to unsigned int because we had warning: possible loss of data
+
 }
 
 void GameManager::resetGame()
@@ -15,10 +16,13 @@ void GameManager::resetGame()
 
 void GameManager::runGame()
 {
+	saveTime = time(NULL);
 	while (!quitGame)
 	{
 		if (gameOn)
 		{
+			Sleep(100);
+
 			if (existingShape == false)//Generating Parts
 			{
 				shape = ShapeFactory::createShape(ShapeFactory::shapeProbabilities());
@@ -26,8 +30,13 @@ void GameManager::runGame()
 				board.setFallenItems(board.getFallenItems() + 1);
 			}
 
-			if (shape->canMove(board, DOWN))
-				shape->move(DOWN);
+			currTime = time(NULL);
+			if (std::difftime(currTime, saveTime) > 0.9)
+			{
+				if (shape->canMove(board, DOWN))
+					shape->move(DOWN);
+				saveTime = currTime;
+			}
 
 			dir = menu(keyPressed);
 
@@ -67,11 +76,10 @@ void GameManager::runGame()
 
 			else
 			{
-				if (shape->canMove(board, DOWN))
-					shape->move(DOWN);
 				//killing switch
-				else
+				if(!shape->canMove(board,DOWN))
 				{
+
 					if (shape->getShapeType() == BOMB)
 						board.explodeBomb(shape->getPoint());
 					shape->draw(' ');
@@ -92,8 +100,6 @@ void GameManager::runGame()
 				gameOn = false;
 				resetGame();
 			}
-
-			Sleep(gameSpeed);
 
 			keyPressed = 0;
 
