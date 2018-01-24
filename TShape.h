@@ -1,13 +1,29 @@
 /************************************************************************************************************************************************
 ~~~~ TShape.h + TShape.cpp ~~~
 
-~~~IN ORDER TO FULLY UNDERSTAND THIS CLASS - YOU MUST READ Point.H~~~
+
+~~~IN ORDER TO FULLY UNDERSTAND THIS CLASS - YOU MUST READ shape.H~~~
 
 CLASS MEMBERS:
-
-
+TTetrisShape- a 2 dimensional array that is holding the four points of the object for every state there is for the shape.
+state- the current state of the shape
+c- the char that will be written into the matrix and onto the console game.
 
 MEMBER FUNCTIONS:
+
+this object is implementing the interface that is given by shape
+ctor- 1) with no parameters 2)parametrs:(int x,int y,char c) :
+the constructor sets the points of the four possible states into the 2 dimensional array by the key point of the shape that was decided by us to be the chupchick
+
+behavorial functions;
+move- 1)with only direction as parameter,2)with state and direction parametrs:
+the function is moving all points of the array if the dir is rotate it will change the state as well.
+draw- 1)with state,char.2)with only char:
+the function draws the object with selected char.
+canMove,checkifcanmove,markShape- all do what thier name say.
+
+setters,getters:
+getPoint,getsState.
 
 ************************************************************************************************************************************************/
 #pragma once

@@ -1,3 +1,8 @@
+/************************************************************************************************************************************************
+this object is an abstract object that is used as the interface class as part of factory design pattern implentation
+and polymorphisem of the shape.
+************************************************************************************************************************************************/
+
 #pragma once
 #include "constants.h"
 #include "Point.h"
