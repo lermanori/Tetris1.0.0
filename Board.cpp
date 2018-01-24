@@ -33,9 +33,6 @@ bool Board::Matrix::haveSpace(int x, int y) const
 		return false;
 }
 
-bool Board::Matrix::haveSpaceJoker(int x, int y) const
-{
-	if (x < 10 && x > -1 && y >= 0 && y < 15)
 
 int Board::Matrix::checkIfFullLine()
 {
