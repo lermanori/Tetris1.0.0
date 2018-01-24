@@ -32,9 +32,6 @@ the purpose is to make a definition "the line can move if all is 4 point can mov
 #pragma once
 #include "Board.h"
 
-
-
-
 class Board;
 
 enum { lineSize = 4, numLines = 2 };
@@ -52,7 +49,8 @@ public:
 	void draw(char c)const ;
 	const Point& getPoint()const  { return line[state][LL]; }
 	shapeState getState()const  { return state; }
-	bool canMove(const Board& gameBoard, Direction dir) ;
+	bool canMove(const Board& gameBoard, Direction dir) override;
+	virtual bool checkIfCanMove(shapeState state, const Board & gameBoard, Direction dir);
 	ShapeTypes getShapeType()const  { return LINE; }
 	int markShape(Board& gameBoard);
 

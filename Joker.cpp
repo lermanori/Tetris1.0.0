@@ -15,9 +15,9 @@ Joker::Joker(int x, int y, char c)
 
 void Joker::move(Direction dir)
 {
-		p.draw(' ');
-		p.move(dir);
-		p.draw();
+	p.draw(' ');
+	p.move(dir);
+	p.draw();
 }
 
 void Joker::draw(char c) const
@@ -27,11 +27,45 @@ void Joker::draw(char c) const
 
 bool Joker::canMove(const Board& gameBoard, Direction dir)
 {
-	bool res;
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+	switch (dir)
+	{
 
-	res = p.canMoveJoker(gameBoard, dir);
+	case RIGHT:
+		if (haveSpace(x + 1, y))
+			return true;
+		else
+			return false;
+		break;
+	case DOWN:
+		if (haveSpace(x, y + 1))
+			return true;
+		else
+			return false;
+		break;
+	case LEFT:
+		if (haveSpace(x - 1, y))
+			return true;
+		else
+			return false;
+		break;
 
-	return res;
+	default:
+		if (haveSpace(x, y + 1))
+			return true;
+		else
+			return false;
+		break;
+	}
+}
+
+bool Joker::haveSpace(int x, int y) const
+{
+	if (x < 10 && x > -1 && y >= 0 && y < 15)
+		return true;
+	else
+		return false;
 }
 
 int Joker::markShape(Board & gameBoard)

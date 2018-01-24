@@ -42,6 +42,7 @@ Shape* ShapeFactory::createShape(const int shapeType)
 int ShapeFactory::shapeProbabilities()
 {
 
+
 	const int x = rand() % 30;
 	if (x <= 5)
 		return SQUARE;

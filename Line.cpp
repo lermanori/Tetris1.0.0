@@ -148,47 +148,31 @@ void Line::draw(char c)const
 
 bool Line::canMove(const Board& gameBoard, Direction dir)
 {
-	bool check[4] = { false,false,false,false };
-	bool res;
-
 	if (dir == ROTATE)
 	{
 		switch (state)
 		{
-		case VERTICAL:
-			check[LL] = line[HORIZONTAL][LL].canMove(gameBoard, dir);
-			check[LR] = line[HORIZONTAL][LR].canMove(gameBoard, dir);
-			check[RL] = line[HORIZONTAL][RL].canMove(gameBoard, dir);
-			check[RR] = line[HORIZONTAL][RR].canMove(gameBoard, dir);
-			break;
 		case HORIZONTAL:
-			check[LL] = line[VERTICAL][LL].canMove(gameBoard, dir);
-			check[LR] = line[VERTICAL][LR].canMove(gameBoard, dir);
-			check[RL] = line[VERTICAL][RL].canMove(gameBoard, dir);
-			check[RR] = line[VERTICAL][RR].canMove(gameBoard, dir);
+			return (checkIfCanMove(VERTICAL, gameBoard, dir));
+			break;
+		case VERTICAL:
+			return (checkIfCanMove(HORIZONTAL, gameBoard, dir));
 			break;
 		}
 	}
 	else
-	{
+		return (checkIfCanMove(state, gameBoard, dir));
+}
 
-		switch (state)
-		{
-		case HORIZONTAL:
-			check[LL] = line[HORIZONTAL][LL].canMove(gameBoard, dir);
-			check[LR] = line[HORIZONTAL][LR].canMove(gameBoard, dir);
-			check[RL] = line[HORIZONTAL][RL].canMove(gameBoard, dir);
-			check[RR] = line[HORIZONTAL][RR].canMove(gameBoard, dir);
-			break;
-		case VERTICAL:
-			check[LL] = line[VERTICAL][LL].canMove(gameBoard, dir);
-			check[LR] = line[VERTICAL][LR].canMove(gameBoard, dir);
-			check[RL] = line[VERTICAL][RL].canMove(gameBoard, dir);
-			check[RR] = line[VERTICAL][RR].canMove(gameBoard, dir);
-			break;
-		}
+bool Line::checkIfCanMove(shapeState state, const Board & gameBoard, Direction dir)
+{
+	bool check[4] = { false,false,false,false };
+	bool res;
 
-	}
+	check[LL] = line[state][LL].Point::canMove(gameBoard, dir, line[state][LL]);
+	check[LR] = line[state][LR].Point::canMove(gameBoard, dir, line[state][LR]);
+	check[RL] = line[state][RL].Point::canMove(gameBoard, dir, line[state][RL]);
+	check[RR] = line[state][RR].Point::canMove(gameBoard, dir, line[state][RR]);
 
 	res = check[LL] && check[LR] && check[RL] && check[RR];
 	return res;

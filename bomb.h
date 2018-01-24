@@ -35,7 +35,8 @@ public:
 	void move(Direction dir);
 	void draw(char c) const;
 	const Point& getPoint() const { return p; };
-	bool canMove(const Board& gameBoard, Direction dir);
+	bool canMove(const Board& gameBoard, Direction dir) override;
+	bool checkIfCanMove(shapeState state, const Board & gameBoard, Direction dir) { return false; } //not being used atm
 	shapeState getState()const { return DUMMYSTATE; }
 	ShapeTypes getShapeType()const { return BOMB; }
 	int markShape(Board& gameBoard);

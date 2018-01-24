@@ -51,10 +51,10 @@ bool Square::canMove(const Board &gameBoard, Direction dir)
 	bool check[4] = { false, false, false, false };
 	bool res;
 
-	check[BL] = s1[BL].canMove(gameBoard, dir);
-	check[BR] = s1[BR].canMove(gameBoard, dir);
-	check[TR] = s1[TR].canMove(gameBoard, dir);
-	check[TL] = s1[TL].canMove(gameBoard, dir);
+	check[BL] = s1[BL].Point::canMove(gameBoard, dir, s1[BL]);
+	check[BR] = s1[BR].Point::canMove(gameBoard, dir, s1[BR]);
+	check[TR] = s1[TR].Point::canMove(gameBoard, dir, s1[TR]);
+	check[TL] = s1[TL].Point::canMove(gameBoard, dir, s1[TL]);
 
 	res = check[BL] && check[BR] && check[TR] && check[TL];
 	return res;

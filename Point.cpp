@@ -34,10 +34,10 @@ void Point::move(Direction dir)
 
 }
 
-bool Point::canMove(const Board &gameBoard, Direction dir)
+bool Point::canMove(const Board &gameBoard, Direction dir, const Point& pt)
 {
 	int x, y;
-	this->getPosInMatrix(this->getX(), this->getY(), x, y);
+	pt.getPosInMatrix(pt, x, y);
 	switch (dir)
 	{
 	case ROTATE:
@@ -73,41 +73,8 @@ bool Point::canMove(const Board &gameBoard, Direction dir)
 		break;
 	}
 }
-bool Point::canMoveJoker(const Board & gameBoard, Direction dir)
-{
-	int x, y;
-	this->getPosInMatrix(this->getX(), this->getY(), x, y);
-	switch (dir)
-	{
 
-	case RIGHT:
-		if (gameBoard.haveSpaceJoker(x + 1, y))
-			return true;
-		else
-			return false;
-		break;
-	case DOWN:
-		if (gameBoard.haveSpaceJoker(x, y + 1))
-			return true;
-		else
-			return false;
-		break;
-	case LEFT:
-		if (gameBoard.haveSpaceJoker(x - 1, y))
-			return true;
-		else
-			return false;
-		break;
-
-	default:
-		if (gameBoard.haveSpaceJoker(x, y + 1))
-			return true;
-		else
-			return false;
-		break;
-	}
-}
-void Point::getPosInMatrix(const Point& pt, int &x, int &y)
+void Point::getPosInMatrix(const Point& pt, int &x, int &y) const
 {
 	x = pt.getX() - MIN_X;
 	y = pt.getY() - MIN_Y;

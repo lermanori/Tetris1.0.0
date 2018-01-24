@@ -36,10 +36,6 @@ bool Board::Matrix::haveSpace(int x, int y) const
 bool Board::Matrix::haveSpaceJoker(int x, int y) const
 {
 	if (x < 10 && x > -1 && y >= 0 && y < 15)
-		return true;
-	else
-		return false;
-}
 
 int Board::Matrix::checkIfFullLine()
 {
@@ -220,15 +216,7 @@ void Board::explodeBomb(const int x , const int y)
 
 }
 
-bool Board::haveSpace(int x, int y)const
-{
-	return gameBoard.haveSpace(x, y);
-}
 
-bool Board::haveSpaceJoker(int x, int y) const
-{
-	return gameBoard.haveSpaceJoker(x, y);
-}
 
 bool Board::checkGameFailure()
 {

@@ -150,10 +150,10 @@ bool LShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	bool check[4] = { false,false,false,false };
 	bool res;
 
-	check[LT] = LTetrisShape[state][LT].canMove(gameBoard, dir);
-	check[LeftSide] = LTetrisShape[state][LeftSide].canMove(gameBoard, dir);
-	check[Mid] = LTetrisShape[state][Mid].canMove(gameBoard, dir);
-	check[RightSide] = LTetrisShape[state][RightSide].canMove(gameBoard, dir);
+	check[LT] = LTetrisShape[state][LT].Point::canMove(gameBoard, dir, LTetrisShape[state][LT]);
+	check[LeftSide] = LTetrisShape[state][LeftSide].Point::canMove(gameBoard, dir, LTetrisShape[state][LeftSide]);
+	check[Mid] = LTetrisShape[state][Mid].Point::canMove(gameBoard, dir, LTetrisShape[state][Mid]);
+	check[RightSide] = LTetrisShape[state][RightSide].Point::canMove(gameBoard, dir, LTetrisShape[state][RightSide]);
 
 	res = check[LT] && check[LeftSide] && check[Mid] && check[RightSide];
 	return res;
@@ -182,15 +182,15 @@ int LShape::markShape(Board & gameBoard)
 
 	case INV_HORIZONTAL:
 		gameBoard(y)[x] = LSHP;
-		gameBoard(y + 1)[x] = LSHP;
-		gameBoard(y + 1)[x - 1] = LSHP;
-		gameBoard(y + 1)[x - 2] = LSHP;
+		gameBoard(y - 1)[x] = LSHP;
+		gameBoard(y - 1)[x - 1] = LSHP;
+		gameBoard(y - 1)[x - 2] = LSHP;
 		break;
 	case INV_VERTICAL:
 		gameBoard(y)[x] = LSHP;
-		gameBoard(y)[x - 1] = LSHP;
-		gameBoard(y - 1)[x - 1] = LSHP;
-		gameBoard(y - 2)[x - 1] = LSHP;
+		gameBoard(y)[x + 1] = LSHP;
+		gameBoard(y - 1)[x + 1] = LSHP;
+		gameBoard(y - 2)[x + 1] = LSHP;
 		break;
 	}
 	this->draw(LSHP);

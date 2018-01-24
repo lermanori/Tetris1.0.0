@@ -36,6 +36,8 @@ public:
 	void draw(char c) const;
 	const Point& getPoint()const { return p; };
 	bool canMove(const Board& gameBoard, Direction dir);
+	bool haveSpace(int x, int y) const;
+	virtual bool checkIfCanMove(shapeState state, const Board & gameBoard, Direction dir) { return false; }//not used atm
 	shapeState getState()const { return DUMMYSTATE; }
 	ShapeTypes getShapeType()const { return JOKER; }
 	int markShape(Board& gameBoard);

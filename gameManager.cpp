@@ -19,7 +19,7 @@ void GameManager::runGame()
 	saveTime = time(NULL);
 	while (!quitGame)
 	{
-		Sleep(200);
+		Sleep(100);
 		if (gameOn)
 		{
 
@@ -100,7 +100,7 @@ void GameManager::runGame()
 						}
 
 					}
-					Sleep(400);
+					Sleep(100);
 					if (!shape->canMove(board, DOWN))
 					{
 						erasedLines = shape->markShape(board);

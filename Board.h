@@ -55,7 +55,6 @@ class Board
 		void getPosInMatrix(const Point& pt, int &x, int &y);
 		//static void getPosInMatrix(int x, int y, int &xNewPos, int&yNewPos);
 		bool haveSpace(int x, int y)const;
-		bool haveSpaceJoker(int x, int y)const;
 //		void updateIndicators(const Shape& shape);
 		int checkIfFullLine();
 
@@ -104,8 +103,7 @@ public:
 	/*
 	The next functions are memumashot in matrix.h. They are being defined here in order to use as a bridge between objects.
 	*/
-	bool haveSpace(int x, int y)const;
-	bool haveSpaceJoker(int x, int y)const;
+	bool haveSpace(int x, int y)const { return gameBoard.haveSpace(x, y); }
 	bool checkGameFailure();
 
 	void showFailureMessage();

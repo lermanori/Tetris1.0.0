@@ -2,7 +2,7 @@
 
 TShape::TShape()
 {
-	int x = MIN_X + 5, y = MIN_Y+1;
+	int x = MIN_X + 5, y = MIN_Y + 1;
 	char c = '#';
 
 	TTetrisShape[HORIZONTAL][MidBottom].set(x, y, c);
@@ -92,17 +92,17 @@ void TShape::move(shapeState state, Direction dir)
 	TTetrisShape[HORIZONTAL][RightBottom].move(dir);
 	TTetrisShape[HORIZONTAL][LeftBottom].move(dir);
 	TTetrisShape[HORIZONTAL][Chupchik].move(dir);
-	
+
 	TTetrisShape[VERTICAL][MidBottom].move(dir);
 	TTetrisShape[VERTICAL][RightBottom].move(dir);
 	TTetrisShape[VERTICAL][LeftBottom].move(dir);
 	TTetrisShape[VERTICAL][Chupchik].move(dir);
-	
+
 	TTetrisShape[INV_HORIZONTAL][MidBottom].move(dir);
 	TTetrisShape[INV_HORIZONTAL][RightBottom].move(dir);
 	TTetrisShape[INV_HORIZONTAL][LeftBottom].move(dir);
 	TTetrisShape[INV_HORIZONTAL][Chupchik].move(dir);
-	
+
 	TTetrisShape[INV_VERTICAL][MidBottom].move(dir);
 	TTetrisShape[INV_VERTICAL][RightBottom].move(dir);
 	TTetrisShape[INV_VERTICAL][LeftBottom].move(dir);
@@ -149,10 +149,10 @@ bool TShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	bool check[4] = { false,false,false,false };
 	bool res;
 
-	check[MidBottom] = TTetrisShape[state][MidBottom].canMove(gameBoard, dir);
-	check[RightBottom] = TTetrisShape[state][RightBottom].canMove(gameBoard, dir);
-	check[LeftBottom] = TTetrisShape[state][LeftBottom].canMove(gameBoard, dir);
-	check[Chupchik] = TTetrisShape[state][Chupchik].canMove(gameBoard, dir);
+	check[MidBottom] = TTetrisShape[state][MidBottom].Point::canMove(gameBoard, dir, TTetrisShape[state][MidBottom]);
+	check[RightBottom] = TTetrisShape[state][RightBottom].Point::canMove(gameBoard, dir, TTetrisShape[state][RightBottom]);
+	check[LeftBottom] = TTetrisShape[state][LeftBottom].Point::canMove(gameBoard, dir, TTetrisShape[state][LeftBottom]);
+	check[Chupchik] = TTetrisShape[state][Chupchik].Point::canMove(gameBoard, dir, TTetrisShape[state][Chupchik]);
 
 	res = check[MidBottom] && check[RightBottom] && check[LeftBottom] && check[Chupchik];
 	return res;
