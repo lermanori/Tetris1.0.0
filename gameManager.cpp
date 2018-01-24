@@ -85,7 +85,6 @@ void GameManager::runGame()
 				shape->move(dir);
 				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
-				goBack = false;
 
 			}
 			else
