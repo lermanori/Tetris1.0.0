@@ -78,13 +78,16 @@ void GameManager::runGame()
 				//killing switch
 				if (!shape->canMove(board, DOWN))
 				{
-					keyPressed = _getch();
-					dir = menu(keyPressed);
+					Sleep(400);
+					if (_kbhit())
+					{
+						keyPressed = _getch();
+						dir = menu(keyPressed);
+					}
 
 
 					while (shape->canMove(board, dir) && dir != STAY)
 					{
-						Sleep(100);
 						shape->move(dir);
 						if (_kbhit())
 						{
@@ -96,20 +99,17 @@ void GameManager::runGame()
 							dir = STAY;
 						}
 
-						if (shape->canMove(board, DOWN))
-						{
-							goBack = true;
-						}
-
-
 					}
-					if (!goBack)
+					Sleep(400);
+					if (!shape->canMove(board, DOWN))
 					{
 						erasedLines = shape->markShape(board);
 						board.updateScore(erasedLines, *shape);
 						delete shape;
 						existingShape = false;
 					}
+
+
 
 				}
 			}
