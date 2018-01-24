@@ -17,13 +17,7 @@ void Board::Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
 	x = pt.getX() - MIN_X;
 	y = pt.getY() - MIN_Y;
 }
-/*
-void Board::Matrix::getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos)
-{
-	xNewPos = x - MIN_X;
-	yNewPos = y - MIN_Y;
-}
-*/
+
 
 bool Board::Matrix::haveSpace(int x, int y) const
 {
@@ -284,7 +278,7 @@ void Board::drawMenu()
 void Board::drawScoreBoard()
 {
 	gotoxy(scorePosX - 14, scorePosY - 3);
-	std::cout << "Speed: " << std::setw(4)<< "750 m / s";
+	std::cout << "Speed:"  << normal;
 	gotoxy(scorePosX - 14, scorePosY);
 	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);

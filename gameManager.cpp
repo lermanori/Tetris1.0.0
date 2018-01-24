@@ -14,6 +14,23 @@ void GameManager::resetGame()
 	board.showFailureMessage();
 }
 
+void GameManager::setSpeed(double newSpeed)
+{
+	gameSpeed = newSpeed;
+
+	gotoxy(SCORE_X - 8, SCORE_Y - 3);
+	if (gameSpeed == 1.25)
+		 std::cout << very_slow;
+	else if (gameSpeed == 1)
+		std::cout << slow;
+	else if (gameSpeed == 0.75)
+		std::cout <<  normal;
+	else if (gameSpeed == 0.5)
+		std::cout <<  fast;
+	else if (gameSpeed == 0.25)
+		std::cout <<  very_fast;
+}
+
 void GameManager::runGame()
 {
 	saveTime = time(NULL);
@@ -36,11 +53,9 @@ void GameManager::runGame()
 				if (shape->canMove(board, DOWN))
 				{
 					shape->move(DOWN);
-					goBack = false;
 				}
 				saveTime = currTime;
 			}
-
 			dir = menu(keyPressed);
 
 			if (dir == HARDDROP)
@@ -70,7 +85,6 @@ void GameManager::runGame()
 				shape->move(dir);
 				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
-				goBack = false;
 
 			}
 			else
@@ -84,7 +98,6 @@ void GameManager::runGame()
 						keyPressed = _getch();
 						dir = menu(keyPressed);
 					}
-
 
 					while (shape->canMove(board, dir) && dir != STAY)
 					{
