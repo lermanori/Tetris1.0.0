@@ -26,6 +26,7 @@ ther is overload for this function one with point and one with actual coordinate
 #include "constants.h"
 
 
+
 class Board;
 
 class Point
@@ -61,8 +62,7 @@ public:
 		draw(c);
 	}
 	void move(Direction dir);
-	bool canMove(const Board& gameBoard, Direction dir);
-	bool canMoveJoker(const Board& gameBoard, Direction dir);
-	void getPosInMatrix(const Point& pt, int &x, int &y);
+	static	bool canMove(const Board& gameBoard, Direction dir, const Point& pt);
+	void getPosInMatrix(const Point& pt, int &x, int &y) const;
 	void getPosInMatrix(int x, int y, int & xNewPos, int & yNewPos);
 };

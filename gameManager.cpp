@@ -4,6 +4,7 @@
 GameManager::GameManager()
 {
 	std::srand((unsigned int)time(NULL)); //casting to unsigned int because we had warning: possible loss of data
+
 }
 
 void GameManager::resetGame()
@@ -13,12 +14,32 @@ void GameManager::resetGame()
 	board.showFailureMessage();
 }
 
+void GameManager::setSpeed(double newSpeed)
+{
+	gameSpeed = newSpeed;
+
+	gotoxy(SCORE_X - 8, SCORE_Y - 3);
+	if (gameSpeed == 1.25)
+		 std::cout << very_slow;
+	else if (gameSpeed == 1)
+		std::cout << slow;
+	else if (gameSpeed == 0.75)
+		std::cout <<  normal;
+	else if (gameSpeed == 0.5)
+		std::cout <<  fast;
+	else if (gameSpeed == 0.25)
+		std::cout <<  very_fast;
+}
+
 void GameManager::runGame()
 {
+	saveTime = time(NULL);
 	while (!quitGame)
 	{
+		Sleep(100);
 		if (gameOn)
 		{
+
 			if (existingShape == false)//Generating Parts
 			{
 				shape = ShapeFactory::createShape(ShapeFactory::shapeProbabilities());
@@ -26,9 +47,15 @@ void GameManager::runGame()
 				board.setFallenItems(board.getFallenItems() + 1);
 			}
 
-			if (shape->canMove(board, DOWN))
-				shape->move(DOWN);
-
+			currTime = time(NULL);
+			if (std::difftime(currTime, saveTime) > gameSpeed)
+			{
+				if (shape->canMove(board, DOWN))
+				{
+					shape->move(DOWN);
+				}
+				saveTime = currTime;
+			}
 			dir = menu(keyPressed);
 
 			if (dir == HARDDROP)
@@ -38,54 +65,75 @@ void GameManager::runGame()
 					shape->move(DOWN);
 					board.setScore(board.getScore() + 2);
 				}
-				if (shape->getShapeType() != BOMB)
-					board.markShapeAndUpdateScore(*shape);
-				else
-					board.explodeBomb(shape->getPoint());
+				erasedLines = shape->markShape(board);
+				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
+
 			}
 
 			else if ((dir == DOWN) && (shape->getShapeType() == JOKER))
 			{
-				board.markShapeAndUpdateScore(*shape);
+				erasedLines = shape->markShape(board);
+				board.updateScore(erasedLines, *shape);
 				delete shape;
 				existingShape = false;
+
 			}
 			else if (shape->canMove(board, dir))
 			{
 				shape->move(dir);
 				if (dir == DOWN)//update score for soft-Drop
 					board.setScore(board.getScore() + 1);
+
 			}
-
-
 			else
-			{
-				if (shape->canMove(board, DOWN))
-					shape->move(DOWN);
+			{ //not hardDrop , not save joker, shape cant move anymore
 				//killing switch
-				else
+				if (!shape->canMove(board, DOWN))
 				{
-					if (shape->getShapeType() == BOMB)
-						board.explodeBomb(shape->getPoint());
-					shape->draw(' ');
-					if (shape->getShapeType() != BOMB)
-						board.markShapeAndUpdateScore(*shape);
-					delete shape;
-					existingShape = false;
+					Sleep(400);
+					if (_kbhit())
+					{
+						keyPressed = _getch();
+						dir = menu(keyPressed);
+					}
+
+					while (shape->canMove(board, dir) && dir != STAY)
+					{
+						shape->move(dir);
+						if (_kbhit())
+						{
+							keyPressed = _getch();
+							dir = menu(keyPressed);
+						}
+						else
+						{
+							dir = STAY;
+						}
+
+					}
+					Sleep(100);
+					if (!shape->canMove(board, DOWN))
+					{
+						erasedLines = shape->markShape(board);
+						board.updateScore(erasedLines, *shape);
+						delete shape;
+						existingShape = false;
+					}
+
+
+
 				}
 			}
 
 			//check game status 
 			gameFailure = board.checkGameFailure();
-			if (!gameFailure)
+			if (gameFailure)
 			{
 				gameOn = false;
 				resetGame();
 			}
-
-			Sleep(gameSpeed);
 
 			keyPressed = 0;
 
@@ -93,10 +141,8 @@ void GameManager::runGame()
 				keyPressed = _getch();
 
 		}
-
 		else//menu mode
 		{
-
 			keyPressed = 0;
 
 			if (_kbhit())
@@ -131,7 +177,7 @@ Direction GameManager::menu(char &keyPressed)
 
 	case HARD_DROP:
 		return HARDDROP;
-	
+
 	case START_GAME:
 		board.printMatrix();
 		setGameOn();

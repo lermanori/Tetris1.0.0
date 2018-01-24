@@ -1,4 +1,5 @@
 /************************************************************************************************************************************************
+(B"H)
 ~~~~ Matrix.h + Matrix.cpp ~~~
 READ POINT.H before this file.
 
@@ -51,12 +52,8 @@ printMatrix() - prints the matrix.
 
 ************************************************************************************************************************************************/
 #pragma once
-#include "constants.h"
-#include "ShapeFactory.h"
-#include "utils.h"
-#include <iostream>
+/*
 
-class Point;
 
 class Matrix
 {
@@ -82,3 +79,4 @@ public:
 	void printMatrix();
 
 };
+*/

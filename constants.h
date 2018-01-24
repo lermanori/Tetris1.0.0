@@ -34,12 +34,23 @@ const char HARD_DROP = 32;
 const char EXIT = '9';
 const char SPACE = ' ';
 
+
+//SPEEDS
+const char very_slow[10] = { 'V', 'E', 'R','Y', ' ', 'S', 'L','O','W','\0' };
+const char slow[10] = { 'S', 'L', 'O','W', ' ', ' ', ' ',' ',' ','\0' };
+const char normal[10] = { 'N', 'O', 'R','M', 'A', 'L', ' ',' ',' ','\0' };
+const char fast[10] = { 'F', 'A', 'S','T', ' ', ' ', ' ',' ',' ','\0' };
+const char very_fast[10] = { 'V', 'E', 'R','Y', ' ', 'F', 'A','S','T','\0' };
+
+
+
+
 //Default Numeric Values:
 const int EMPTY = 0;
 const int FULL = 10;
-const int MAX_SPEED = 100;
-const int MIN_SPEED = 200;
-const int SPEED_CHANGE = 25;
+const double MAX_SPEED = 0.25;
+const double MIN_SPEED = 1.25;
+const double SPEED_CHANGE = 0.25;
 const int BOMB_SCORE_REDUCTION = 50;
 
 //Shape Charachters

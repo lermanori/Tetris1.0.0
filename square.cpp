@@ -1,10 +1,9 @@
 #pragma once
 #include "square.h"
 
-
 Square::Square()
 {
-	int x = MIN_X + 5, y = MIN_Y+1;
+	int x = MIN_X + 5, y = MIN_Y + 1;
 	char c = SQR;
 	s1[BL].set(x, y, c);
 	s1[BR].set(x + 1, y, c);
@@ -51,16 +50,34 @@ bool Square::canMove(const Board &gameBoard, Direction dir)
 {
 	bool check[4] = { false, false, false, false };
 	bool res;
-	
-	check[BL] = s1[BL].canMove(gameBoard, dir);
-	check[BR] = s1[BR].canMove(gameBoard, dir);
-	check[TR] = s1[TR].canMove(gameBoard, dir);
-	check[TL] = s1[TL].canMove(gameBoard, dir);
+
+	check[BL] = s1[BL].Point::canMove(gameBoard, dir, s1[BL]);
+	check[BR] = s1[BR].Point::canMove(gameBoard, dir, s1[BR]);
+	check[TR] = s1[TR].Point::canMove(gameBoard, dir, s1[TR]);
+	check[TL] = s1[TL].Point::canMove(gameBoard, dir, s1[TL]);
 
 	res = check[BL] && check[BR] && check[TR] && check[TL];
 	return res;
 
-	}
+}
+
+int Square::markShape(Board &gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+
+	//ORDER: BL BR TR TL
+	gameBoard(y)[x] = SQR;
+	gameBoard(y)[x + 1] = SQR;
+	gameBoard(y - 1)[x + 1] = SQR;
+	gameBoard(y - 1)[x] = SQR;
+
+
+	this->draw(SQR);
+	return gameBoard.checkLine();
+
+}
 
 
 

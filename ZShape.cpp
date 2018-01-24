@@ -153,11 +153,50 @@ bool ZShape::checkIfCanMove(shapeState state, const Board & gameBoard, Direction
 	bool check[4] = { false,false,false,false };
 	bool res;
 
-	check[LTop] = ZTetrisShape[state][LTop].canMove(gameBoard, dir);
-	check[RTop] = ZTetrisShape[state][RTop].canMove(gameBoard, dir);
-	check[LBottom] = ZTetrisShape[state][LBottom].canMove(gameBoard, dir);
-	check[RBottom] = ZTetrisShape[state][RBottom].canMove(gameBoard, dir);
+	check[LTop] = ZTetrisShape[state][LTop].Point::canMove(gameBoard, dir, ZTetrisShape[state][LTop]);
+	check[RTop] = ZTetrisShape[state][RTop].Point::canMove(gameBoard, dir, ZTetrisShape[state][RTop]);
+	check[LBottom] = ZTetrisShape[state][LBottom].Point::canMove(gameBoard, dir, ZTetrisShape[state][LBottom]);
+	check[RBottom] = ZTetrisShape[state][RBottom].Point::canMove(gameBoard, dir, ZTetrisShape[state][RBottom]);
 
 	res = check[LTop] && check[RTop] && check[LBottom] && check[RBottom];
 	return res;
+}
+
+int ZShape::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	switch (state)
+	{
+	case HORIZONTAL: // 
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y)[x + 1] = ZSHP;
+		gameBoard(y + 1)[x + 1] = ZSHP;
+		gameBoard(y + 1)[x + 2] = ZSHP;
+		break;
+
+	case VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y + 1)[x] = ZSHP;
+		gameBoard(y + 1)[x - 1] = ZSHP;
+		gameBoard(y + 2)[x - 1] = ZSHP;
+		break;
+
+	case INV_HORIZONTAL: // 
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y)[x - 1] = ZSHP;
+		gameBoard(y - 1)[x - 1] = ZSHP;
+		gameBoard(y - 1)[x - 2] = ZSHP;
+		break;
+
+	case INV_VERTICAL:// ORDER BOTTOM UPWARDS
+		gameBoard(y)[x] = ZSHP;
+		gameBoard(y - 1)[x] = ZSHP;
+		gameBoard(y - 1)[x + 1] = ZSHP;
+		gameBoard(y - 2)[x + 1] = ZSHP;
+		break;
+	}
+	this->draw(ZSHP);
+	return gameBoard.checkLine();
 }

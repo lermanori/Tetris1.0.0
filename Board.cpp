@@ -1,9 +1,101 @@
 #pragma once
 #include "Board.h"
+//MATRIX MEMBER FUNCTIONS
+void Board::Matrix::setMatrix(char ch)
+{
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		indicators[i] = EMPTY;
+		for (int j = 0; j < WIDTH; j++)
+			gameBoard[i][j] = ch;
+	}
+}
+
+
+void Board::Matrix::getPosInMatrix(const Point& pt, int &x, int &y)
+{
+	x = pt.getX() - MIN_X;
+	y = pt.getY() - MIN_Y;
+}
+
+
+bool Board::Matrix::haveSpace(int x, int y) const
+{
+	if (x < 10 && x > -1 && y >= 0 && y < 15 && (gameBoard[y][x] == SPACE))
+		return true;
+	else
+		return false;
+}
+
+
+int Board::Matrix::checkIfFullLine()
+{
+	int counter = 0;
+	bool fullLine = false;
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		if (indicators[i] >= FULL)
+		{
+			eraseLine(i);
+			fullLine = true;
+			counter++;
+		}
+	}
+	if (fullLine)
+		printMatrix();
+	return counter;
+}
+void Board::Matrix::printMatrix()
+{
+	gotoxy(MIN_X, MIN_Y);
+	for (int i = 0; i < HEIGHT; i++)
+	{
+		gotoxy(MIN_X, MIN_Y + i);
+
+		for (int j = 0; j < WIDTH; j++)
+		{
+			std::cout << gameBoard[i][j];
+		}
+	}
+}
+
+
+void Board::Matrix::eraseLine(int i)
+{
+	for (int j = 0; j < WIDTH; j++)
+		gameBoard[0][j] = SPACE;
+
+	for (int line = i; line > 0; line--)
+	{
+		for (int k = 0; k < WIDTH; k++) //constant number of actions therefore it's okay to have for inside for loop
+		{
+			gameBoard[line][k] = gameBoard[line - 1][k];
+		}
+		indicators[0] = EMPTY;
+		indicators[line] = indicators[line - 1];
+	}
+
+}
+
+int Board::Matrix::eraseCell(int j, int i) //gets an index in the matrix and puts space in the i,j element in the matrix.
+{
+	if (gameBoard[i][j] != SPACE)
+	{
+		indicators[i]--;
+		this->gameBoard[i][j] = SPACE;
+		return 1;
+	}
+	else
+		return 0;
+}
+
+
+//BOARD MEMBER FUNCTIONS
 Board::Board()
 {
 	drawBoard();
 }
+
 
 void Board::setScore(int newScore)
 {
@@ -14,14 +106,11 @@ void Board::setScore(int newScore)
 	std::cout << std::setfill('0') << std::setw(6) << score;
 }
 
-void Board::markShapeAndUpdateScore(const Shape& shape)
+
+void Board::updateScore(int erasedLines, const Shape & shape)
 {
-	int numLinesErased;
-	numLinesErased = gameBoard.markShape(shape);
-
-	switch (numLinesErased)
+	switch (erasedLines)
 	{
-
 	case ONE:
 		if (shape.getShapeType() == JOKER)
 			this->setScore(this->getScore() + 50);
@@ -38,14 +127,14 @@ void Board::markShapeAndUpdateScore(const Shape& shape)
 	case FOUR:
 		this->setScore(this->getScore() + 800);
 		break;
+	default:
+		break;
 	}
 }
 
-void Board::explodeBomb(const Point & pt)
+void Board::explodeBomb(const int x , const int y)
 {
-	int x = 0, y = 0;
 	int erasedCells = 0;
-	gameBoard.getPosInMatrix(pt, x, y);
 
 	if (x == START && y == START) //TOP LEFT
 	{
@@ -115,16 +204,17 @@ void Board::explodeBomb(const Point & pt)
 
 	this->setScore(this->getScore() - BOMB_SCORE_REDUCTION * erasedCells);
 	gameBoard.printMatrix();
+
 }
 
-bool Board::haveSpace(int x, int y)const
-{
-	return gameBoard.haveSpace(x, y);
-}
 
-bool Board::haveSpaceJoker(int x, int y) const
+
+bool Board::checkGameFailure()
 {
-	return gameBoard.haveSpaceJoker(x, y);
+	if (gameBoard.indicators[START] != EMPTY)
+		return true;
+	else
+		return false;
 }
 
 void Board::showFailureMessage()
@@ -188,7 +278,7 @@ void Board::drawMenu()
 void Board::drawScoreBoard()
 {
 	gotoxy(scorePosX - 14, scorePosY - 3);
-	std::cout << "Speed: 150 m/s";
+	std::cout << "Speed:"  << normal;
 	gotoxy(scorePosX - 14, scorePosY);
 	std::cout << "Score: " << std::setfill('0') << std::setw(6) << score;
 	gotoxy(scorePosX - 7, scorePosY);

@@ -28,9 +28,17 @@ void Bomb::draw(char c)const
 bool Bomb::canMove(const Board& gameBoard, Direction dir)
 {
 	bool res;
-	res = p.canMove(gameBoard, dir);
 
-	return res;
+	return Point::canMove(gameBoard, dir, this->getPoint());
+}
+
+int Bomb::markShape(Board & gameBoard)
+{
+	int x = 0, y = 0;
+	this->getPosInMatrix(this->getPoint(), x, y);
+
+	gameBoard.explodeBomb(x,y);
+	return gameBoard.checkLine();
 }
 
 

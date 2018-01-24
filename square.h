@@ -28,11 +28,11 @@ the purpose is to make a definition "the square can move if all is 4 point can m
 ************************************************************************************************************************************************/
 
 #pragma once
-#include "Point.h"
-#include "Shape.h"
+#include "Board.h"
 
 
 enum { size = 4 };
+
 
 class Square : public Shape
 {
@@ -43,11 +43,15 @@ class Square : public Shape
 public:
 	Square();
 	Square(int x, int y, char c);
-	void move(Direction dir)  ;
-	void draw(char c)const  ;
-	const Point& getPoint()const  { return s1[BL]; }
-	bool canMove(const Board& gameBoard, Direction dir) ;
-	shapeState getState()const  { return DUMMYSTATE; }
-	ShapeTypes getShapeType()const  { return SQUARE; }
+	void move(Direction dir);
+	void draw(char c)const;
+	const Point& getPoint()const { return s1[BL]; }
+	bool canMove(const Board& gameBoard, Direction dir) override;
+	virtual bool checkIfCanMove(shapeState state, const Board & gameBoard, Direction dir) { return false; } //not being used atm
+	shapeState getState()const { return DUMMYSTATE; }
+	ShapeTypes getShapeType()const { return SQUARE; }
+	int markShape(Board& gameBoard);
 
-};
+	
+
+};	
